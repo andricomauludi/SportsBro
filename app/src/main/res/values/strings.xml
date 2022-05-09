@@ -1,0 +1,31 @@
+<resources>
+    <string name="app_name">CobaSkripsi</string>
+    <string name="welcome">Welcome</string>
+    <string name="title_activity_home">MainActivity</string>
+    <string name="title_home">Lapangan</string>
+    <string name="title_dashboard">Pemesanan</string>
+    <string name="title_notifications">Profil</string>
+    <string name="title_activity_basket">Map</string>
+    <string name="title_activity_list_basket">ListBasket</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="first_fragment_label">First Fragment</string>
+    <string name="second_fragment_label">Second Fragment</string>
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+
+    <string name="hello_first_fragment">Hello first fragment</string>
+    <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>
+
+    <string-array name="lapanganbasket">
+        <item>Lapangan Bucketlist</item>
+        <item>Lapangan Sempur</item>
+        <item>Lapangan Padjadjaran</item>
+        <item>Lapangan Regency</item>
+    </string-array>
+    <string-array name="jaraklapangan">
+        <item>Jarak 1km</item>
+        <item>Jarak 5km</item>
+        <item>Jarak 20km</item>
+        <item>Jarak 25km</item>
+    </string-array>
+</resources>

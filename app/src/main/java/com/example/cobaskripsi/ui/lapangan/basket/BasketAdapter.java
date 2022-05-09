@@ -1,0 +1,117 @@
+package com.example.cobaskripsi.ui.lapangan.basket;
+
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.TextView;
+
+import androidx.annotation.NonNull;
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
+import com.example.cobaskripsi.R;
+import com.firebase.ui.database.FirebaseRecyclerAdapter;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+
+import de.hdodenhof.circleimageview.CircleImageView;
+
+public class BasketAdapter extends FirebaseRecyclerAdapter<BasketModel,BasketAdapter.myViewHolder> {
+
+
+    /**
+     * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
+     * {@link FirebaseRecyclerOptions} for configuration options.
+     *
+     * @param options
+     */
+    public BasketAdapter(@NonNull FirebaseRecyclerOptions<BasketModel> options) {
+
+        super(options);
+    }
+
+
+    @Override
+    protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull BasketModel model) {
+        holder.namalapangan.setText(model.getNamalapangan());
+
+
+
+        Glide.with(holder.img.getContext())
+                .load(model.getJarak())
+                .placeholder(R.drawable.basket_bucketlist)
+                .circleCrop()
+                .error(R.drawable.basket1)
+                .into(holder.img);
+
+        String latitudetempat = model.latitudetempat;
+        String longitudetempat = model.longitudetempat;
+        String str = model.marker;
+
+        String[] latlong = str.split(",");
+        String lat = latlong[0];
+        String lng = latlong[1];
+        double latitudeSaya = -6.591115;
+        double longitudeSaya = 106.815922;
+        double latitudeTujuan = Double.valueOf(lat.toString());
+        double longitudeTujuan = Double.valueOf(lng.toString());
+
+
+        double jarak = getDistance(latitudeTujuan, longitudeTujuan, latitudeSaya, longitudeSaya);
+        jarak = Math.ceil(jarak / 1000);
+        String stringjarak = jarak+"";
+
+        holder.marker.setText(stringjarak + " km");
+
+
+
+
+
+    }
+
+    @NonNull
+    @Override
+    public myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.basket_row,parent,false);
+
+        return new myViewHolder(view);
+    }
+
+    class myViewHolder extends RecyclerView.ViewHolder{
+        CircleImageView img;
+        TextView namalapangan, marker;
+
+
+        public myViewHolder(@NonNull View itemView) {
+            super(itemView);
+
+            img = (CircleImageView)itemView.findViewById(R.id.basketImageView);
+            namalapangan = (TextView)itemView.findViewById(R.id.basketText1);
+            marker = (TextView)itemView.findViewById(R.id.basketText2);
+
+
+        }
+    }
+
+    private double getDistance(Double latitudeTujuan, Double longitudeTujuan, Double latitudeUser, Double longitudeUser){
+        /*VARIABEL */
+        Double pi =3.14159265358979;
+        Double lat1 = latitudeTujuan;
+        Double lon1 = longitudeTujuan;
+        Double lat2 = latitudeUser;
+        Double lon2 = longitudeUser;
+        Double R = 6371e3;
+
+        Double latRad1 = lat1 * (pi / 180);
+        Double latRad2 = lat2 * (pi / 180);
+        Double deltaLatRad = (lat2 - lat1) * (pi / 180);
+        Double deltaLonRad = (lon2 - lon1) * (pi / 180);
+
+        /* RUMUS HAVERSINE*/
+        Double a = Math.sin(deltaLatRad / 2) * Math.sin(deltaLatRad / 2) + Math.cos(latRad1) * Math.cos(latRad2) * Math.sin(deltaLonRad / 2) * Math.sin(deltaLonRad / 2);
+        Double c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+        Double s = R * c; // hasil jarak dalam meter
+        return s;
+    }
+
+
+}
