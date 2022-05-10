@@ -38,7 +38,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".ui.lapangan.basket.ListBasket"></activity>
+        <activity android:name=".ui.lapangan.basket.MainListLapangan"></activity>
     </application>
 
 </manifest>

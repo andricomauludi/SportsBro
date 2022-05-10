@@ -11,7 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import com.example.cobaskripsi.R;
-import com.example.cobaskripsi.ui.lapangan.basket.ListBasket;
+import com.example.cobaskripsi.ui.lapangan.basket.MainListLapangan;
 
 public class HomeFragment extends Fragment {
 
@@ -28,7 +28,7 @@ public class HomeFragment extends Fragment {
         btnBasket.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(getActivity(), ListBasket.class);
+                Intent intent = new Intent(getActivity(), MainListLapangan.class);
                 startActivity(intent);
             }
         });

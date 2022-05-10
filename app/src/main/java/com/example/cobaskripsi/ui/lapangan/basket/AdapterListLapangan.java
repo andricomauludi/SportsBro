@@ -16,23 +16,14 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class BasketAdapter extends FirebaseRecyclerAdapter<BasketModel,BasketAdapter.myViewHolder> {
+public class AdapterListLapangan extends FirebaseRecyclerAdapter<BasketModel,AdapterListLapangan.myviewholder> {
 
-
-    /**
-     * Initialize a {@link RecyclerView.Adapter} that listens to a Firebase query. See
-     * {@link FirebaseRecyclerOptions} for configuration options.
-     *
-     * @param options
-     */
-    public BasketAdapter(@NonNull FirebaseRecyclerOptions<BasketModel> options) {
-
+    public AdapterListLapangan(@NonNull FirebaseRecyclerOptions<BasketModel> options) {
         super(options);
     }
 
-
     @Override
-    protected void onBindViewHolder(@NonNull myViewHolder holder, int position, @NonNull BasketModel model) {
+    protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull BasketModel model) {
         holder.namalapangan.setText(model.getNamalapangan());
         Glide.with(holder.img.getContext())
                 .load(model.getJarak())
@@ -67,32 +58,28 @@ public class BasketAdapter extends FirebaseRecyclerAdapter<BasketModel,BasketAda
         String stringjarak = jarak+"";
 
         holder.marker.setText(stringjarak + " km");
+
     }
 
     @NonNull
     @Override
-    public myViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.basket_row,parent,false);
-
-        return new myViewHolder(view);
+        return new myviewholder(view);
     }
 
-    class myViewHolder extends RecyclerView.ViewHolder{
+    public class myviewholder extends RecyclerView.ViewHolder{
+
         CircleImageView img;
         TextView namalapangan, marker;
 
-
-        public myViewHolder(@NonNull View itemView) {
+        public myviewholder(@NonNull View itemView) {
             super(itemView);
-
             img = (CircleImageView)itemView.findViewById(R.id.basketImageView);
             namalapangan = (TextView)itemView.findViewById(R.id.basketText1);
             marker = (TextView)itemView.findViewById(R.id.basketText2);
-
-
         }
     }
-
     private double getDistance(Double latitudeTujuan, Double longitudeTujuan, Double latitudeUser, Double longitudeUser){
         /*VARIABEL */
         Double pi =3.14159265358979;
@@ -113,6 +100,4 @@ public class BasketAdapter extends FirebaseRecyclerAdapter<BasketModel,BasketAda
         Double s = R * c; // hasil jarak dalam meter
         return s;
     }
-
-
 }
