@@ -61,7 +61,7 @@ public class DetailLapangan extends Fragment {
 
         ImageView imageholder= view.findViewById(R.id.gambarlapangan);
         TextView nameholder= view.findViewById(R.id.namalapangan);
-        TextView markerholder= view.findViewById(R.id.markerlapangan);
+        //TextView markerholder= view.findViewById(R.id.markerlapangan);
 
         nameholder.setText(namalapangan);
         String str = marker;
@@ -79,7 +79,7 @@ public class DetailLapangan extends Fragment {
         jarak = Math.ceil(jarak / 1000);
         String stringjarak = jarak+" km";
 
-        markerholder.setText(stringjarak);
+        //markerholder.setText(stringjarak);
         Glide.with(getContext()).load(R.drawable.basket_bucketlist).into(imageholder);
 
         return view;
