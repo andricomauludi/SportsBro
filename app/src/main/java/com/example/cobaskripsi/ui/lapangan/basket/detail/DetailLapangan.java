@@ -9,15 +9,22 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.cobaskripsi.R;
 import com.example.cobaskripsi.ui.lapangan.basket.RecListLapangan;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 public class DetailLapangan extends Fragment {
 
+    private DatabaseReference mDatabase;
     Button lapangan1;
 
 
@@ -27,7 +34,7 @@ public class DetailLapangan extends Fragment {
 
     private String mParam1;
     private String mParam2;
-    String namatempat,marker,gambar;
+    String namatempat,marker,gambar,idtempat;
 
     public DetailLapangan() {
 
@@ -91,20 +98,40 @@ public class DetailLapangan extends Fragment {
         Glide.with(getContext()).load(R.drawable.basket_bucketlist).into(imageholder);
 
         Button lapangan1 = (Button) view.findViewById(R.id.lapangan1);
+
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("tempat")
+                .orderByChild("namatempat")
+                .equalTo(namatempat)
+                .addListenerForSingleValueEvent(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot childSnapshot: snapshot.getChildren()){
+                            String clubkey = childSnapshot.getKey();
+                            idtempat=clubkey;
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+                                        }
+                });
+
+
         lapangan1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                updateDetail();
+                Intent i = new Intent(getActivity(), addpemesanan.class);
+                String strName = namatempat;
+                i.putExtra("IDTEMPAT", idtempat);
+                i.putExtra("NAMATEMPAT", namatempat);
+                startActivity(i);
+
+
+
             }
         });
 
         return view;
-    }
-    public void updateDetail() {
-        Intent intent = new Intent(getActivity(), addpemesanan.class);
-        startActivity(intent);
-
-
     }
 
     public void onBackPressed(){

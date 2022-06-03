@@ -1,15 +1,15 @@
 package com.example.cobaskripsi.ui.lapangan.basket;
 
-public class BasketModel {
+public class TempatModel {
     String gambar,marker,namatempat;
 
-    public BasketModel(String gambar, String marker, String namatempat) {
+    public TempatModel(String gambar, String marker, String namatempat) {
         this.gambar = gambar;
         this.marker = marker;
         this.namatempat = namatempat;
     }
 
-    BasketModel(){
+    TempatModel(){
 
     }
 

@@ -59,9 +59,9 @@ public class RecListLapangan extends Fragment {
         recview=(RecyclerView)view.findViewById(R.id.recview);
         recview.setLayoutManager(new LinearLayoutManager(getContext()));
 
-        FirebaseRecyclerOptions<BasketModel> options =
-                new FirebaseRecyclerOptions.Builder<BasketModel>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("tempat"), BasketModel.class)
+        FirebaseRecyclerOptions<TempatModel> options =
+                new FirebaseRecyclerOptions.Builder<TempatModel>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("tempat"), TempatModel.class)
                         .build();
         adapter = new AdapterListLapangan(options);
         recview.setAdapter(adapter);

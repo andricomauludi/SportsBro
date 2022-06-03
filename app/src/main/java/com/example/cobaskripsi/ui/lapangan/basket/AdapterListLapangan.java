@@ -17,14 +17,14 @@ import com.firebase.ui.database.FirebaseRecyclerOptions;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class AdapterListLapangan extends FirebaseRecyclerAdapter<BasketModel,AdapterListLapangan.myviewholder> {
+public class AdapterListLapangan extends FirebaseRecyclerAdapter<TempatModel,AdapterListLapangan.myviewholder> {
 
-    public AdapterListLapangan(@NonNull FirebaseRecyclerOptions<BasketModel> options) {
+    public AdapterListLapangan(@NonNull FirebaseRecyclerOptions<TempatModel> options) {
         super(options);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull BasketModel model) {
+    protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull TempatModel model) {
         holder.namatempat.setText(model.getNamatempat());
         Glide.with(holder.img.getContext())
                 .load(model.getGambar())

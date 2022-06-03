@@ -27,15 +27,45 @@ import java.util.Map;
 public class addpemesanan extends AppCompatActivity {
 
     EditText namapemesan,nomortelppemesan;
-    TextView tanggalpemesanan;
+    TextView tanggalpemesanan,idtempat,namatempat;
     Button pesan,cancel,lihattanggal;
     DatePickerDialog datePickerDialog;
     SimpleDateFormat dateFormatter;
+    String newString,newString2;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addpemesanan);
+
+        namatempat = (TextView)findViewById(R.id.namatempat);
+
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                newString= null;
+            } else {
+                newString= extras.getString("IDTEMPAT");
+            }
+        } else {
+            newString= (String) savedInstanceState.getSerializable("IDTEMPAT");
+        }
+        idtempat.setText(newString);
+
+        if (savedInstanceState == null) {
+            Bundle extras = getIntent().getExtras();
+            if(extras == null) {
+                newString2= null;
+            } else {
+                newString2= extras.getString("NAMATEMPAT");
+            }
+        } else {
+            newString2= (String) savedInstanceState.getSerializable("NAMATEMPAT");
+        }
+
+        namatempat.setText(newString2);
+
 
         tanggalpemesanan = (TextView) findViewById(R.id.tanggalpemesanan);
         dateFormatter = new SimpleDateFormat("dd-mm-yyyy");
@@ -91,6 +121,7 @@ public class addpemesanan extends AppCompatActivity {
         map.put("namapemesan",namapemesan.getText().toString());
         map.put("nomortelppemesan",nomortelppemesan.getText().toString());
         map.put("tanggalpemesanan",tanggalpemesanan.getText().toString());
+        map.put("idtempat",idtempat.getText().toString());
         FirebaseDatabase.getInstance().getReference().child("pemesanan").push()
                 .setValue(map)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
