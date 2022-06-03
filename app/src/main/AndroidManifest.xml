@@ -17,8 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CobaSkripsi">
-        <activity android:name=".ui.lapangan.basket.cobahitungjarak"></activity>
-
+        <activity android:name=".ui.lapangan.basket.detail.addpemesanan"></activity>
+        <activity android:name=".ui.lapangan.basket.cobahitungjarak" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -38,7 +38,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".ui.lapangan.basket.MainListLapangan"></activity>
+        <activity android:name=".ui.lapangan.basket.MainListLapangan" />
     </application>
 
 </manifest>

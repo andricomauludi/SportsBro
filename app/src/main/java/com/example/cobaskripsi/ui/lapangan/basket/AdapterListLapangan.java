@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.cobaskripsi.R;
+import com.example.cobaskripsi.ui.lapangan.basket.detail.DetailLapangan;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
 
@@ -24,9 +25,9 @@ public class AdapterListLapangan extends FirebaseRecyclerAdapter<BasketModel,Ada
 
     @Override
     protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull BasketModel model) {
-        holder.namalapangan.setText(model.getNamalapangan());
+        holder.namatempat.setText(model.getNamatempat());
         Glide.with(holder.img.getContext())
-                .load(model.getJarak())
+                .load(model.getGambar())
                 .placeholder(R.drawable.basket_bucketlist)
                 .circleCrop()
                 .error(R.drawable.basket1)
@@ -36,12 +37,11 @@ public class AdapterListLapangan extends FirebaseRecyclerAdapter<BasketModel,Ada
                     @Override
                     public void onClick(View v) {
                         AppCompatActivity activity=(AppCompatActivity)v.getContext();
-                        activity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new DetailLapangan(model.getNamalapangan(),model.getMarker(),model.getGambar())).addToBackStack(null).commit();
+                        activity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new DetailLapangan(model.getNamatempat(),model.getMarker(),model.getGambar())).addToBackStack(null).commit();
                     }
                 });
 
-        String latitudetempat = model.latitudetempat;
-        String longitudetempat = model.longitudetempat;
+
         String str = model.marker;
 
         String[] latlong = str.split(",");
@@ -71,12 +71,12 @@ public class AdapterListLapangan extends FirebaseRecyclerAdapter<BasketModel,Ada
     public class myviewholder extends RecyclerView.ViewHolder{
 
         CircleImageView img;
-        TextView namalapangan, marker;
+        TextView namatempat, marker;
 
         public myviewholder(@NonNull View itemView) {
             super(itemView);
             img = (CircleImageView)itemView.findViewById(R.id.basketImageView);
-            namalapangan = (TextView)itemView.findViewById(R.id.basketText1);
+            namatempat = (TextView)itemView.findViewById(R.id.basketText1);
             marker = (TextView)itemView.findViewById(R.id.basketText2);
         }
     }

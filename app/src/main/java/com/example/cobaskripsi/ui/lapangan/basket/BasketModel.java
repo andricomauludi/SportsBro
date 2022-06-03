@@ -1,17 +1,16 @@
 package com.example.cobaskripsi.ui.lapangan.basket;
 
 public class BasketModel {
+    String gambar,marker,namatempat;
 
-    String olahraga;
-    String namalapangan;
-    String marker;
-    String lokasi;
-    String jarak;
-    String latitudetempat;
-    String longitudetempat;
-
-    public BasketModel(String gambar) {
+    public BasketModel(String gambar, String marker, String namatempat) {
         this.gambar = gambar;
+        this.marker = marker;
+        this.namatempat = namatempat;
+    }
+
+    BasketModel(){
+
     }
 
     public String getGambar() {
@@ -22,39 +21,6 @@ public class BasketModel {
         this.gambar = gambar;
     }
 
-    String gambar;
-
-
-
-    BasketModel(){
-
-    }
-    public BasketModel(String olahraga, String namalapangan, String marker, String lokasi, String jarak, String latitudetempat, String longitudetempat) {
-        this.olahraga = olahraga;
-        this.namalapangan = namalapangan;
-        this.marker = marker;
-        this.lokasi = lokasi;
-        this.jarak = jarak;
-        this.latitudetempat = latitudetempat;
-        this.longitudetempat = longitudetempat;
-    }
-
-    public String getOlahraga() {
-        return olahraga;
-    }
-
-    public void setOlahraga(String olahraga) {
-        this.olahraga = olahraga;
-    }
-
-    public String getNamalapangan() {
-        return namalapangan;
-    }
-
-    public void setNamalapangan(String namalapangan) {
-        this.namalapangan = namalapangan;
-    }
-
     public String getMarker() {
         return marker;
     }
@@ -63,36 +29,11 @@ public class BasketModel {
         this.marker = marker;
     }
 
-    public String getLokasi() {
-        return lokasi;
+    public String getNamatempat() {
+        return namatempat;
     }
 
-    public void setLokasi(String lokasi) {
-        this.lokasi = lokasi;
+    public void setNamatempat(String namatempat) {
+        this.namatempat = namatempat;
     }
-
-    public String getJarak() {
-        return jarak;
-    }
-
-    public void setJarak(String jarak) {
-        this.jarak = jarak;
-    }
-
-    public String getLatitudetempat() {
-        return latitudetempat;
-    }
-
-    public void setLatitudetempat(String latitudetempat) {
-        this.latitudetempat = latitudetempat;
-    }
-
-    public String getLongitudetempat() {
-        return longitudetempat;
-    }
-
-    public void setLongitudetempat(String longitudetempat) {
-        this.longitudetempat = longitudetempat;
-    }
-
 }

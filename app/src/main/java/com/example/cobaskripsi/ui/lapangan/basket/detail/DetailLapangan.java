@@ -1,9 +1,11 @@
-package com.example.cobaskripsi.ui.lapangan.basket;
+package com.example.cobaskripsi.ui.lapangan.basket.detail;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -12,8 +14,11 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.cobaskripsi.R;
+import com.example.cobaskripsi.ui.lapangan.basket.RecListLapangan;
 
 public class DetailLapangan extends Fragment {
+
+    Button lapangan1;
 
 
     private static final String ARG_PARAM1 = "param1";
@@ -22,14 +27,14 @@ public class DetailLapangan extends Fragment {
 
     private String mParam1;
     private String mParam2;
-    String namalapangan,marker,gambar;
+    String namatempat,marker,gambar;
 
     public DetailLapangan() {
 
     }
 
-    public DetailLapangan(String namalapangan, String marker, String gambar) {
-        this.namalapangan = namalapangan;
+    public DetailLapangan(String namatempat, String marker, String gambar) {
+        this.namatempat = namatempat;
         this.marker = marker;
         this.gambar = gambar;
     }
@@ -51,19 +56,22 @@ public class DetailLapangan extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+
         View view= inflater.inflate(R.layout.fragment_detail_lapangan, container, false);
 
         ImageView imageholder= view.findViewById(R.id.gambarlapangan);
         TextView nameholder= view.findViewById(R.id.namalapangan);
         //TextView markerholder= view.findViewById(R.id.markerlapangan);
 
-        nameholder.setText(namalapangan);
+        nameholder.setText(namatempat);
         String str = marker;
 
         String[] latlong = str.split(",");
@@ -82,8 +90,23 @@ public class DetailLapangan extends Fragment {
         //markerholder.setText(stringjarak);
         Glide.with(getContext()).load(R.drawable.basket_bucketlist).into(imageholder);
 
+        Button lapangan1 = (Button) view.findViewById(R.id.lapangan1);
+        lapangan1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                updateDetail();
+            }
+        });
+
         return view;
     }
+    public void updateDetail() {
+        Intent intent = new Intent(getActivity(), addpemesanan.class);
+        startActivity(intent);
+
+
+    }
+
     public void onBackPressed(){
         AppCompatActivity activity=(AppCompatActivity)getContext();
         activity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new RecListLapangan()).addToBackStack(null).commit();

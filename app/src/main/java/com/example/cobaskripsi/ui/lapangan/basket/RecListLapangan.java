@@ -61,10 +61,11 @@ public class RecListLapangan extends Fragment {
 
         FirebaseRecyclerOptions<BasketModel> options =
                 new FirebaseRecyclerOptions.Builder<BasketModel>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("lapanganbasket"), BasketModel.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("tempat"), BasketModel.class)
                         .build();
         adapter = new AdapterListLapangan(options);
         recview.setAdapter(adapter);
+
 
         return view;
     }
