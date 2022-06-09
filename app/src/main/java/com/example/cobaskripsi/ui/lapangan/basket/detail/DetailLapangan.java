@@ -5,8 +5,11 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.ListView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -22,10 +25,15 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
 
+import java.util.ArrayList;
+
 public class DetailLapangan extends Fragment {
 
     private DatabaseReference mDatabase;
-    Button lapangan1;
+    Button lapangan1,newbtn;
+    ListView listView;
+    TextView cobain;
+
 
 
     private static final String ARG_PARAM1 = "param1";
@@ -76,28 +84,25 @@ public class DetailLapangan extends Fragment {
 
         ImageView imageholder= view.findViewById(R.id.gambarlapangan);
         TextView nameholder= view.findViewById(R.id.namalapangan);
+        TextView cobain= view.findViewById(R.id.cobain);
         //TextView markerholder= view.findViewById(R.id.markerlapangan);
 
         nameholder.setText(namatempat);
-        String str = marker;
-
-        String[] latlong = str.split(",");
-        String lat = latlong[0];
-        String lng = latlong[1];
-        double latitudeSaya = -6.591115;
-        double longitudeSaya = 106.815922;
-        double latitudeTujuan = Double.valueOf(lat.toString());
-        double longitudeTujuan = Double.valueOf(lng.toString());
-
-
-        double jarak = getDistance(latitudeTujuan, longitudeTujuan, latitudeSaya, longitudeSaya);
-        jarak = Math.ceil(jarak / 1000);
-        String stringjarak = jarak+" km";
 
         //markerholder.setText(stringjarak);
         Glide.with(getContext()).load(R.drawable.basket_bucketlist).into(imageholder);
 
-        Button lapangan1 = (Button) view.findViewById(R.id.lapangan1);
+
+        listView = view.findViewById(R.id.listView);
+
+        final ArrayList<String> list = new ArrayList<>();
+        final ArrayList<String> namalapangan = new ArrayList<>();
+        final ArrayList<String> idlapangan = new ArrayList<>();
+        final ArrayList<String> jamtersedia = new ArrayList<>();
+        final ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(), R.layout.list_item, list);
+        listView.setAdapter(adapter);
+
+        LinearLayout linearLayout = view.findViewById(R.id.rootlayout);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("tempat")
@@ -110,30 +115,105 @@ public class DetailLapangan extends Fragment {
                             String clubkey = childSnapshot.getKey();
                             idtempat=clubkey;
                         }
-                    }
+                        mDatabase.child("lapangan")
+                                //.child("lapangan1")
+                                .orderByChild("idtempat")
+                                .equalTo(idtempat)
+                                .addValueEventListener(new ValueEventListener() {
+                                    @Override
+                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                        list.clear();
+                                        namalapangan.clear();
+                                        idlapangan.clear();
+                                        jamtersedia.clear();
+                                        for (DataSnapshot childSnapshot : snapshot.getChildren()){
+                                            LapanganModel lapanganModel = childSnapshot.getValue(LapanganModel.class);
+                                            list.add(lapanganModel.getNamalapangan());
+                                            namalapangan.add(lapanganModel.getNamalapangan());
+                                            jamtersedia.add(lapanganModel.getJamtersedia());
+                                            String clubkey = childSnapshot.getKey();
+                                            idlapangan.add(clubkey);
+
+                                        }
+
+                                        Button[] addlapangan = new Button[namalapangan.size()];
+                                        for (int i=0;i<namalapangan.size();i++) {
+                                            Button addbtn = new Button (getActivity());
+                                            if (linearLayout!=null){
+                                                linearLayout.addView(addbtn);
+                                                addbtn.setText(namalapangan.get(i));
+                                                addbtn.setId(i);
+
+                                                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                                                        LinearLayout.LayoutParams.MATCH_PARENT,
+                                                        LinearLayout.LayoutParams.WRAP_CONTENT
+                                                );
+                                                params.setMargins(10,0,10,0);
+                                                addbtn.setLayoutParams(params);
+
+
+                                                //addlapangan[i]=view.findViewById(R.id.lapangan1);
+
+                                                String abc = String.valueOf(i);
+
+                                                int resID = getResources().getIdentifier(abc, "id", getActivity().getPackageName());
+                                                addlapangan[i] = (Button) view.findViewById(resID );
+                                                addlapangan[i].setText(namalapangan.get(i));
+                                                String jenislapangan = namalapangan.get(i);
+                                                String idlapanganpesan = idlapangan.get(i);
+                                                String jamtersediapesan = jamtersedia.get(i);
+                                                addlapangan[i].setOnClickListener(new View.OnClickListener() {
+                                                    @Override
+                                                    public void onClick(View v) {
+                                                        Intent intent = new Intent(getActivity(), addpemesanan.class);
+                                                        Bundle extras = new Bundle();
+                                                        extras.putString("IDTEMPAT", idtempat);
+                                                        extras.putString("NAMATEMPAT", namatempat);
+                                                        extras.putString("JENISLAPANGAN", jenislapangan);
+                                                        extras.putString("IDLAPANGAN", idlapanganpesan);
+                                                        extras.putString("JAMTERSEDIA", jamtersediapesan);
+                                                        intent.putExtras(extras);
+                                                        startActivity(intent);
+
+
+
+                                                    }
+                                                });
+
+
+                                            }
+                                        }
+
+                                        adapter.notifyDataSetChanged();
+                                    }
+                                    @Override
+                                    public void onCancelled(@NonNull DatabaseError error) {
+                                    }
+                                });
+                                            }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
-                                        }
+                    }
                 });
 
 
-        lapangan1.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent i = new Intent(getActivity(), addpemesanan.class);
-                String strName = namatempat;
-                i.putExtra("IDTEMPAT", idtempat);
-                i.putExtra("NAMATEMPAT", namatempat);
-                startActivity(i);
+        /**listView = view.findViewById(R.id.listView);
+
+        final ArrayList<String> list = new ArrayList<>();
+        final ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(), R.layout.list_item, list);
+        listView.setAdapter(adapter);
+**/
 
 
 
-            }
-        });
+
+
+
 
         return view;
-    }
 
+
+    }
     public void onBackPressed(){
         AppCompatActivity activity=(AppCompatActivity)getContext();
         activity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new RecListLapangan()).addToBackStack(null).commit();
@@ -159,4 +239,47 @@ public class DetailLapangan extends Fragment {
         Double s = R * c; // hasil jarak dalam meter
         return s;
     }
+
+    /**public void addButton(LayoutInflater inflater, ViewGroup container){
+        View view= inflater.inflate(R.layout.fragment_detail_lapangan, container, false);
+        LinearLayout layout =(LinearLayout) view.findViewById(R.id.rootlayout);
+        newbtn= new Button(getActivity());
+        newbtn.setText("new button");
+        layout.addView(newbtn);
+    }**/
+
+
+
+    int intan = 3;
+    int ico = 1;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

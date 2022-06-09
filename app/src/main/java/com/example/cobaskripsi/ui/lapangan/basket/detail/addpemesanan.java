@@ -5,14 +5,17 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.CheckBox;
 import android.widget.DatePicker;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.cobaskripsi.Home;
 import com.example.cobaskripsi.R;
 import com.example.cobaskripsi.ui.lapangan.basket.MainListLapangan;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -27,11 +30,11 @@ import java.util.Map;
 public class addpemesanan extends AppCompatActivity {
 
     EditText namapemesan,nomortelppemesan;
-    TextView tanggalpemesanan,idtempat,namatempat;
+    TextView tanggalpemesanan,namatempat,jenislapangan,jamtersedia;
     Button pesan,cancel,lihattanggal;
     DatePickerDialog datePickerDialog;
     SimpleDateFormat dateFormatter;
-    String newString,newString2;
+    String newString2,idtempat,newString3,idlapangan,newString4;
 
 
     @Override
@@ -39,33 +42,39 @@ public class addpemesanan extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addpemesanan);
 
+
+
         namatempat = (TextView)findViewById(R.id.namatempat);
+        jenislapangan = (TextView)findViewById(R.id.jenislapangan);
+        jamtersedia=(TextView)findViewById(R.id.jamtersedia);
+
 
         if (savedInstanceState == null) {
             Bundle extras = getIntent().getExtras();
             if(extras == null) {
-                newString= null;
-            } else {
-                newString= extras.getString("IDTEMPAT");
-            }
-        } else {
-            newString= (String) savedInstanceState.getSerializable("IDTEMPAT");
-        }
-        idtempat.setText(newString);
-
-        if (savedInstanceState == null) {
-            Bundle extras = getIntent().getExtras();
-            if(extras == null) {
+                idtempat=null;
                 newString2= null;
+                newString3= null;
+                newString4= null;
+                idlapangan=null;
+
             } else {
+                idtempat= extras.getString("IDTEMPAT");
                 newString2= extras.getString("NAMATEMPAT");
+                newString3= extras.getString("JENISLAPANGAN");
+                newString4= extras.getString("JAMTERSEDIA");
+                idlapangan= extras.getString("IDLAPANGAN");
             }
         } else {
+            idtempat= (String) savedInstanceState.getSerializable("IDTEMPAT");
             newString2= (String) savedInstanceState.getSerializable("NAMATEMPAT");
+            newString3= (String) savedInstanceState.getSerializable("JENISLAPANGAN");
+            newString4= (String) savedInstanceState.getSerializable("JAMTERSEDIA");
+            idlapangan= (String) savedInstanceState.getSerializable("IDLAPANGAN");
         }
-
         namatempat.setText(newString2);
-
+        jenislapangan.setText(newString3);
+        jamtersedia.setText(newString4);
 
         tanggalpemesanan = (TextView) findViewById(R.id.tanggalpemesanan);
         dateFormatter = new SimpleDateFormat("dd-mm-yyyy");
@@ -82,11 +91,24 @@ public class addpemesanan extends AppCompatActivity {
         namapemesan=(EditText)findViewById(R.id.namapemesan);
         nomortelppemesan=(EditText)findViewById(R.id.nomortelppemesanan);
 
+        LinearLayout linearLayout = findViewById(R.id.rootlayout);
+        if(linearLayout!=null){
+            for(int i = 0; i < 20; i++) {
+                CheckBox cb = new CheckBox(getApplicationContext());
+                cb.setText("I'm dynamic!");
+                cb.setTextSize(12 sp);
+               // cb.setBackgroundColor(getResources().getColor(R.color.white));
+                cb.setTextColor(getResources().getColor(R.color.white));
+                linearLayout.addView(cb);
+            }
+        }
+
         pesan=(Button)findViewById(R.id.pesan);
         pesan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 processInsert();
+                startActivity(new Intent(getApplicationContext(), Home.class));
             }
         });
 
@@ -118,10 +140,12 @@ public class addpemesanan extends AppCompatActivity {
     private void processInsert() {
 
         Map<String,Object> map=new HashMap<>();
+
         map.put("namapemesan",namapemesan.getText().toString());
         map.put("nomortelppemesan",nomortelppemesan.getText().toString());
         map.put("tanggalpemesanan",tanggalpemesanan.getText().toString());
-        map.put("idtempat",idtempat.getText().toString());
+        map.put("idlapangan",idlapangan);
+        map.put("idtempat",idtempat);
         FirebaseDatabase.getInstance().getReference().child("pemesanan").push()
                 .setValue(map)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
