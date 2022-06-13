@@ -14,10 +14,12 @@ import com.example.cobaskripsi.R;
 import com.example.cobaskripsi.ui.lapangan.basket.detail.DetailLapangan;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DatabaseReference;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
 public class AdapterListLapangan extends FirebaseRecyclerAdapter<TempatModel,AdapterListLapangan.myviewholder> {
+    private DatabaseReference mDatabase;
 
     public AdapterListLapangan(@NonNull FirebaseRecyclerOptions<TempatModel> options) {
         super(options);
@@ -37,6 +39,7 @@ public class AdapterListLapangan extends FirebaseRecyclerAdapter<TempatModel,Ada
                     @Override
                     public void onClick(View v) {
                         AppCompatActivity activity=(AppCompatActivity)v.getContext();
+
                         activity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new DetailLapangan(model.getNamatempat(),model.getMarker(),model.getGambar())).addToBackStack(null).commit();
                     }
                 });

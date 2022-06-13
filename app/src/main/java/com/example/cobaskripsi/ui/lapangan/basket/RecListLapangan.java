@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -23,6 +24,7 @@ public class RecListLapangan extends Fragment {
 
     private String mParam1;
     private String mParam2;
+    TextView coba;
     RecyclerView recview;
     AdapterListLapangan adapter;
 
@@ -43,6 +45,8 @@ public class RecListLapangan extends Fragment {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
+
+
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
@@ -56,12 +60,19 @@ public class RecListLapangan extends Fragment {
         // Inflate the layout for this fragment
         View view= inflater.inflate(R.layout.fragment_rec_list_lapangan, container, false);
 
+        coba=(TextView)view.findViewById(R.id.coba);
+
         recview=(RecyclerView)view.findViewById(R.id.recview);
         recview.setLayoutManager(new LinearLayoutManager(getContext()));
 
+        String jenisolahraga = ((MainListLapangan)getActivity()).jenisolahraga;
+
+        //coba.setText(jenisolahraga);
+
+
         FirebaseRecyclerOptions<TempatModel> options =
                 new FirebaseRecyclerOptions.Builder<TempatModel>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("tempat"), TempatModel.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("tempat").orderByChild("jenisolahraga").equalTo(jenisolahraga.toLowerCase()), TempatModel.class)
                         .build();
         adapter = new AdapterListLapangan(options);
         recview.setAdapter(adapter);

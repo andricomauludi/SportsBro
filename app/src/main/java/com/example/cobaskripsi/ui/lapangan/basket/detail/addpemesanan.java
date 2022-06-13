@@ -64,6 +64,8 @@ public class addpemesanan extends AppCompatActivity {
         jenislapangan = (TextView)findViewById(R.id.jenislapangan);
         jamtersedia=(TextView)findViewById(R.id.jamtersedia);
         coba=(TextView)findViewById(R.id.coba);
+        pesan=(Button)findViewById(R.id.pesan);
+        pesan.setEnabled(false);
 
 
         if (savedInstanceState == null) {
@@ -122,6 +124,7 @@ public class addpemesanan extends AppCompatActivity {
                         tanggalpemesananpilih=date;
                         checkboxjam2 = new ArrayList<String>(Arrays.asList(newString4.split(",")));
                         compareData(date);
+                        pesan.setEnabled(true);
 
 
 
@@ -162,20 +165,11 @@ public class addpemesanan extends AppCompatActivity {
 
 
 
-        pesan=(Button)findViewById(R.id.pesan);
+
         pesan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                final ArrayList<String> arrcheck = new ArrayList<>();
-                for(int i = 0; i < checkboxjam2.size(); i++) {
-                    if (addcheckbox[i].isChecked()) {
-                        arrcheck.add((String) addpemesanan.this.checkboxjam2.get(i));
-                    }}
-                String str = arrcheck.toString();
-                String noSpaceStr = str.replaceAll("\\s", "");
-                waktupemesanan = noSpaceStr;
                 processInsert();
-                startActivity(new Intent(getApplicationContext(), Home.class));
             }
         });
 
@@ -197,31 +191,77 @@ public class addpemesanan extends AppCompatActivity {
        /**
         }**/
         //String waktupemesanan = arrcheck.toString();
+        final ArrayList<String> arrcheck = new ArrayList<>();
+        for(int i = 0; i < checkboxjam2.size(); i++) {
+            if (addcheckbox[i].isChecked()) {
+                arrcheck.add((String) addpemesanan.this.checkboxjam2.get(i));
+            }}
+        String str = arrcheck.toString();
+        String noSpaceStr = str.replaceAll("\\s", "");
+        waktupemesanan = noSpaceStr;
+        if(checkValidation()) {
+            map.put("namapemesan",namapemesan.getText().toString());
+            map.put("nomortelppemesan",nomortelppemesan.getText().toString());
+            map.put("tanggalpemesanan",tanggalpemesanan.getText().toString());
+            map.put("idlapangan",idlapangan);
+            map.put("idtempat",idtempat);
+            map.put("waktupemesanan",waktupemesanan);
+            FirebaseDatabase.getInstance().getReference().child("pemesanan").push()
+                    .setValue(map)
+                    .addOnSuccessListener(new OnSuccessListener<Void>() {
+                        @Override
+                        public void onSuccess(Void aVoid) {
+                            namapemesan.setText("");
+                            nomortelppemesan.setText("");
+                            Toast.makeText(getApplicationContext(), "inserted successfully", Toast.LENGTH_SHORT).show();
+                        }
+                    })
+                    .addOnFailureListener(new OnFailureListener() {
+                        @Override
+                        public void onFailure(@NonNull Exception e) {
+                            namapemesan.setText("");
+                            nomortelppemesan.setText("");
+                            Toast.makeText(getApplicationContext(), "could not insert", Toast.LENGTH_SHORT).show();
+                        }
+                    });
+            startActivity(new Intent(getApplicationContext(), Home.class));}
 
-        map.put("namapemesan",namapemesan.getText().toString());
-        map.put("nomortelppemesan",nomortelppemesan.getText().toString());
-        map.put("tanggalpemesanan",tanggalpemesanan.getText().toString());
-        map.put("idlapangan",idlapangan);
-        map.put("idtempat",idtempat);
-        map.put("waktupemesanan",waktupemesanan);
-        FirebaseDatabase.getInstance().getReference().child("pemesanan").push()
-                .setValue(map)
-                .addOnSuccessListener(new OnSuccessListener<Void>() {
-                    @Override
-                    public void onSuccess(Void aVoid) {
-                        namapemesan.setText("");
-                        nomortelppemesan.setText("");
-                        Toast.makeText(getApplicationContext(), "inserted successfully", Toast.LENGTH_SHORT).show();
-                    }
-                })
-                .addOnFailureListener(new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        namapemesan.setText("");
-                        nomortelppemesan.setText("");
-                        Toast.makeText(getApplicationContext(), "could not insert", Toast.LENGTH_SHORT).show();
-                    }
-                });
+        }
+
+
+    public  boolean checkValidation() {
+        String namapemesan1 = namapemesan.getText().toString().trim();
+        String nomortelppemesan1 = nomortelppemesan.getText().toString().trim();
+        String tanggalpemesan1 = tanggalpemesanan.getText().toString().trim();
+
+        boolean atLeastOneChecked = false;
+        for (int i = 0; i < checkboxjam2.size(); i++){
+            if (addcheckbox[i].isChecked()) {
+                atLeastOneChecked = true;
+                break;
+            }
+        }
+
+        if (namapemesan1.length() <= 0) {
+            namapemesan.requestFocus();
+            namapemesan.setError("Isi Nama");
+            return false;
+        } else if (nomortelppemesan1.length() <= 0) {
+            nomortelppemesan.requestFocus();
+            nomortelppemesan.setError("Isi Nomor Telp.");
+            return false;
+
+        } else if (tanggalpemesan1.length() <= 0) {
+            tanggalpemesanan.requestFocus();
+            tanggalpemesanan.setError("Tanggal belum dipilih");
+            return false;
+        }else if (!atLeastOneChecked){
+            Toast.makeText(addpemesanan.this,
+                    "Tidak ada tanggal yang terpilih", Toast.LENGTH_LONG).show();
+            return false;
+        }else{
+            return true;
+        }
     }
 
     private String[] splitarray(String str){
@@ -292,7 +332,7 @@ public class addpemesanan extends AppCompatActivity {
                                                                                 }
                                                                                 checkboxjam2.removeAll(needToRemove);
 
-                                                                                coba.setText(String.valueOf(checkboxjam2.size()));
+                                                                                //coba.setText(String.valueOf(checkboxjam2.size()));
                                                                                 checkboxInsert(checkboxjam2);
                                                                                 if (checkboxjam2.size()==0){
                                                                                     jamtersedia.setText("Lapangan penuh untuk "+date+", mohon cari waktu lain");
