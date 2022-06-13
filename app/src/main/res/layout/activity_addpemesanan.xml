@@ -55,8 +55,8 @@
                 android:layout_marginLeft="5dp"
                 android:layout_marginBottom="8dp"
                 android:id="@+id/lihattanggal"
-
                 android:text="lihat tanggal"/>
+
         </LinearLayout>
 
         <EditText
@@ -83,7 +83,7 @@
             android:layout_height="wrap_content"
             android:id="@+id/jamtersedia"
             android:textSize="20sp"
-            android:hint="Jam Tersedia"
+            android:hint=""
             android:layout_marginBottom="15dp"
             android:textColor="#FFFF"/>
 
@@ -98,11 +98,6 @@
                 android:gravity="center"
                 android:orientation="vertical">
 
-                <CheckBox android:id="@+id/checkbox1"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="jam 12"
-                    />
 
             </LinearLayout>
         </ScrollView>
@@ -122,6 +117,11 @@
             android:id="@+id/batal"
             android:textSize="20sp"
             android:text="Cancel"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/coba"/>
     </LinearLayout>
 </ScrollView>
 

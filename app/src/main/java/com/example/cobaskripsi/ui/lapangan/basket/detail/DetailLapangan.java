@@ -5,7 +5,6 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -93,14 +92,14 @@ public class DetailLapangan extends Fragment {
         Glide.with(getContext()).load(R.drawable.basket_bucketlist).into(imageholder);
 
 
-        listView = view.findViewById(R.id.listView);
+       // listView = view.findViewById(R.id.listView);
 
-        final ArrayList<String> list = new ArrayList<>();
+       // final ArrayList<String> list = new ArrayList<>();
         final ArrayList<String> namalapangan = new ArrayList<>();
         final ArrayList<String> idlapangan = new ArrayList<>();
         final ArrayList<String> jamtersedia = new ArrayList<>();
-        final ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(), R.layout.list_item, list);
-        listView.setAdapter(adapter);
+       // final ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(), R.layout.list_item, list);
+       // listView.setAdapter(adapter);
 
         LinearLayout linearLayout = view.findViewById(R.id.rootlayout);
 
@@ -122,13 +121,13 @@ public class DetailLapangan extends Fragment {
                                 .addValueEventListener(new ValueEventListener() {
                                     @Override
                                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                        list.clear();
+                                       // list.clear();
                                         namalapangan.clear();
                                         idlapangan.clear();
                                         jamtersedia.clear();
                                         for (DataSnapshot childSnapshot : snapshot.getChildren()){
                                             LapanganModel lapanganModel = childSnapshot.getValue(LapanganModel.class);
-                                            list.add(lapanganModel.getNamalapangan());
+                                            //list.add(lapanganModel.getNamalapangan());
                                             namalapangan.add(lapanganModel.getNamalapangan());
                                             jamtersedia.add(lapanganModel.getJamtersedia());
                                             String clubkey = childSnapshot.getKey();
@@ -148,7 +147,7 @@ public class DetailLapangan extends Fragment {
                                                         LinearLayout.LayoutParams.MATCH_PARENT,
                                                         LinearLayout.LayoutParams.WRAP_CONTENT
                                                 );
-                                                params.setMargins(10,0,10,0);
+                                                params.setMargins(20,0,10,0);
                                                 addbtn.setLayoutParams(params);
 
 
@@ -184,7 +183,7 @@ public class DetailLapangan extends Fragment {
                                             }
                                         }
 
-                                        adapter.notifyDataSetChanged();
+                                      //  adapter.notifyDataSetChanged();
                                     }
                                     @Override
                                     public void onCancelled(@NonNull DatabaseError error) {
@@ -203,13 +202,6 @@ public class DetailLapangan extends Fragment {
         final ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(), R.layout.list_item, list);
         listView.setAdapter(adapter);
 **/
-
-
-
-
-
-
-
         return view;
 
 
@@ -250,8 +242,6 @@ public class DetailLapangan extends Fragment {
 
 
 
-    int intan = 3;
-    int ico = 1;
 
 
 
