@@ -7,19 +7,19 @@
 
     <fragment
         android:id="@+id/navigation_home"
-        android:name="com.example.cobaskripsi.ui.lapangan.HomeFragment"
+        android:name="com.example.cobaskripsi.UserUI.jenisolahraga.CaritempatFragment"
         android:label="@string/title_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_caritempat" />
 
     <fragment
         android:id="@+id/navigation_dashboard"
-        android:name="com.example.cobaskripsi.ui.dashboard.DashboardFragment"
+        android:name="com.example.cobaskripsi.UserUI.riwayatpemesanan.RiwayatpelangganFragment"
         android:label="@string/title_dashboard"
-        tools:layout="@layout/fragment_dashboard" />
+        tools:layout="@layout/fragment_riwayatuser" />
 
     <fragment
         android:id="@+id/navigation_notifications"
-        android:name="com.example.cobaskripsi.ui.notifications.NotificationsFragment"
+        android:name="com.example.cobaskripsi.UserUI.profilepelanggan.ProfilepelangganFragment"
         android:label="@string/title_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_profilepelanggan" />
 </navigation>

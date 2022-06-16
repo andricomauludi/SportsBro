@@ -17,8 +17,17 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CobaSkripsi">
-        <activity android:name=".ui.lapangan.basket.detail.addpemesanan"></activity>
-        <activity android:name=".ui.lapangan.basket.cobahitungjarak" />
+        <activity
+            android:name=".PengelolaUI.datalapanganmitra"
+            android:label="@string/title_activity_datalapanganmitra"
+            android:theme="@style/Theme.CobaSkripsi.NoActionBar"></activity>
+        <activity android:name=".UserUI.riwayatpemesanan.DetailRiwayatPelanggan" />
+        <activity android:name=".RegisterActivity" />
+        <activity android:name=".AdminUI.HomeadminActivity" />
+        <activity android:name=".PengelolaUI.HomemitraActivity" />
+        <activity android:name=".UserUI.jenisolahraga.caritempat.detail.addpemesanan" />
+        <activity android:name=".UserUI.jenisolahraga.caritempat.cobahitungjarak" />
+        <activity android:name=".UserUI.jenisolahraga.caritempat.detail.DetailLapangan" />
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -28,7 +37,7 @@
              You can define the keys for the debug and release targets in src/debug/ and src/release/.
         -->
         <activity
-            android:name=".Home"
+            android:name=".UserUI.Homepelanggan"
             android:label="@string/title_activity_home" />
         <activity android:name=".SplashScreenActivity">
             <intent-filter>
@@ -38,7 +47,7 @@
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity" />
-        <activity android:name=".ui.lapangan.basket.MainListLapangan" />
+        <activity android:name=".UserUI.jenisolahraga.caritempat.MainListLapangan" />
     </application>
 
 </manifest>

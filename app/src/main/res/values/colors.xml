@@ -7,5 +7,12 @@
     <color name="teal_700">#FF018786</color>
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
+    <color name="pink">#93007F</color>
+    <color name="darkrosered">#A86561</color>
+    <color name="darkteal">#008080</color>
+    <color name="warnabackground">#BBF1F1</color>
+    <color name="teal">#35B5AC</color>
+    <color name="red">#BF0000</color>
+    <color name="green">#15CF00</color>
 
 </resources>

@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@color/warnabackground"
+    tools:context=".PengelolaUI.HomemitraActivity">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Hallo Mitra !"
+            android:textSize="30sp"
+            android:gravity="center"
+            android:textColor="@color/darkteal"/>
+        <Button
+            android:id="@+id/datalapanganmitra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="Data Lapangan"
+            android:background="@drawable/button_login"
+            />
+
+        <Button
+            android:id="@+id/pendinglistmitra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="Pending List"
+            android:background="@drawable/button_login"
+            />
+        <Button
+            android:id="@+id/bookinglistmitra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="Booking List"
+            android:background="@drawable/button_login"
+            />
+
+        <Button
+            android:id="@+id/profilmitra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="20dp"
+            android:layout_marginEnd="20dp"
+            android:text="Profil"
+            android:background="@drawable/button_login"
+            />
+
+        <Button
+            android:id="@+id/logout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Logout"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:textColor="#ffffff"
+            android:background="@drawable/button_login"
+            android:padding="10dp"
+            android:onClick="logout"/>
+
+</LinearLayout>

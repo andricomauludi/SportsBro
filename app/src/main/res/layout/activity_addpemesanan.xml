@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
-    tools:context=".ui.lapangan.basket.detail.addpemesanan">
+    tools:context=".UserUI.jenisolahraga.caritempat.detail.addpemesanan">
 <ScrollView
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
@@ -22,8 +22,8 @@
             android:id="@+id/namatempat"
             android:textSize="20sp"
             android:hint="Nama Tempat"
-            android:layout_marginBottom="15dp"
-            android:textColor="#FFFF"/>
+            android:textColor="@color/darkteal"
+            android:layout_marginBottom="15dp" />
         <TextView
             android:layout_width="200dp"
             android:textAlignment="center"
@@ -31,8 +31,8 @@
             android:id="@+id/jenislapangan"
             android:textSize="20sp"
             android:hint="Jenis Lapangan"
-            android:layout_marginBottom="15dp"
-            android:textColor="#FFFF"/>
+            android:textColor="@color/darkteal"
+            android:layout_marginBottom="15dp" />
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -47,7 +47,7 @@
                 android:textSize="20sp"
                 android:hint="Tanggal Pesan"
                 android:layout_marginBottom="15dp"
-                android:textColor="#FFFF"/>
+                android:textColor="@color/darkteal"/>
 
             <Button
                 android:layout_width="wrap_content"
@@ -66,7 +66,7 @@
             android:textSize="20sp"
             android:hint="Nama Pemesan"
             android:layout_marginBottom="15dp"
-            android:textColor="#FFFF"/>
+            android:textColor="@color/darkteal"/>
 
         <EditText
             android:layout_width="300dp"
@@ -75,7 +75,7 @@
             android:textSize="20sp"
             android:hint="Nomor Telpon Pemesan"
             android:layout_marginBottom="15dp"
-            android:textColor="#FFFF"/>
+            android:textColor="@color/darkteal"/>
 
         <TextView
             android:layout_width="200dp"
@@ -85,7 +85,7 @@
             android:textSize="20sp"
             android:hint=""
             android:layout_marginBottom="15dp"
-            android:textColor="#FFFF"/>
+            android:textColor="@color/darkteal"/>
 
         <ScrollView
             android:layout_width="match_parent"

@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".UserUI.riwayatpemesanan.DetailRiwayatPelanggan">
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingTop="20dp"
+            android:paddingEnd="20dp"
+            android:paddingStart="20dp"
+            android:paddingBottom="20dp"
+            android:orientation="vertical"
+            >
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="DETAIL PEMESANAN"
+                android:textStyle="bold"
+                android:textSize="35sp"/>
+
+            <TextView
+                android:id="@+id/namatempatdetailriwayat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nama Tempat"
+                android:textSize="30sp"
+                android:textStyle="bold"
+                android:layout_marginTop="30dp"
+                />
+
+            <TextView
+                android:id="@+id/namapemesandetailriwayat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nama pemesan"
+                android:textSize="20sp"
+                android:layout_marginTop="30dp"
+                />
+
+            <TextView
+                android:id="@+id/timestampdetailriwayat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Timestamp"
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"
+                />
+
+            <TextView
+                android:id="@+id/pilihanlapangandetailriwayat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pilihan Lapangan"
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"
+                />
+
+            <TextView
+                android:id="@+id/jenisolahragadetailriwayat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Jenis Olahraga"
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"
+                />
+
+            <TextView
+                android:id="@+id/tanggalmaindetailriwayat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tanggal Main"
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"
+                />
+
+            <TextView
+                android:id="@+id/jammaindetailriwayat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Jam Main"
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"
+                />
+
+            <TextView
+                android:id="@+id/nomortelpdetailriwayat"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No HP."
+                android:textSize="20sp"
+                android:layout_marginTop="5dp"
+                />
+            <TextView
+                android:id="@+id/status"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Status Pemesanan"
+                android:textSize="40sp"
+                android:layout_marginTop="30dp"
+                />
+
+
+
+
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>

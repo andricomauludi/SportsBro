@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.lapangan.basket.detail.DetailLapangan">
+    tools:context=".UserUI.jenisolahraga.caritempat.detail.DetailLapangan">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -21,7 +21,6 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="10dp"
                 android:text="Nama Lapangan"
-                android:textColor="@color/white"
                 android:textSize="25sp"
                 android:textStyle="bold" />
 
@@ -43,7 +42,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:text="Detail Lapangan"
-                android:textColor="@color/white"
+                android:textColor="@color/darkteal"
                 android:textSize="20sp" />
 
             </RelativeLayout>
@@ -74,6 +73,7 @@
                 android:layout_height="wrap_content"
                 android:text="Pilih Lapangan : "
                 android:gravity="left"
+                android:textColor="@color/darkteal"
                 android:layout_marginTop="10dp"
                 android:layout_marginLeft="10dp"
                 android:textSize="20sp"/>

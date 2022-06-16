@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="20dp"
+    tools:context=".UserUI.profilepelanggan.ProfilepelangganFragment"
+    android:background="@color/warnabackground">
+
+    <TextView
+        android:id="@+id/namapelangganprofile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nama Pengguna"
+        android:gravity="center"
+        android:textSize="30sp"/>
+
+    <TextView
+        android:id="@+id/emailpelangganprofile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        android:text="Email Pengguna"
+        android:gravity="center"
+        android:textSize="20sp"/>
+
+    <TextView
+        android:id="@+id/nomortelppelangganprofile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Nomor Telepon"
+        android:gravity="center"
+        android:layout_marginTop="15dp"
+        android:textSize="20sp"/>
+
+
+    <TextView
+        android:id="@+id/text_notifications"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:textAlignment="center"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/logoutt"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Logout"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="20dp"
+        android:textColor="#ffffff"
+        android:background="@drawable/button_login"
+        android:padding="10dp"
+        android:onClick="logout"/>
+</LinearLayout>
