@@ -1,37 +1,41 @@
-package com.example.cobaskripsi.PengelolaUI;
+package com.example.cobaskripsi.PengelolaUI.datalapangan;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 
+import com.example.cobaskripsi.PengelolaUI.HomemitraActivity;
 import com.example.cobaskripsi.R;
-import com.example.cobaskripsi.UserUI.jenisolahraga.caritempat.RecListLapangan;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
+import com.google.firebase.database.DatabaseReference;
 
 public class datalapanganmitra extends AppCompatActivity {
+    DatabaseReference mdatabase;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_datalapanganmitra);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+
+
+        super.onCreate(savedInstanceState);
 
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        getSupportFragmentManager().beginTransaction().replace(R.id.wrapperdatalapangan,new RecListLapangan()).commit();
+        getSupportFragmentManager().beginTransaction().replace(R.id.wrapperdatalapangan,new RecListDatalapangan()).commit();
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                startActivity(new Intent(getApplicationContext(),adddatalapangan.class));
             }
         });
+    }
+    public void onBackPressed(){
+        startActivity(new Intent(getApplicationContext(), HomemitraActivity.class));
+        finish();
     }
 }

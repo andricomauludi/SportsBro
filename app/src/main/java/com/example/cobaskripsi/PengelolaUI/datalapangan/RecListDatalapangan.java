@@ -1,11 +1,10 @@
-package com.example.cobaskripsi.PengelolaUI;
+package com.example.cobaskripsi.PengelolaUI.datalapangan;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -14,11 +13,8 @@ import com.example.cobaskripsi.R;
 import com.example.cobaskripsi.UserUI.jenisolahraga.caritempat.detail.LapanganModel;
 import com.example.cobaskripsi.preferences;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.DataSnapshot;
-import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
-import com.google.firebase.database.ValueEventListener;
 
 
 public class RecListDatalapangan extends Fragment {
@@ -62,43 +58,14 @@ public class RecListDatalapangan extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
 
-        View view= inflater.inflate(R.layout.fragment_rec_list_lapangan, container, false);
-        recview=(RecyclerView)view.findViewById(R.id.recview);
+        View view= inflater.inflate(R.layout.fragment_rec_list_datalapangan, container, false);
+        recview=(RecyclerView)view.findViewById(R.id.recviewdatalapangan);
         recview.setLayoutManager(new LinearLayoutManager(getContext()));
-
-        mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("user")
-                .orderByChild("username")
-                .equalTo(preferences.getUsername(getContext()))
-                .addValueEventListener(new ValueEventListener() {
-                    @Override
-                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        mDatabase.child("user")
-                                .orderByChild("username")
-                                .equalTo(preferences.getUsername(getContext()))
-                                .addValueEventListener(new ValueEventListener() {
-                                    @Override
-                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-
-                                    }
-
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
-
-                                    }
-                                });
-                    }
-
-                    @Override
-                    public void onCancelled(@NonNull DatabaseError error) {
-
-                    }
-                });
 
 
         FirebaseRecyclerOptions<LapanganModel> options =
                 new FirebaseRecyclerOptions.Builder<LapanganModel>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("lapangan").orderByChild("idtempat").equalTo(""), LapanganModel.class)
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("lapangan").orderByChild("idtempat").equalTo(preferences.getIdtempatmitra(getContext())), LapanganModel.class)
                         .build();
         adapter = new AdapterDataLapangan(options);
         recview.setAdapter(adapter);
@@ -116,4 +83,6 @@ public class RecListDatalapangan extends Fragment {
         super.onStop();
         adapter.stopListening();
     }
+
+
 }

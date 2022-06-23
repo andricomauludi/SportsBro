@@ -107,8 +107,14 @@
                 android:layout_marginTop="30dp"
                 />
 
-
-
+            <Button
+                android:layout_width="119dp"
+                android:layout_height="wrap_content"
+                android:text="Back"
+                android:gravity="center"
+                android:layout_marginTop="35dp"
+                android:layout_gravity="center"
+                android:id="@+id/backbutton"/>
 
 
         </LinearLayout>

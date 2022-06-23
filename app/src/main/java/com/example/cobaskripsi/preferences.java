@@ -6,7 +6,7 @@ import android.preference.PreferenceManager;
 
 public class preferences {
     private static final String DATA_LOGIN = "status_login",
-            DATA_ROLE = "role", username="username", userID="userid", email="email", notelp="notelp",jenisolahraga="jenis_olahraga";
+            DATA_ROLE = "role", username="username", userID="userid", email="email", notelp="notelp",jenisolahraga="jenis_olahraga", idtempatmitra="idtempatmira";
 
     private static SharedPreferences getSharedPreferences(Context context){
         return PreferenceManager.getDefaultSharedPreferences(context);
@@ -20,6 +20,16 @@ public class preferences {
 
     public static String getDataRole(Context context){
         return getSharedPreferences(context).getString(DATA_ROLE,"");
+    }
+
+    public static void setIdtempatmitra(Context context,String data){
+        SharedPreferences.Editor editor = getSharedPreferences(context).edit();
+        editor.putString(idtempatmitra,data);
+        editor.apply();
+    }
+
+    public static String getIdtempatmitra(Context context){
+        return getSharedPreferences(context).getString(idtempatmitra,"");
     }
 
     public static void setJenisolahraga(Context context,String data){
@@ -88,6 +98,10 @@ public class preferences {
         editor.remove(DATA_LOGIN);
         editor.remove(username);
         editor.remove(userID);
+        editor.remove(email);
+        editor.remove(notelp);
+        editor.remove(jenisolahraga);
+        editor.remove(idtempatmitra);
         editor.apply();
     }
 

@@ -8,6 +8,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cobaskripsi.LoginActivity;
+import com.example.cobaskripsi.PengelolaUI.datalapangan.datalapanganmitra;
 import com.example.cobaskripsi.R;
 import com.example.cobaskripsi.preferences;
 
@@ -20,12 +21,14 @@ public class HomemitraActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homemitra);
 
+        getSupportActionBar().hide();
+
         datalapangan=findViewById(R.id.datalapanganmitra);
 
         datalapangan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(HomemitraActivity.this,datalapanganmitra.class));
+                startActivity(new Intent(HomemitraActivity.this, datalapanganmitra.class));
             }
         });
     }

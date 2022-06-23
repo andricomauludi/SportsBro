@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".PengelolaUI.datalapangan.adddatalapangan"
+
+    android:background="@color/white">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:layout_gravity="center"
+            android:orientation="vertical">
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tambah Data Lapangan"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="35sp"
+                android:textColor="@color/darkteal"
+                android:layout_marginBottom="100dp"/>
+            <EditText
+                android:id="@+id/addnamalapangan"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:hint="Nama Lapangan"
+                android:textSize="20sp"
+                android:layout_marginBottom="15dp"
+                android:textColor="@color/darkteal"
+                />
+
+            <TextView
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:textSize="20sp"
+                android:layout_marginBottom="15dp"
+                android:gravity="center"
+                android:layout_gravity="center"
+                android:text="Jam buka lapangan :"
+                android:textColor="@color/darkteal"/>
+
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:padding="10dp">
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="Edit Jam Buka :"
+                    android:textColor="@color/black"/>
+
+                <TextView
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:text="Edit Jam Tutup :"
+                    android:textColor="@color/black"/>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                >
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/rootlayoutadddatalapangan"/>
+                <LinearLayout
+                    android:layout_width="150dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:id="@+id/rootlayoutadddatalapangan2"/>
+            </LinearLayout>
+
+
+
+            <Button
+                android:id="@+id/tambahdatalapangan"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Ditambahkan"
+
+                />
+
+            <Button
+                android:id="@+id/backdatalapangan"
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:text="Kembali"/>
+
+        </LinearLayout>
+    </ScrollView>
+
+
+
+
+
+
+
+</LinearLayout>

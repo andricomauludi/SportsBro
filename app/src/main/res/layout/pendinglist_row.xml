@@ -4,8 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
-    android:layout_margin="10dp">
+    android:layout_height="match_parent">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -24,38 +23,28 @@
                 android:id="@+id/namalapangandatamitra"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
                 android:text="Nama Lapangan"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/editdatalapanganmitra"
+                app:layout_constraintHorizontal_bias="0.241"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.238" />
-
-            <Button
-                android:id="@+id/deletedatalapanganmitra"
-                android:layout_width="75dp"
-                android:layout_height="35dp"
-                android:layout_marginStart="8dp"
-                android:text="Delete"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/editdatalapanganmitra"
-                app:layout_constraintTop_toBottomOf="@+id/namalapangandatamitra"
-                app:layout_constraintVertical_bias="0.407" />
+                app:layout_constraintVertical_bias="0.507" />
 
             <Button
                 android:id="@+id/editdatalapanganmitra"
                 android:layout_width="75dp"
                 android:layout_height="34dp"
-                android:layout_marginStart="16dp"
                 android:text="Edit"
                 android:textSize="10sp"
                 app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.857"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/namalapangandatamitra"
-                app:layout_constraintVertical_bias="0.428" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintVertical_bias="0.566" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

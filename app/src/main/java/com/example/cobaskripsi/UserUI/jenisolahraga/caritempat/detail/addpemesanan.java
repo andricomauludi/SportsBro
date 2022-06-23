@@ -36,7 +36,7 @@ import java.util.Map;
 
 import static android.content.ContentValues.TAG;
 
-public class addpemesanan extends AppCompatActivity {
+public class  addpemesanan extends AppCompatActivity {
 
     EditText namapemesan,nomortelppemesan;
     TextView namatempat,jenislapangan,jamtersedia, coba,tanggalpemesanan;
@@ -102,8 +102,6 @@ public class addpemesanan extends AppCompatActivity {
 
         tanggalpemesanan = findViewById(R.id.tanggalpemesanan);
 
-         checkboxjam2 = new ArrayList<String>(Arrays.asList(newString4.split(",")));
-
 
 
 
@@ -127,7 +125,9 @@ public class addpemesanan extends AppCompatActivity {
                         String date = day +"/"+ month +"/"+year;
                         tanggalpemesanan.setText(date);
                         tanggalpemesananpilih=date;
-                        checkboxjam2 = new ArrayList<String>(Arrays.asList(newString4.split(",")));
+                        String str = String.valueOf(newString4.replaceAll("[\\[\\]\\(\\)]", ""));
+                        checkboxjam2 = new ArrayList<String>(Arrays.asList(str.split(",")));
+                        Toast.makeText(addpemesanan.this, checkboxjam2.toString(), Toast.LENGTH_SHORT).show();
                         compareData(date);
                         pesan.setEnabled(true);
 
@@ -423,30 +423,30 @@ public class addpemesanan extends AppCompatActivity {
 
     private String jamdictionary(String str){
         Map<String, String> m = new HashMap<>();
-        m.put("1","07:00 - 08:00");
-        m.put("2","08:00 - 09:00");
-        m.put("3","09:00 - 10:00");
-        m.put("4","10:00 - 11:00");
-        m.put("5","11:00 - 12:00");
-        m.put("6","12:00 - 13:00");
-        m.put("7","13:00 - 14:00");
-        m.put("8","14:00 - 15:00");
-        m.put("9","15:00 - 16:00");
-        m.put("10","16:00 - 17:00");
-        m.put("11","17:00 - 18:00");
-        m.put("12","18:00 - 19:00");
-        m.put("13","19:00 - 20:00");
-        m.put("14","20:00 - 21:00");
-        m.put("15","21:00 - 22:00");
-        m.put("16","22:00 - 23:00");
-        m.put("17","23:00 - 24:00");
-        m.put("18","24:00 - 01:00");
-        m.put("19","01:00 - 02:00");
-        m.put("20","02:00 - 03:00");
-        m.put("21","03:00 - 04:00");
-        m.put("22","04:00 - 05:00");
-        m.put("23","05:00 - 06:00");
-        m.put("24","06:00 - 07:00");
+        m.put("0","07:00 - 08:00");
+        m.put("1","08:00 - 09:00");
+        m.put("2","09:00 - 10:00");
+        m.put("3","10:00 - 11:00");
+        m.put("4","11:00 - 12:00");
+        m.put("5","12:00 - 13:00");
+        m.put("6","13:00 - 14:00");
+        m.put("7","14:00 - 15:00");
+        m.put("8","15:00 - 16:00");
+        m.put("9","16:00 - 17:00");
+        m.put("10","17:00 - 18:00");
+        m.put("11","18:00 - 19:00");
+        m.put("12","19:00 - 20:00");
+        m.put("13","20:00 - 21:00");
+        m.put("14","21:00 - 22:00");
+        m.put("15","22:00 - 23:00");
+        m.put("16","23:00 - 24:00");
+        m.put("17","24:00 - 01:00");
+        m.put("18","01:00 - 02:00");
+        m.put("19","02:00 - 03:00");
+        m.put("20","03:00 - 04:00");
+        m.put("21","04:00 - 05:00");
+        m.put("22","05:00 - 06:00");
+        m.put("23","06:00 - 07:00");
         String dict = m.get(str);
         return dict;
     }

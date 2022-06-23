@@ -16,6 +16,7 @@ import androidx.core.app.ActivityCompat;
 
 import com.example.cobaskripsi.AdminUI.HomeadminActivity;
 import com.example.cobaskripsi.PengelolaUI.HomemitraActivity;
+import com.example.cobaskripsi.PengelolaUI.datalapangan.TempatcontributorsModel;
 import com.example.cobaskripsi.UserUI.Homepelanggan;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
@@ -43,7 +44,7 @@ public class LoginActivity extends AppCompatActivity {
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
         login = findViewById(R.id.login);
-        coba = findViewById(R.id.coba);
+        //coba = findViewById(R.id.cobalogin);
         toregister = findViewById(R.id.toregister);
 
         login.setOnClickListener(new View.OnClickListener() {
@@ -75,6 +76,27 @@ public class LoginActivity extends AppCompatActivity {
                                                                 preferences.setUsername(LoginActivity.this,input1);
                                                                 preferences.setUserID(LoginActivity.this,input3);
                                                                 preferences.setDataRole(LoginActivity.this,"mitra");
+                                                                databaseReference.child("tempatcontributors")
+                                                                        .orderByChild("iduser")
+                                                                        .equalTo(preferences.getUserID(LoginActivity.this))
+                                                                        .addValueEventListener(new ValueEventListener() {
+                                                                            @Override
+                                                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                                if(snapshot.exists()) {
+                                                                                    for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+                                                                                        TempatcontributorsModel tempatcontributorsModel = childSnapshot.getValue(TempatcontributorsModel.class);
+                                                                                        String clubkey = (tempatcontributorsModel.getIdtempat());
+                                                                                        preferences.setIdtempatmitra(LoginActivity.this,clubkey);
+                                                                                        Toast.makeText(LoginActivity.this,preferences.getIdtempatmitra(LoginActivity.this),Toast.LENGTH_SHORT).show();
+                                                                                    }
+                                                                                }
+                                                                            }
+
+                                                                            @Override
+                                                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                                                            }
+                                                                        });
                                                                 startActivity(new Intent(LoginActivity.this, HomemitraActivity.class));
                                                             }else if(snapshot.child(input3).child("role").getValue(String.class).equals("admin")) {
                                                                 preferences.setDataLogin(LoginActivity.this,true);

@@ -17,10 +17,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CobaSkripsi">
+        <activity android:name=".PengelolaUI.pendinglist.PendingList"></activity>
+        <activity android:name=".PengelolaUI.datalapangan.editdatalapangan" />
+        <activity android:name=".PengelolaUI.datalapangan.adddatalapangan" />
         <activity
-            android:name=".PengelolaUI.datalapanganmitra"
+            android:name=".PengelolaUI.datalapangan.datalapanganmitra"
             android:label="@string/title_activity_datalapanganmitra"
-            android:theme="@style/Theme.CobaSkripsi.NoActionBar"></activity>
+            android:theme="@style/Theme.CobaSkripsi.NoActionBar" />
         <activity android:name=".UserUI.riwayatpemesanan.DetailRiwayatPelanggan" />
         <activity android:name=".RegisterActivity" />
         <activity android:name=".AdminUI.HomeadminActivity" />

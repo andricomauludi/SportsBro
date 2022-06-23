@@ -3,6 +3,8 @@ package com.example.cobaskripsi.UserUI.riwayatpemesanan;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -20,6 +22,8 @@ public class DetailRiwayatPelanggan extends AppCompatActivity {
             namalapangan,
             statuspemesanan,
             waktupemesanan;
+
+    Button backbutton;
 
     TextView namapemesan1,nomortelppemesan1,tanggalpemesan1,timestamp1,jenisolahraga1,namatempat1,namalapangan1,statuspemesanan1, waktupemesanan1;
 
@@ -74,6 +78,7 @@ public class DetailRiwayatPelanggan extends AppCompatActivity {
         namalapangan1= (TextView)findViewById(R.id.pilihanlapangandetailriwayat);
         statuspemesanan1=(TextView)findViewById(R.id.status);
         waktupemesanan1= (TextView)findViewById(R.id.jammaindetailriwayat);
+        backbutton = findViewById(R.id.backbutton);
 
         namapemesan1.setText("Atas Nama Pemesan :    "+namapemesan.substring(0, 1).toUpperCase() + namapemesan.substring(1).toLowerCase());
         nomortelppemesan1.setText("Nomor HP Pemesan :   "+nomortelppemesan);
@@ -92,12 +97,20 @@ public class DetailRiwayatPelanggan extends AppCompatActivity {
         }
 
         waktupemesanan1.setText("Jam Main :     "+waktupemesanan);
+
+        backbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(DetailRiwayatPelanggan.this, Homepelanggan.class);
+                startActivity(intent);
+                finish();
+            }
+        });
     }
 
 
 
     public void onBackPressed(){
-        Intent intent = new Intent(DetailRiwayatPelanggan.this, Homepelanggan.class);
-        startActivity(intent);
+
     }
 }
