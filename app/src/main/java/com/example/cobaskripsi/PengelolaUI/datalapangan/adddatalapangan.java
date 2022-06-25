@@ -175,11 +175,13 @@ public class adddatalapangan extends AppCompatActivity {
         String noSpaceStr = str.replaceAll("\\s", "");
         jamtersedia = noSpaceStr;
 **/
+        String key = FirebaseDatabase.getInstance().getReference().child("pemesanan").push().getKey();
         Map<String,Object> map = new HashMap<>();
         map.put("namalapangan",namalapangan.getText().toString());
         map.put("idtempat", preferences.getIdtempatmitra(getApplicationContext()));
         map.put("jamtersedia",jamtersediabarustring);
-        FirebaseDatabase.getInstance().getReference().child("lapangan").push()
+        map.put("idlapangan",key);
+        FirebaseDatabase.getInstance().getReference().child("lapangan").child(key)
                 .setValue(map)
                 .addOnSuccessListener(new OnSuccessListener<Void>() {
                     @Override
@@ -292,23 +294,23 @@ public class adddatalapangan extends AppCompatActivity {
 
     public  boolean checkValidation() {
         String namalapangan1 = namalapangan.getText().toString().trim();
-        boolean atLeastOneChecked = false;
+       /** boolean atLeastOneChecked = false;
         for (int i = 0; i < addcheckbox.length; i++){
             if (addcheckbox[i].isChecked()) {
                 atLeastOneChecked = true;
                 break;
             }
-        }
+        }**/
 
         if (namalapangan1.length() <= 0) {
             namalapangan.requestFocus();
             namalapangan.setError("Isi Nama Lapangan");
             return false;
-        } else if (!atLeastOneChecked){
+        } /**else if (!atLeastOneChecked){
             Toast.makeText(adddatalapangan.this,
                     "Tidak ada tanggal yang terpilih", Toast.LENGTH_LONG).show();
             return false;
-        }else{
+        }**/else{
             return true;
         }
     }

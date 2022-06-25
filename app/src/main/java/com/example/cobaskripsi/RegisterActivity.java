@@ -84,13 +84,15 @@ public class RegisterActivity extends AppCompatActivity {
         preferences.setEmail(this,email1);
         preferences.setNotelp(this,notelp1);
 
+        String key = FirebaseDatabase.getInstance().getReference().child("user").push().getKey();
         Map<String,Object> map=new HashMap<>();
         if(checkValidation()) {
             map.put("username",username1);
             map.put("password",password1);
             map.put("nomortelpuser",notelp1);
             map.put("role","pelanggan");
-            FirebaseDatabase.getInstance().getReference().child("user").push()
+            map.put("iduser",key);
+            FirebaseDatabase.getInstance().getReference().child("user").child(key)
                     .setValue(map)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override

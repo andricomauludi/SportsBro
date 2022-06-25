@@ -11,6 +11,30 @@ public class PemesananModel {
     String jenisolahraga;
     String namalapangan;
     String statuspemesanan;
+    String idpemesanan;
+
+    public PemesananModel(String idtempat, String idlapangan, String namapemesan, String nomortelppemesan, String tanggalpemesanan, String timestamp, String waktupemesanan, String jenisolahraga, String namalapangan, String statuspemesanan, String idpemesanan, String namatempat) {
+        this.idtempat = idtempat;
+        this.idlapangan = idlapangan;
+        this.namapemesan = namapemesan;
+        this.nomortelppemesan = nomortelppemesan;
+        this.tanggalpemesanan = tanggalpemesanan;
+        this.timestamp = timestamp;
+        this.waktupemesanan = waktupemesanan;
+        this.jenisolahraga = jenisolahraga;
+        this.namalapangan = namalapangan;
+        this.statuspemesanan = statuspemesanan;
+        this.idpemesanan = idpemesanan;
+        this.namatempat = namatempat;
+    }
+
+    public String getIdpemesanan() {
+        return idpemesanan;
+    }
+
+    public void setIdpemesanan(String idpemesanan) {
+        this.idpemesanan = idpemesanan;
+    }
 
     public String getStatuspemesanan() {
         return statuspemesanan;
@@ -101,22 +125,6 @@ public class PemesananModel {
     }
 
     String namatempat;
-
-    public PemesananModel(String idtempat, String idlapangan, String namapemesan, String nomortelppemesan, String tanggalpemesanan,
-                          String timestamp, String waktupemesanan, String jenisolahraga, String namalapangan, String namatempat, String statuspemesanan) {
-        this.idtempat = idtempat;
-        this.idlapangan = idlapangan;
-        this.namapemesan = namapemesan;
-        this.nomortelppemesan = nomortelppemesan;
-        this.tanggalpemesanan = tanggalpemesanan;
-        this.timestamp = timestamp;
-        this.waktupemesanan = waktupemesanan;
-        this.jenisolahraga = jenisolahraga;
-        this.namalapangan = namalapangan;
-        this.namatempat = namatempat;
-        this.statuspemesanan = statuspemesanan;
-
-    }
 
     public PemesananModel(){
 

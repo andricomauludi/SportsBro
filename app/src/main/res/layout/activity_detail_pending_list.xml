@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="20dp"
+    tools:context=".PengelolaUI.pendinglist.DetailPendingList"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Detail Pending List"
+            android:textColor="@color/darkteal"
+            android:textStyle="bold"
+            android:gravity="top"
+            android:textSize="30sp"
+            android:layout_marginBottom="35dp"/>
+
+        <TextView
+            android:id="@+id/namapemesandetailpendinglist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nama Pemesan"
+            android:textColor="@color/darkteal"
+            android:textStyle="bold"
+            android:gravity="top"
+            android:textSize="25sp"
+            android:layout_marginBottom="30dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Waktu Dilakukan Pemesanan     :"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:id="@+id/timestampdetailpendinglist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tanggal Pemesanan"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:textSize="18sp"
+            android:layout_marginBottom="15dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lapangan yang Dipilih     :"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:id="@+id/namalapangandetailpendinglist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pilihan Lapangan"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:textSize="18sp"
+            android:layout_marginBottom="15dp"
+           />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tanggal Menggunakan Lapangan      :"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:id="@+id/tanggalpemesanandetailpendinglist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tanggal main"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:textSize="18sp"
+            android:layout_marginBottom="15dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jam Menggunakan Lapangan      :"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:id="@+id/waktupemesanandetailpendinglist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jam main"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:textSize="18sp"
+            android:layout_marginBottom="30dp"
+            />
+
+        <TextView
+            android:id="@+id/statuspemesanandetailpendinglist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Konfirmasi"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:layout_marginBottom="10dp"
+            android:textSize="30sp"
+            />
+
+        <LinearLayout
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <LinearLayout
+                android:layout_width="150dp"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:padding="5dp">
+
+                <Button
+                    android:id="@+id/tolakpendinglist"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Tolak"
+                    />
+
+            </LinearLayout>
+           <LinearLayout
+               android:layout_width="150dp"
+               android:layout_height="wrap_content"
+               android:orientation="vertical"
+               android:padding="5dp"
+               >
+
+               <Button
+                   android:id="@+id/terimapendinglist"
+                   android:layout_width="match_parent"
+                   android:layout_height="wrap_content"
+                   android:text="Terima"
+                   />
+
+           </LinearLayout>
+        </LinearLayout>
+
+        <Button
+            android:id="@+id/backpendinglist"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:gravity="center"
+            android:layout_gravity="center"
+            />
+
+    </LinearLayout>
+
+</ScrollView>

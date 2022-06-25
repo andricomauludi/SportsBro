@@ -89,10 +89,13 @@ public class DetailRiwayatPelanggan extends AppCompatActivity {
         namalapangan1.setText("Jenis Lapangan :     "+namalapangan.substring(0, 1).toUpperCase() + namalapangan.substring(1).toLowerCase());
 
         if(statuspemesanan.equals("Menunggu Konfirmasi")){
-           statuspemesanan1.setTextColor(Color.RED);
+           statuspemesanan1.setTextColor(Color.YELLOW);
            statuspemesanan1.setText(statuspemesanan.substring(0, 1).toUpperCase() + statuspemesanan.substring(1).toLowerCase());
-        }else{
+        }else if (statuspemesanan.equals("Booked")){
             statuspemesanan1.setTextColor(Color.GREEN);
+            statuspemesanan1.setText(statuspemesanan.substring(0, 1).toUpperCase() + statuspemesanan.substring(1).toLowerCase());
+        }else if (statuspemesanan.equals("Ditolak")){
+            statuspemesanan1.setTextColor(Color.RED);
             statuspemesanan1.setText(statuspemesanan.substring(0, 1).toUpperCase() + statuspemesanan.substring(1).toLowerCase());
         }
 
@@ -111,6 +114,5 @@ public class DetailRiwayatPelanggan extends AppCompatActivity {
 
 
     public void onBackPressed(){
-
     }
 }

@@ -193,7 +193,7 @@ public class  addpemesanan extends AppCompatActivity {
 
         idpemesan= preferences.getUserID(getApplicationContext());
         username = preferences.getUsername(getApplicationContext());
-
+        String key = FirebaseDatabase.getInstance().getReference().child("pemesanan").push().getKey();
         Map<String,Object> map=new HashMap<>();
 
        /**
@@ -223,7 +223,9 @@ public class  addpemesanan extends AppCompatActivity {
             map.put("jenisolahraga",jenisolahraga);
             map.put("timestamp",ts);
             map.put("statuspemesanan","Menunggu Konfirmasi");
-            FirebaseDatabase.getInstance().getReference().child("pemesanan").push()
+            map.put("idpemesanan",key);
+
+            FirebaseDatabase.getInstance().getReference().child("pemesanan").child(key)
                     .setValue(map)
                     .addOnSuccessListener(new OnSuccessListener<Void>() {
                         @Override

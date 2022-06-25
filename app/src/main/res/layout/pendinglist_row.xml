@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp">
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
@@ -20,31 +21,31 @@
 
 
             <TextView
-                android:id="@+id/namalapangandatamitra"
+                android:id="@+id/namapemesanpendinglist"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Nama Lapangan"
+                android:text="Nama Pemesan"
                 android:textSize="20sp"
                 android:textStyle="bold"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/editdatalapanganmitra"
-                app:layout_constraintHorizontal_bias="0.241"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.064"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintVertical_bias="0.507" />
 
             <Button
-                android:id="@+id/editdatalapanganmitra"
+                android:id="@+id/detailpemesanpendinglist"
                 android:layout_width="75dp"
-                android:layout_height="34dp"
-                android:text="Edit"
+                android:layout_height="35dp"
+                android:text="Detail"
                 android:textSize="10sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.857"
-                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintHorizontal_bias="0.908"
+                app:layout_constraintStart_toEndOf="@+id/namapemesanpendinglist"
                 app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.566" />
+                app:layout_constraintVertical_bias="0.508" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>

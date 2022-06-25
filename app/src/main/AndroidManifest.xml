@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CobaSkripsi">
-        <activity android:name=".PengelolaUI.pendinglist.PendingList"></activity>
+        <activity android:name=".PengelolaUI.pendinglist.DetailPendingList"></activity>
+        <activity android:name=".PengelolaUI.pendinglist.PendingList" />
         <activity android:name=".PengelolaUI.datalapangan.editdatalapangan" />
         <activity android:name=".PengelolaUI.datalapangan.adddatalapangan" />
         <activity

@@ -1,37 +1,36 @@
 package com.example.cobaskripsi.PengelolaUI.pendinglist;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.fragment.app.Fragment;
-import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.example.cobaskripsi.PengelolaUI.pendinglist.dummy.DummyContent;
 import com.example.cobaskripsi.R;
+import com.example.cobaskripsi.UserUI.jenisolahraga.caritempat.detail.PemesananModel;
+import com.example.cobaskripsi.preferences;
+import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.FirebaseDatabase;
 
-/**
- * A fragment representing a list of Items.
- */
+
 public class RecPendingList extends Fragment {
 
-    // TODO: Customize parameter argument names
+    RecyclerView recview;
+    PendingListAdapter adapter;
+
+
     private static final String ARG_COLUMN_COUNT = "column-count";
-    // TODO: Customize parameters
+
     private int mColumnCount = 1;
 
-    /**
-     * Mandatory empty constructor for the fragment manager to instantiate the
-     * fragment (e.g. upon screen orientation changes).
-     */
+
     public RecPendingList() {
     }
 
-    // TODO: Customize parameter initialization
+
     @SuppressWarnings("unused")
     public static RecPendingList newInstance(int columnCount) {
         RecPendingList fragment = new RecPendingList();
@@ -54,18 +53,31 @@ public class RecPendingList extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_rec_pending_list_list, container, false);
+        recview=(RecyclerView)view.findViewById(R.id.recviewpendinglist);
+        recview.setLayoutManager(new LinearLayoutManager(getContext()));
+
+
+        FirebaseRecyclerOptions<PemesananModel> options =
+                new FirebaseRecyclerOptions.Builder<PemesananModel>()
+                        .setQuery(FirebaseDatabase.getInstance().getReference().child("pemesanan").orderByChild("idtempat").equalTo(preferences.getIdtempatmitra(getContext())), PemesananModel.class)
+                        .build();
+        adapter = new PendingListAdapter(options);
+        recview.setAdapter(adapter);
 
         // Set the adapter
-        if (view instanceof RecyclerView) {
-            Context context = view.getContext();
-            RecyclerView recyclerView = (RecyclerView) view;
-            if (mColumnCount <= 1) {
-                recyclerView.setLayoutManager(new LinearLayoutManager(context));
-            } else {
-                recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
-            }
-            recyclerView.setAdapter(new MyItemRecyclerViewAdapter(DummyContent.ITEMS));
-        }
+
         return view;
     }
+
+    public void onStart() {
+        super.onStart();
+        adapter.startListening();
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        adapter.stopListening();
+    }
+
 }
