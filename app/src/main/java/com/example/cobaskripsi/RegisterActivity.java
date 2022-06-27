@@ -90,6 +90,7 @@ public class RegisterActivity extends AppCompatActivity {
             map.put("username",username1);
             map.put("password",password1);
             map.put("nomortelpuser",notelp1);
+            map.put("emailuser",email1);
             map.put("role","pelanggan");
             map.put("iduser",key);
             FirebaseDatabase.getInstance().getReference().child("user").child(key)

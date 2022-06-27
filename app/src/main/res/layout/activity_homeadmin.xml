@@ -4,11 +4,50 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    android:background="@color/warnabackground"
     tools:context=".AdminUI.HomeadminActivity">
-
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="INI ADMIN"/>
+        android:text="Hallo Admin !"
+        android:textSize="30sp"
+        android:gravity="center"
+        android:textColor="@color/darkteal"/>
+    <Button
+        android:id="@+id/datatempatadmin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="Data tempat"
+        android:background="@drawable/button_login"
+        />
+
+    <Button
+        android:id="@+id/userlistadmin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="User List"
+        android:background="@drawable/button_login"
+        />
+
+    <Button
+        android:id="@+id/profiladmin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:text="Profil"
+        android:background="@drawable/button_login"
+        />
+
+
 
 </LinearLayout>

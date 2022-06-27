@@ -35,23 +35,32 @@ public class PendingListAdapter extends FirebaseRecyclerAdapter<PemesananModel, 
 
     @Override
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull PemesananModel model) {
-        holder.namapemesan.setText(model.getNamapemesan());
-        holder.detail.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(context, DetailPendingList.class);
-                intent.putExtra("NAMAPEMESAN", model.getNamapemesan());
-                intent.putExtra("TIMESTAMP",model.getTimestamp());
-                intent.putExtra("NAMALAPANGAN", model.getNamalapangan());
-                intent.putExtra("TANGGALPEMESANAN", model.getTanggalpemesanan());
-                intent.putExtra("WAKTUPEMESANAN", model.getWaktupemesanan());
-                intent.putExtra("STATUSPEMESANAN", model.getStatuspemesanan());
-                intent.putExtra("IDPEMESANAN", model.getIdpemesanan());
-                FirebaseDatabase.getInstance().getReference().child("lapangan")
-                        .child(getRef(position).getKey());
-                context.startActivity(intent);
-            }
-        });
+        if (model.getStatuspemesanan().equals("Menunggu Konfirmasi")){
+            holder.itemView.setVisibility(View.VISIBLE);
+            holder.namapemesan.setText(model.getNamapemesan());
+            holder.detail.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Intent intent = new Intent(context, DetailPendingList.class);
+                    intent.putExtra("NAMAPEMESAN", model.getNamapemesan());
+                    intent.putExtra("TIMESTAMP",model.getTimestamp());
+                    intent.putExtra("NAMALAPANGAN", model.getNamalapangan());
+                    intent.putExtra("TANGGALPEMESANAN", model.getTanggalpemesanan());
+                    intent.putExtra("WAKTUPEMESANAN", model.getWaktupemesanan());
+                    intent.putExtra("STATUSPEMESANAN", model.getStatuspemesanan());
+                    intent.putExtra("IDPEMESANAN", model.getIdpemesanan());
+                    FirebaseDatabase.getInstance().getReference().child("lapangan")
+                            .child(getRef(position).getKey());
+                    context.startActivity(intent);
+                }
+            });
+        }
+        else{
+            holder.itemView.setVisibility(View.GONE);
+            holder.itemView.setLayoutParams(new RecyclerView.LayoutParams(0, 0));
+
+        }
+
     }
 
 

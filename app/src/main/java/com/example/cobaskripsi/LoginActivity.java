@@ -74,7 +74,13 @@ public class LoginActivity extends AppCompatActivity {
                                                             if(snapshot.child(input3).child("role").getValue(String.class).equals("mitra")){
                                                                 preferences.setDataLogin(LoginActivity.this,true);
                                                                 preferences.setUsername(LoginActivity.this,input1);
-                                                                preferences.setUserID(LoginActivity.this,input3);
+                                                                for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+                                                                    UserModel userModel = childSnapshot.getValue(UserModel.class);
+                                                                    String nomortelpuser = (userModel.getNomortelpuser());
+                                                                    String emailuser = (userModel.getEmailuser());
+                                                                    preferences.setNotelp(LoginActivity.this,nomortelpuser);
+                                                                    preferences.setEmail(LoginActivity.this,emailuser);
+                                                                }preferences.setUserID(LoginActivity.this,input3);
                                                                 preferences.setDataRole(LoginActivity.this,"mitra");
                                                                 databaseReference.child("tempatcontributors")
                                                                         .orderByChild("iduser")
@@ -87,7 +93,7 @@ public class LoginActivity extends AppCompatActivity {
                                                                                         TempatcontributorsModel tempatcontributorsModel = childSnapshot.getValue(TempatcontributorsModel.class);
                                                                                         String clubkey = (tempatcontributorsModel.getIdtempat());
                                                                                         preferences.setIdtempatmitra(LoginActivity.this,clubkey);
-                                                                                        Toast.makeText(LoginActivity.this,preferences.getIdtempatmitra(LoginActivity.this),Toast.LENGTH_SHORT).show();
+
                                                                                     }
                                                                                 }
                                                                             }
@@ -98,18 +104,35 @@ public class LoginActivity extends AppCompatActivity {
                                                                             }
                                                                         });
                                                                 startActivity(new Intent(LoginActivity.this, HomemitraActivity.class));
+                                                                finish();
                                                             }else if(snapshot.child(input3).child("role").getValue(String.class).equals("admin")) {
                                                                 preferences.setDataLogin(LoginActivity.this,true);
                                                                 preferences.setDataRole(LoginActivity.this,"admin");
                                                                 preferences.setUsername(LoginActivity.this,input1);
                                                                 preferences.setUserID(LoginActivity.this,input3);
+                                                                for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+                                                                    UserModel userModel = childSnapshot.getValue(UserModel.class);
+                                                                    String nomortelpuser = (userModel.getNomortelpuser());
+                                                                    String emailuser = (userModel.getEmailuser());
+                                                                    preferences.setNotelp(LoginActivity.this,nomortelpuser);
+                                                                    preferences.setEmail(LoginActivity.this,emailuser);
+                                                                }
                                                                 startActivity(new Intent(LoginActivity.this, HomeadminActivity.class));
+                                                                finish();
                                                             }else if(snapshot.child(input3).child("role").getValue(String.class).equals("pelanggan")){
+                                                                for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+                                                                    UserModel userModel = childSnapshot.getValue(UserModel.class);
+                                                                    String nomortelpuser = (userModel.getNomortelpuser());
+                                                                    String emailuser = (userModel.getEmailuser());
+                                                                    preferences.setNotelp(LoginActivity.this,nomortelpuser);
+                                                                    preferences.setEmail(LoginActivity.this,emailuser);
+                                                                }
                                                                 preferences.setDataLogin(LoginActivity.this,true);
                                                                 preferences.setDataRole(LoginActivity.this,"pelanggan");
                                                                 preferences.setUsername(LoginActivity.this,input1);
                                                                 preferences.setUserID(LoginActivity.this,input3);
                                                                 startActivity(new Intent(LoginActivity.this, Homepelanggan.class));
+                                                                finish();
                                                             }
                                                         }else{
                                                             Toast.makeText(LoginActivity.this,"Kata sandi salah",Toast.LENGTH_SHORT).show();
@@ -164,5 +187,9 @@ public class LoginActivity extends AppCompatActivity {
                 finish();
             }
         }
+    }
+
+    public void onBackPressed(){
+
     }
 }

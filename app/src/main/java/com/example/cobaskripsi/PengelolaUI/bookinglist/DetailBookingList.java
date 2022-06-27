@@ -1,7 +1,5 @@
-package com.example.cobaskripsi.PengelolaUI.pendinglist;
+package com.example.cobaskripsi.PengelolaUI.bookinglist;
 
-import android.app.AlertDialog;
-import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
 import android.os.Bundle;
@@ -13,36 +11,33 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cobaskripsi.R;
 import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class DetailPendingList extends AppCompatActivity {
+public class DetailBookingList extends AppCompatActivity {
 
-    TextView namapemesan,timestamp,namalapangan,tanggalpemesanan,waktupemesanan,statuspemesanan;
-    String namapemesan1,timestamp1,namalapangan1,tanggalpemesanan1,waktupemesanan1,statuspemesanan1,idpemesanan1;
+    TextView namapemesan,timestamp,namalapangan,tanggalpemesanan,waktupemesanan,statuspemesanan,notelp;
+    String namapemesan1,timestamp1,namalapangan1,tanggalpemesanan1,waktupemesanan1,statuspemesanan1,idpemesanan1,notelp1;
     Button tolak, terima, back;
     DatabaseReference reference;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_detail_pending_list);
+        setContentView(R.layout.activity_detail_booking_list);
 
-        namapemesan = findViewById(R.id.namapemesandetailpendinglist);
-        timestamp = findViewById(R.id.timestampdetailpendinglist);
-        namalapangan = findViewById(R.id.namalapangandetailpendinglist);
-        tanggalpemesanan = findViewById(R.id.tanggalpemesanandetailpendinglist);
-        waktupemesanan = findViewById(R.id.waktupemesanandetailpendinglist);
-        statuspemesanan= findViewById(R.id.statuspemesanandetailpendinglist);
+        namapemesan = findViewById(R.id.namapemesandetailbookinglist);
+        timestamp = findViewById(R.id.timestampdetailbookinglist);
+        namalapangan = findViewById(R.id.namalapangandetailbookinglist);
+        tanggalpemesanan = findViewById(R.id.tanggalpemesanandetailbookinglist);
+        waktupemesanan = findViewById(R.id.waktupemesanandetailbookinglist);
+        statuspemesanan= findViewById(R.id.statuspemesanandetailbookinglist);
+        notelp= findViewById(R.id.nomortelppemesanan);
 
-
-        tolak = findViewById(R.id.tolakpendinglist);
-        terima = findViewById(R.id.terimapendinglist);
-        back = findViewById(R.id.backpendinglist);
+        back = findViewById(R.id.backbookinglist);
 
         Intent intent = getIntent();
         namapemesan1 = intent.getStringExtra("NAMAPEMESAN");
@@ -52,6 +47,7 @@ public class DetailPendingList extends AppCompatActivity {
         waktupemesanan1 = intent.getStringExtra("WAKTUPEMESANAN");
         statuspemesanan1 = intent.getStringExtra("STATUSPEMESANAN");
         idpemesanan1 = intent.getStringExtra("IDPEMESANAN");
+        notelp1 = intent.getStringExtra("NOMORTELP");
 
         String sudahdipesan;
         String simpen;
@@ -69,6 +65,7 @@ public class DetailPendingList extends AppCompatActivity {
         namalapangan .setText(namalapangan1);
         tanggalpemesanan .setText(tanggalpemesanan1);
         waktupemesanan.setText(simpenlist.toString());
+        //notelp.setText(notelp1);
 
         if(statuspemesanan1.equals("Menunggu Konfirmasi")){
             statuspemesanan.setTextColor(Color.RED);
@@ -77,62 +74,10 @@ public class DetailPendingList extends AppCompatActivity {
             statuspemesanan.setTextColor(Color.GREEN);
             statuspemesanan.setText(statuspemesanan1.substring(0, 1).toUpperCase() + statuspemesanan1.substring(1).toLowerCase());
         }
-
-        tolak.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder=new AlertDialog.Builder(DetailPendingList.this);
-                builder.setMessage("Tolak Pemesanan ?");
-
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        FirebaseDatabase.getInstance().getReference().child("pemesanan").child(idpemesanan1).child("statuspemesanan").setValue("Ditolak");
-                        startActivity(new Intent(DetailPendingList.this, PendingList.class));
-                        finish();
-                    }
-                });
-
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                });
-
-                builder.show();
-            }
-        });
-        terima.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                AlertDialog.Builder builder=new AlertDialog.Builder(DetailPendingList.this);
-                builder.setMessage("Terima Pemesanan ?");
-
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-                        FirebaseDatabase.getInstance().getReference().child("pemesanan").child(idpemesanan1).child("statuspemesanan").setValue("Booked");
-                        startActivity(new Intent(DetailPendingList.this, PendingList.class));
-                        finish();
-                    }
-                });
-
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialogInterface, int i) {
-
-                    }
-                });
-
-                builder.show();
-
-            }
-        });
         back.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(DetailPendingList.this, PendingList.class));
+                startActivity(new Intent(DetailBookingList.this, BookingList.class));
                 finish();
             }
         });

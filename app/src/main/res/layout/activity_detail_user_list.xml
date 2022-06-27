@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="20dp"
+    tools:context=".AdminUI.userlist.DetailUserList"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:layout_gravity="center">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Detail User"
+            android:textColor="@color/darkteal"
+            android:textStyle="bold"
+            android:gravity="top"
+            android:textSize="30sp"
+            android:layout_marginBottom="35dp"/>
+
+        <TextView
+            android:id="@+id/namauserdetailuserlist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nama User"
+            android:textColor="@color/darkteal"
+            android:textStyle="bold"
+            android:gravity="top"
+            android:textSize="25sp"
+            android:layout_marginBottom="30dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Email     :"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:id="@+id/emaildetailuserlist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:textSize="18sp"
+            android:layout_marginBottom="15dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nomor Telpon User     :"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:id="@+id/notelpdetailuserlist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:textSize="18sp"
+            android:layout_marginBottom="15dp"
+            />
+
+        <TextView
+            android:id="@+id/roleuserdetailuserlist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Role : Mitra"
+            android:textColor="@color/black"
+            android:layout_marginTop="40dp"
+            android:textSize="40sp"
+            android:layout_marginBottom="15dp"
+            />
+
+
+
+        <Button
+            android:id="@+id/backuserlist"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:gravity="center"
+            android:layout_gravity="center"
+            />
+
+    </LinearLayout>
+
+</ScrollView>

@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="20dp"
+    tools:context=".PengelolaUI.bookinglist.DetailBookingList"
+    >
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Detail Booking List"
+            android:textColor="@color/darkteal"
+            android:textStyle="bold"
+            android:gravity="top"
+            android:textSize="30sp"
+            android:layout_marginBottom="35dp"/>
+
+        <TextView
+            android:id="@+id/namapemesandetailbookinglist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nama Pemesan"
+            android:textColor="@color/darkteal"
+            android:textStyle="bold"
+            android:gravity="top"
+            android:textSize="25sp"
+            android:layout_marginBottom="30dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Waktu Dilakukan Pemesanan     :"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:textSize="18sp"
+            />
+        <TextView
+            android:id="@+id/timestampdetailbookinglist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tanggal Pemesanan"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:textSize="18sp"
+            android:layout_marginBottom="15dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Lapangan yang Dipilih     :"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:id="@+id/namalapangandetailbookinglist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Pilihan Lapangan"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:textSize="18sp"
+            android:layout_marginBottom="15dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tanggal Menggunakan Lapangan      :"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:id="@+id/tanggalpemesanandetailbookinglist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Tanggal main"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:textSize="18sp"
+            android:layout_marginBottom="15dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jam Menggunakan Lapangan      :"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:id="@+id/waktupemesanandetailbookinglist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jam main"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:textSize="18sp"
+            android:layout_marginBottom="30dp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nomor Telpon Pemesan      :"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:textSize="18sp"
+            />
+
+        <TextView
+            android:id="@+id/nomortelpdetailbookinglist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="notelp"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:textSize="18sp"
+            android:layout_marginBottom="30dp"
+            />
+
+        <TextView
+            android:id="@+id/statuspemesanandetailbookinglist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Konfirmasi"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:layout_marginBottom="10dp"
+            android:textSize="30sp"
+            />
+
+        <Button
+            android:id="@+id/backbookinglist"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Back"
+            android:gravity="center"
+            android:layout_gravity="center"
+            />
+
+    </LinearLayout>
+
+</ScrollView>
