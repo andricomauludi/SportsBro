@@ -1,7 +1,32 @@
 package com.example.cobaskripsi.UserUI.jenisolahraga.caritempat;
 
 public class TempatModel {
-    String gambar,marker,namatempat, jenisolahraga;
+    String gambar,marker,namatempat, jenisolahraga,alamattempat,notelptempat;
+
+    public TempatModel(String gambar, String marker, String namatempat, String jenisolahraga, String alamattempat, String notelptempat) {
+        this.gambar = gambar;
+        this.marker = marker;
+        this.namatempat = namatempat;
+        this.jenisolahraga = jenisolahraga;
+        this.alamattempat = alamattempat;
+        this.notelptempat = notelptempat;
+    }
+
+    public String getNotelptempat() {
+        return notelptempat;
+    }
+
+    public void setNotelptempat(String notelptempat) {
+        this.notelptempat = notelptempat;
+    }
+
+    public String getAlamattempat() {
+        return alamattempat;
+    }
+
+    public void setAlamattempat(String alamattempat) {
+        this.alamattempat = alamattempat;
+    }
 
     TempatModel(){
 
@@ -39,11 +64,5 @@ public class TempatModel {
         this.jenisolahraga = jenisolahraga;
     }
 
-    public TempatModel(String gambar, String marker, String namatempat, String jenisolahraga) {
-        this.gambar = gambar;
-        this.marker = marker;
-        this.namatempat = namatempat;
-        this.jenisolahraga = jenisolahraga;
-    }
 
 }

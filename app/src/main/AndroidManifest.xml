@@ -17,7 +17,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CobaSkripsi">
-        <activity android:name=".AdminUI.userlist.DetailUserList"></activity>
+        <activity android:name=".AdminUI.userlist.EditUserList"></activity>
+        <activity android:name=".AdminUI.profileadmin.ProfileAdmin" />
+        <activity android:name=".AdminUI.userlist.DetailUserList" />
         <activity android:name=".AdminUI.userlist.UserList" />
         <activity android:name=".AdminUI.datatempat.DetailDataTempat" />
         <activity android:name=".AdminUI.datatempat.DataTempat" />

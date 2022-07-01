@@ -1,6 +1,7 @@
 package com.example.cobaskripsi.AdminUI.userlist;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -36,7 +37,17 @@ public class DetailUserList extends AppCompatActivity {
         namauser.setText(namauser1);
         email.setText(email1);
         notelp.setText(notelp1);
-        role.setText(role1);
+
+        if(role1.equals("pelanggan")){
+            role.setTextColor(Color.GREEN);
+            role.setText(role1.substring(0, 1).toUpperCase() + role1.substring(1).toLowerCase());
+        }else if (role1.equals("admin")){
+            role.setTextColor(Color.RED);
+            role.setText(role1.substring(0, 1).toUpperCase() + role1.substring(1).toLowerCase());
+        }else if (role1.equals("mitra")){
+            role.setTextColor(Color.YELLOW);
+            role.setText(role1.substring(0, 1).toUpperCase() + role1.substring(1).toLowerCase());
+        }
 
         back.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +58,10 @@ public class DetailUserList extends AppCompatActivity {
         });
 
 
+
+    }
+
+    public void onBackPressed(){
 
     }
 }

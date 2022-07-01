@@ -75,6 +75,7 @@
             android:textSize="20sp"
             android:hint="Nomor Telpon Pemesan"
             android:layout_marginBottom="15dp"
+            android:inputType = "number"
             android:textColor="@color/darkteal"/>
 
         <TextView

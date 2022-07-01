@@ -19,15 +19,9 @@
             android:layout_height="match_parent"
             android:background="@color/white"
             android:padding="10dp"
-            android:orientation="horizontal">
+            android:orientation="vertical">
 
-            <LinearLayout
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:padding="10dp"
-                >
+
                 <TextView
                     android:id="@+id/namauseruserlist"
                     android:layout_width="wrap_content"
@@ -44,26 +38,38 @@
                     android:textSize="15sp"
                     android:textStyle="bold"
                     />
-
-
-
-            </LinearLayout>
-
             <LinearLayout
-                android:orientation="vertical"
-                android:layout_weight="1"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:gravity="center"
                 >
+                <Button
+                    android:id="@+id/edituseruserlist"
+                    android:layout_width="75dp"
+                    android:layout_height="35dp"
+                    android:text="Edit"
+                    android:textSize="10sp"
+                    android:layout_margin="2dp"
+                    />
 
+                <Button
+                    android:id="@+id/deleteuseruserlist"
+                    android:layout_width="75dp"
+                    android:layout_height="35dp"
+                    android:text="Delete"
+                    android:textSize="10sp"
+                    android:layout_margin="2dp"
+                    />
                 <Button
                     android:id="@+id/detailuseruserlist"
                     android:layout_width="75dp"
                     android:layout_height="35dp"
                     android:text="Detail"
                     android:textSize="10sp"
+                    android:layout_margin="2dp"
                     />
+
             </LinearLayout>
 
 

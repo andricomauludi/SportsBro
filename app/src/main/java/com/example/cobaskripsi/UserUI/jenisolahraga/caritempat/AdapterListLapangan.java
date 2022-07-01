@@ -1,5 +1,6 @@
 package com.example.cobaskripsi.UserUI.jenisolahraga.caritempat;
 
+import android.location.Location;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,7 +41,7 @@ public class AdapterListLapangan extends FirebaseRecyclerAdapter<TempatModel,Ada
                     public void onClick(View v) {
                         AppCompatActivity activity=(AppCompatActivity)v.getContext();
 
-                        activity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new DetailLapangan(model.getNamatempat(),model.getMarker(),model.getGambar())).addToBackStack(null).commit();
+                        activity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new DetailLapangan(model.getNamatempat(),model.getMarker(),model.getGambar(),model.getAlamattempat())).addToBackStack(null).commit();
                     }
                 });
 
@@ -50,13 +51,11 @@ public class AdapterListLapangan extends FirebaseRecyclerAdapter<TempatModel,Ada
         String[] latlong = str.split(",");
         String lat = latlong[0];
         String lng = latlong[1];
-        double latitudeSaya = -6.591115;
-        double longitudeSaya = 106.815922;
         double latitudeTujuan = Double.valueOf(lat.toString());
         double longitudeTujuan = Double.valueOf(lng.toString());
 
 
-        double jarak = getDistance(latitudeTujuan, longitudeTujuan, latitudeSaya, longitudeSaya);
+        double jarak = getDistance(latitudeTujuan, longitudeTujuan, holder.latitudeSaya, holder.longitudeSaya);
         jarak = Math.ceil(jarak / 1000);
         String stringjarak = jarak+"";
 
@@ -73,14 +72,24 @@ public class AdapterListLapangan extends FirebaseRecyclerAdapter<TempatModel,Ada
 
     public class myviewholder extends RecyclerView.ViewHolder{
 
+
+
         CircleImageView img;
         TextView namatempat, marker;
+        double latitudeSaya, longitudeSaya;
 
         public myviewholder(@NonNull View itemView) {
             super(itemView);
             img = (CircleImageView)itemView.findViewById(R.id.basketImageView);
             namatempat = (TextView)itemView.findViewById(R.id.basketText1);
             marker = (TextView)itemView.findViewById(R.id.basketText2);
+
+            GetLocation getLocation = new GetLocation(itemView.getContext());
+            Location location = getLocation.getLocation();
+            if (location != null){
+                 latitudeSaya = location.getLatitude();
+                 longitudeSaya = location.getLongitude();
+            }
         }
     }
     private double getDistance(Double latitudeTujuan, Double longitudeTujuan, Double latitudeUser, Double longitudeUser){

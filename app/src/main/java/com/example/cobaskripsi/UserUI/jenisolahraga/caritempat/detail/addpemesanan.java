@@ -41,7 +41,7 @@ public class  addpemesanan extends AppCompatActivity {
     EditText namapemesan,nomortelppemesan;
     TextView namatempat,jenislapangan,jamtersedia, coba,tanggalpemesanan;
     Button pesan,cancel,lihattanggal;
-    String sudahdipesan;
+    String sudahdipesan, nomortelppemesanfinal;
     DatePickerDialog datePickerDialog;
     SimpleDateFormat dateFormatter;
     String newString2,idtempat,newString3,idlapangan,newString4, waktupemesanan, idpemesan, username, jenisolahraga;
@@ -127,7 +127,6 @@ public class  addpemesanan extends AppCompatActivity {
                         tanggalpemesananpilih=date;
                         String str = String.valueOf(newString4.replaceAll("[\\[\\]\\(\\)]", ""));
                         checkboxjam2 = new ArrayList<String>(Arrays.asList(str.split(",")));
-                        Toast.makeText(addpemesanan.this, checkboxjam2.toString(), Toast.LENGTH_SHORT).show();
                         compareData(date);
                         pesan.setEnabled(true);
 
@@ -190,7 +189,6 @@ public class  addpemesanan extends AppCompatActivity {
     }
 
     private void processInsert() {
-
         idpemesan= preferences.getUserID(getApplicationContext());
         username = preferences.getUsername(getApplicationContext());
         String key = FirebaseDatabase.getInstance().getReference().child("pemesanan").push().getKey();
@@ -262,13 +260,17 @@ public class  addpemesanan extends AppCompatActivity {
             }
         }
 
+        String regexp = "^.{11,13}$"; //your regexp here
+
+
+
         if (namapemesan1.length() <= 0) {
             namapemesan.requestFocus();
             namapemesan.setError("Isi Nama");
             return false;
-        } else if (nomortelppemesan1.length() <= 0) {
+        } else if (nomortelppemesan1.length() <= 10 || nomortelppemesan1.length() > 13 ) {
             nomortelppemesan.requestFocus();
-            nomortelppemesan.setError("Isi Nomor Telp.");
+            nomortelppemesan.setError("Isi Nomor Telp yang Valid");
             return false;
 
         } else if (tanggalpemesan1.length() <= 0) {

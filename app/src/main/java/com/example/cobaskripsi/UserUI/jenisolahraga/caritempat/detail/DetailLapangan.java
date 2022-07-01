@@ -1,6 +1,10 @@
 package com.example.cobaskripsi.UserUI.jenisolahraga.caritempat.detail;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
+import android.location.Location;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -17,6 +21,7 @@ import androidx.fragment.app.Fragment;
 
 import com.bumptech.glide.Glide;
 import com.example.cobaskripsi.R;
+import com.example.cobaskripsi.UserUI.jenisolahraga.caritempat.GetLocation;
 import com.example.cobaskripsi.UserUI.jenisolahraga.caritempat.RecListLapangan;
 import com.example.cobaskripsi.UserUI.jenisolahraga.caritempat.TempatModel;
 import com.google.firebase.database.DataSnapshot;
@@ -42,16 +47,17 @@ public class DetailLapangan extends Fragment {
 
     private String mParam1;
     private String mParam2;
-    String namatempat,marker,gambar,idtempat,jenisolahraga;
+    String namatempat,marker,gambar,idtempat,jenisolahraga,alamattempat;
 
     public DetailLapangan() {
 
     }
 
-    public DetailLapangan(String namatempat, String marker, String gambar) {
+    public DetailLapangan(String namatempat, String marker, String gambar,String alamattempat) {
         this.namatempat = namatempat;
         this.marker = marker;
         this.gambar = gambar;
+        this.alamattempat = alamattempat;
     }
 
 
@@ -85,10 +91,59 @@ public class DetailLapangan extends Fragment {
 
         ImageView imageholder= view.findViewById(R.id.gambarlapangan);
         TextView nameholder= view.findViewById(R.id.namalapangan);
+        TextView alamatlapangan = view.findViewById(R.id.lokasilapangan);
         TextView cobain= view.findViewById(R.id.cobain);
+        Button direction = view.findViewById(R.id.directionbutton);
         //TextView markerholder= view.findViewById(R.id.markerlapangan);
 
         nameholder.setText(namatempat);
+        alamatlapangan.setText(alamattempat);
+        String str = marker;
+
+        String[] latlong = str.split(",");
+        String lat = latlong[0];
+        String lng = latlong[1];
+        double latitudeTujuan = Double.valueOf(lat.toString());
+        double longitudeTujuan = Double.valueOf(lng.toString());
+        final double[] latitudeSaya = new double[1];
+        final double[] longitudeSaya = new double[1];
+
+
+
+        direction.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+
+                AlertDialog.Builder builder=new AlertDialog.Builder(direction.getContext());
+                builder.setMessage("Anda akan diarahkan google maps untuk melihat rute menuju lokasi");
+
+
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        GetLocation getLocation = new GetLocation(getActivity());
+                        Location location = getLocation.getLocation();
+                        if (location != null){
+                            latitudeSaya[0] = location.getLatitude();
+                            longitudeSaya[0] = location.getLongitude();
+                        }
+                        String uri = "http://maps.google.com/maps?f=d&hl=en&saddr="+latitudeSaya[0]+","+longitudeSaya[0]+"&daddr="+latitudeTujuan+","+longitudeTujuan;
+                        Intent intent = new Intent(android.content.Intent.ACTION_VIEW, Uri.parse(uri));
+                        startActivity(Intent.createChooser(intent, "Select an application"));
+                    }
+                });
+
+
+                builder.show();
+
+            }
+        });
 
         //markerholder.setText(stringjarak);
         Glide.with(getContext()).load(R.drawable.basket_bucketlist).into(imageholder);

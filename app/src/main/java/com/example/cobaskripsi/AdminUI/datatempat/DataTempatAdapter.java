@@ -41,9 +41,9 @@ public class DataTempatAdapter extends FirebaseRecyclerAdapter<TempatModel, Data
                 Intent intent = new Intent(context, DetailDataTempat.class);
                 intent.putExtra("NAMATEMPAT", model.getNamatempat());
                 intent.putExtra("JENISOLAHRAGA",model.getJenisolahraga());
-                intent.putExtra("ALAMAT", "dummy");
-                intent.putExtra("Mitra", "dummy");
-                intent.putExtra("NOTELP", "dummy");
+                intent.putExtra("ALAMAT", model.getAlamattempat());
+                intent.putExtra("NOTELP", model.getNotelptempat());
+                intent.putExtra("MITRA", "dummy");
                 context.startActivity(intent);
             }
         });

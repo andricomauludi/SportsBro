@@ -8,6 +8,7 @@ import android.widget.Button;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cobaskripsi.AdminUI.datatempat.DataTempat;
+import com.example.cobaskripsi.AdminUI.profileadmin.ProfileAdmin;
 import com.example.cobaskripsi.AdminUI.userlist.UserList;
 import com.example.cobaskripsi.R;
 
@@ -43,7 +44,7 @@ public class HomeadminActivity extends AppCompatActivity {
         profile.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-
+                startActivity(new Intent(HomeadminActivity.this, ProfileAdmin.class));
             }
         });
 

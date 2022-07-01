@@ -48,9 +48,10 @@
             </RelativeLayout>
 
             <TextView
+                android:id="@+id/lokasilapangan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text=" Jl. R. H. Moh. Tohir No.1, RT.07/RW.10, Tanah Baru, Kec. Bogor Utara, Kota Bogor, Jawa Barat 16154"
+                android:text=" lokasilapangan"
                 android:textSize="15sp"
                 android:layout_marginRight="20dp"
                 android:layout_marginLeft="20dp"
@@ -61,6 +62,7 @@
                 android:layout_height="wrap_content">
 
             <Button
+                android:id="@+id/directionbutton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Direction"
