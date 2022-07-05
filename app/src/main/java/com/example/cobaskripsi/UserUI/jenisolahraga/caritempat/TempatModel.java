@@ -1,15 +1,24 @@
 package com.example.cobaskripsi.UserUI.jenisolahraga.caritempat;
 
 public class TempatModel {
-    String gambar,marker,namatempat, jenisolahraga,alamattempat,notelptempat;
+    String gambar,marker,namatempat, jenisolahraga,alamattempat,notelptempat, idtempat;
 
-    public TempatModel(String gambar, String marker, String namatempat, String jenisolahraga, String alamattempat, String notelptempat) {
+    public TempatModel(String gambar, String marker, String namatempat, String jenisolahraga, String alamattempat, String notelptempat, String idtempat) {
         this.gambar = gambar;
         this.marker = marker;
         this.namatempat = namatempat;
         this.jenisolahraga = jenisolahraga;
         this.alamattempat = alamattempat;
         this.notelptempat = notelptempat;
+        this.idtempat = idtempat;
+    }
+
+    public String getIdtempat() {
+        return idtempat;
+    }
+
+    public void setIdtempat(String idtempat) {
+        this.idtempat = idtempat;
     }
 
     public String getNotelptempat() {

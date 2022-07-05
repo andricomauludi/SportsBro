@@ -23,7 +23,6 @@ import com.bumptech.glide.Glide;
 import com.example.cobaskripsi.R;
 import com.example.cobaskripsi.UserUI.jenisolahraga.caritempat.GetLocation;
 import com.example.cobaskripsi.UserUI.jenisolahraga.caritempat.RecListLapangan;
-import com.example.cobaskripsi.UserUI.jenisolahraga.caritempat.TempatModel;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
@@ -47,17 +46,18 @@ public class DetailLapangan extends Fragment {
 
     private String mParam1;
     private String mParam2;
-    String namatempat,marker,gambar,idtempat,jenisolahraga,alamattempat;
+    String namatempat,marker,gambar,jenisolahraga,alamattempat,idtempat;
 
     public DetailLapangan() {
 
     }
 
-    public DetailLapangan(String namatempat, String marker, String gambar,String alamattempat) {
+    public DetailLapangan(String namatempat, String marker, String gambar,String alamattempat, String idtempat) {
         this.namatempat = namatempat;
         this.marker = marker;
         this.gambar = gambar;
         this.alamattempat = alamattempat;
+        this.idtempat=idtempat;
     }
 
 
@@ -161,99 +161,83 @@ public class DetailLapangan extends Fragment {
         LinearLayout linearLayout = view.findViewById(R.id.rootlayout);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
-        mDatabase.child("tempat")
-                .orderByChild("namatempat")
-                .equalTo(namatempat)
-                .addListenerForSingleValueEvent(new ValueEventListener() {
+        mDatabase.child("lapangan")
+                .orderByChild("idtempat")
+                .equalTo(idtempat)
+                .addValueEventListener(new ValueEventListener() {
                     @Override
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
-                        for (DataSnapshot childSnapshot: snapshot.getChildren()){
+                       // list.clear();
+                        namalapangan.clear();
+                        idlapangan.clear();
+                        jamtersedia.clear();
+                        for (DataSnapshot childSnapshot : snapshot.getChildren()){
+                            LapanganModel lapanganModel = childSnapshot.getValue(LapanganModel.class);
+                            //list.add(lapanganModel.getNamalapangan());
+                            namalapangan.add(lapanganModel.getNamalapangan());
+                            jamtersedia.add(lapanganModel.getJamtersedia());
                             String clubkey = childSnapshot.getKey();
-                            TempatModel tempatModel = childSnapshot.getValue(TempatModel.class);
-                            jenisolahraga=tempatModel.getJenisolahraga();
-                            idtempat=clubkey;
+                            idlapangan.add(clubkey);
+
                         }
-                        mDatabase.child("lapangan")
-                                //.child("lapangan1")
-                                .orderByChild("idtempat")
-                                .equalTo(idtempat)
-                                .addValueEventListener(new ValueEventListener() {
+
+                        Button[] addlapangan = new Button[namalapangan.size()];
+                        for (int i=0;i<namalapangan.size();i++) {
+                            Button addbtn = new Button (getActivity());
+                            if (linearLayout!=null){
+                                linearLayout.addView(addbtn);
+                                addbtn.setText(namalapangan.get(i));
+                                addbtn.setId(i);
+
+                                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                                        LinearLayout.LayoutParams.MATCH_PARENT,
+                                        LinearLayout.LayoutParams.WRAP_CONTENT
+                                );
+                                params.setMargins(20,0,10,0);
+                                addbtn.setLayoutParams(params);
+
+
+                                //addlapangan[i]=view.findViewById(R.id.lapangan1);
+
+                                String abc = String.valueOf(i);
+
+                                int resID = getResources().getIdentifier(abc, "id", getActivity().getPackageName());
+                                addlapangan[i] = (Button) view.findViewById(resID );
+                                addlapangan[i].setText(namalapangan.get(i));
+                                String jenislapangan = namalapangan.get(i);
+                                String idlapanganpesan = idlapangan.get(i);
+                                String jamtersediapesan = jamtersedia.get(i);
+                                addlapangan[i].setOnClickListener(new View.OnClickListener() {
                                     @Override
-                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                       // list.clear();
-                                        namalapangan.clear();
-                                        idlapangan.clear();
-                                        jamtersedia.clear();
-                                        for (DataSnapshot childSnapshot : snapshot.getChildren()){
-                                            LapanganModel lapanganModel = childSnapshot.getValue(LapanganModel.class);
-                                            //list.add(lapanganModel.getNamalapangan());
-                                            namalapangan.add(lapanganModel.getNamalapangan());
-                                            jamtersedia.add(lapanganModel.getJamtersedia());
-                                            String clubkey = childSnapshot.getKey();
-                                            idlapangan.add(clubkey);
-
-                                        }
-
-                                        Button[] addlapangan = new Button[namalapangan.size()];
-                                        for (int i=0;i<namalapangan.size();i++) {
-                                            Button addbtn = new Button (getActivity());
-                                            if (linearLayout!=null){
-                                                linearLayout.addView(addbtn);
-                                                addbtn.setText(namalapangan.get(i));
-                                                addbtn.setId(i);
-
-                                                LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                                                        LinearLayout.LayoutParams.MATCH_PARENT,
-                                                        LinearLayout.LayoutParams.WRAP_CONTENT
-                                                );
-                                                params.setMargins(20,0,10,0);
-                                                addbtn.setLayoutParams(params);
-
-
-                                                //addlapangan[i]=view.findViewById(R.id.lapangan1);
-
-                                                String abc = String.valueOf(i);
-
-                                                int resID = getResources().getIdentifier(abc, "id", getActivity().getPackageName());
-                                                addlapangan[i] = (Button) view.findViewById(resID );
-                                                addlapangan[i].setText(namalapangan.get(i));
-                                                String jenislapangan = namalapangan.get(i);
-                                                String idlapanganpesan = idlapangan.get(i);
-                                                String jamtersediapesan = jamtersedia.get(i);
-                                                addlapangan[i].setOnClickListener(new View.OnClickListener() {
-                                                    @Override
-                                                    public void onClick(View v) {
-                                                        Intent intent = new Intent(getActivity(), addpemesanan.class);
-                                                        Bundle extras = new Bundle();
-                                                        extras.putString("IDTEMPAT", idtempat);
-                                                        extras.putString("NAMATEMPAT", namatempat);
-                                                        extras.putString("JENISLAPANGAN", jenislapangan);
-                                                        extras.putString("IDLAPANGAN", idlapanganpesan);
-                                                        extras.putString("JAMTERSEDIA", jamtersediapesan);
-                                                        extras.putString("JENISOLAHRAGA", jenisolahraga);
-                                                        intent.putExtras(extras);
-                                                        startActivity(intent);
+                                    public void onClick(View v) {
+                                        Intent intent = new Intent(getActivity(), addpemesanan.class);
+                                        Bundle extras = new Bundle();
+                                        extras.putString("IDTEMPAT", idtempat);
+                                        extras.putString("NAMATEMPAT", namatempat);
+                                        extras.putString("JENISLAPANGAN", jenislapangan);
+                                        extras.putString("IDLAPANGAN", idlapanganpesan);
+                                        extras.putString("JAMTERSEDIA", jamtersediapesan);
+                                        extras.putString("JENISOLAHRAGA", jenisolahraga);
+                                        intent.putExtras(extras);
+                                        startActivity(intent);
 
 
 
-                                                    }
-                                                });
-
-
-                                            }
-                                        }
-
-                                      //  adapter.notifyDataSetChanged();
-                                    }
-                                    @Override
-                                    public void onCancelled(@NonNull DatabaseError error) {
                                     }
                                 });
-                                            }
+
+
+                            }
+                        }
+
+                      //  adapter.notifyDataSetChanged();
+                    }
                     @Override
                     public void onCancelled(@NonNull DatabaseError error) {
                     }
                 });
+
+
 
 
         /**listView = view.findViewById(R.id.listView);

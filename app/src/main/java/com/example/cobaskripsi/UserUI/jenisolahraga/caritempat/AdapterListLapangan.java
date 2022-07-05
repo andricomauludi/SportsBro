@@ -1,5 +1,6 @@
 package com.example.cobaskripsi.UserUI.jenisolahraga.caritempat;
 
+import android.content.Context;
 import android.location.Location;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -8,45 +9,43 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.example.cobaskripsi.R;
 import com.example.cobaskripsi.UserUI.jenisolahraga.caritempat.detail.DetailLapangan;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.DatabaseReference;
+
+import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
 
-public class AdapterListLapangan extends FirebaseRecyclerAdapter<TempatModel,AdapterListLapangan.myviewholder> {
-    private DatabaseReference mDatabase;
+public class AdapterListLapangan extends RecyclerView.Adapter<AdapterListLapangan.myviewholder> {
 
-    public AdapterListLapangan(@NonNull FirebaseRecyclerOptions<TempatModel> options) {
-        super(options);
+    public Context c;
+    public ArrayList<TempatModel> arrayList;
+
+    public AdapterListLapangan(Context c, ArrayList<TempatModel> arrayList){
+        this.c=c;
+        this.arrayList=arrayList;
+    }
+
+
+    @NonNull
+    @Override
+    public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.tempat_row,parent,false);
+        return new myviewholder(v);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull TempatModel model) {
-        holder.namatempat.setText(model.getNamatempat());
-        Glide.with(holder.img.getContext())
-                .load(model.getGambar())
-                .placeholder(R.drawable.basket_bucketlist)
-                .circleCrop()
-                .error(R.drawable.basket1)
-                .into(holder.img);
+    public void onBindViewHolder(@NonNull myviewholder holder, int position) {
 
-                holder.img.setOnClickListener(new View.OnClickListener() {
-                    @Override
-                    public void onClick(View v) {
-                        AppCompatActivity activity=(AppCompatActivity)v.getContext();
+        TempatModel tempatModel = arrayList.get(position);
+        holder.nama.setText(tempatModel.getNamatempat());
 
-                        activity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new DetailLapangan(model.getNamatempat(),model.getMarker(),model.getGambar(),model.getAlamattempat())).addToBackStack(null).commit();
-                    }
-                });
-
-
-        String str = model.marker;
+        String str =tempatModel.getMarker();
 
         String[] latlong = str.split(",");
         String lat = latlong[0];
@@ -59,37 +58,53 @@ public class AdapterListLapangan extends FirebaseRecyclerAdapter<TempatModel,Ada
         jarak = Math.ceil(jarak / 1000);
         String stringjarak = jarak+"";
 
-        holder.marker.setText(stringjarak + " km");
+        holder.jarak.setText(stringjarak + " km");
+        Glide.with(holder.img.getContext())
+                .load(tempatModel.getGambar())
+                .placeholder(R.drawable.basket_bucketlist)
+                .circleCrop()
+                .error(R.drawable.basket4)
+                .into(holder.img);
 
+        holder.listlapangan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AppCompatActivity activity=(AppCompatActivity)v.getContext();
+
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new DetailLapangan(tempatModel.getNamatempat(),tempatModel.getMarker(),tempatModel.getGambar(),tempatModel.getAlamattempat(),tempatModel.getIdtempat())).addToBackStack(null).commit();
+            }
+        });
     }
 
-    @NonNull
     @Override
-    public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.tempat_row,parent,false);
-        return new myviewholder(view);
+    public int getItemCount() {
+        return arrayList.size();
+    }
+
+    @Override
+    public long getItemId(int position){
+        return position;
     }
 
     public class myviewholder extends RecyclerView.ViewHolder{
 
-
-
+        TextView nama, jarak;
         CircleImageView img;
-        TextView namatempat, marker;
+        CardView listlapangan;
         double latitudeSaya, longitudeSaya;
-
-        public myviewholder(@NonNull View itemView) {
+        public myviewholder(View itemView){
             super(itemView);
-            img = (CircleImageView)itemView.findViewById(R.id.basketImageView);
-            namatempat = (TextView)itemView.findViewById(R.id.basketText1);
-            marker = (TextView)itemView.findViewById(R.id.basketText2);
-
+            nama=itemView.findViewById(R.id.basketText1);
+            jarak=itemView.findViewById(R.id.basketText2);
+            img=itemView.findViewById(R.id.basketImageView);
+            listlapangan=itemView.findViewById(R.id.cardviewlistlapangan);
             GetLocation getLocation = new GetLocation(itemView.getContext());
             Location location = getLocation.getLocation();
             if (location != null){
-                 latitudeSaya = location.getLatitude();
-                 longitudeSaya = location.getLongitude();
+                latitudeSaya = location.getLatitude();
+                longitudeSaya = location.getLongitude();
             }
+
         }
     }
     private double getDistance(Double latitudeTujuan, Double longitudeTujuan, Double latitudeUser, Double longitudeUser){

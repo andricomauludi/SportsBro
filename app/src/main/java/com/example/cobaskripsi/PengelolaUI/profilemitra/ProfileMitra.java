@@ -34,10 +34,13 @@ public class ProfileMitra extends AppCompatActivity {
         logoutt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(ProfileMitra.this, LoginActivity.class));
                 preferences.clearData(ProfileMitra.this);
-                finish();
+                Intent intent=new Intent(ProfileMitra.this,LoginActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                startActivity(intent);
+                ProfileMitra.this.finish();
             }
         });
     }
+
 }

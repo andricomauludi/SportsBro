@@ -1,9 +1,10 @@
 package com.example.cobaskripsi.UserUI.jenisolahraga.caritempat.detail;
 
+import android.app.AlertDialog;
 import android.app.DatePickerDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -33,8 +34,6 @@ import java.util.Arrays;
 import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
-
-import static android.content.ContentValues.TAG;
 
 public class  addpemesanan extends AppCompatActivity {
 
@@ -174,6 +173,7 @@ public class  addpemesanan extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 processInsert();
+
             }
         });
 
@@ -208,41 +208,57 @@ public class  addpemesanan extends AppCompatActivity {
 
         String ts = Calendar.getInstance().getTime().toString();
         if(checkValidation()) {
-            map.put("namapemesan",namapemesan.getText().toString());
-            map.put("nomortelppemesan",nomortelppemesan.getText().toString());
-            map.put("tanggalpemesanan",tanggalpemesanan.getText().toString());
-            map.put("namalapangan",jenislapangan.getText().toString());
-            map.put("namatempat",namatempat.getText().toString());
-            map.put("idlapangan",idlapangan);
-            map.put("idtempat",idtempat);
-            map.put("waktupemesanan",waktupemesanan);
-            map.put("username",username);
-            map.put("idpemesan",idpemesan);
-            map.put("jenisolahraga",jenisolahraga);
-            map.put("timestamp",ts);
-            map.put("statuspemesanan","Menunggu Konfirmasi");
-            map.put("idpemesanan",key);
+            AlertDialog.Builder builder=new AlertDialog.Builder(pesan.getContext());
+            builder.setTitle("Konfirmasi Pemesanan");
+            builder.setMessage("Apakah anda sudah mengecek semua pesanan?");
+            builder.setNegativeButton("Belum", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
 
-            FirebaseDatabase.getInstance().getReference().child("pemesanan").child(key)
-                    .setValue(map)
-                    .addOnSuccessListener(new OnSuccessListener<Void>() {
-                        @Override
-                        public void onSuccess(Void aVoid) {
-                            namapemesan.setText("");
-                            nomortelppemesan.setText("");
-                            Toast.makeText(getApplicationContext(), "inserted successfully", Toast.LENGTH_SHORT).show();
-                        }
-                    })
-                    .addOnFailureListener(new OnFailureListener() {
-                        @Override
-                        public void onFailure(@NonNull Exception e) {
-                            namapemesan.setText("");
-                            nomortelppemesan.setText("");
-                            Toast.makeText(getApplicationContext(), "could not insert", Toast.LENGTH_SHORT).show();
-                        }
-                    });
-            startActivity(new Intent(getApplicationContext(), Homepelanggan.class));
-            finish();}
+                }
+            });
+            builder.setPositiveButton("Sudah", new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    map.put("namapemesan",namapemesan.getText().toString());
+                    map.put("nomortelppemesan",nomortelppemesan.getText().toString());
+                    map.put("tanggalpemesanan",tanggalpemesanan.getText().toString());
+                    map.put("namalapangan",jenislapangan.getText().toString());
+                    map.put("namatempat",namatempat.getText().toString());
+                    map.put("idlapangan",idlapangan);
+                    map.put("idtempat",idtempat);
+                    map.put("waktupemesanan",waktupemesanan);
+                    map.put("username",username);
+                    map.put("iduser",idpemesan);
+                    map.put("jenisolahraga",jenisolahraga);
+                    map.put("timestamp",ts);
+                    map.put("statuspemesanan","Menunggu Konfirmasi");
+                    map.put("idpemesanan",key);
+
+                    FirebaseDatabase.getInstance().getReference().child("pemesanan").child(key)
+                            .setValue(map)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+                                    namapemesan.setText("");
+                                    nomortelppemesan.setText("");
+                                    Toast.makeText(getApplicationContext(), "inserted successfully", Toast.LENGTH_SHORT).show();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    namapemesan.setText("");
+                                    nomortelppemesan.setText("");
+                                    Toast.makeText(getApplicationContext(), "could not insert", Toast.LENGTH_SHORT).show();
+                                }
+                            });
+                    startActivity(new Intent(getApplicationContext(), Homepelanggan.class));
+                    finish();
+                }
+            });
+            builder.show();
+            }
 
         }
 
@@ -294,102 +310,53 @@ public class  addpemesanan extends AppCompatActivity {
 
 
     private void compareData(String date){
-         mDatabase = FirebaseDatabase.getInstance().getReference();
-                mDatabase.child("pemesanan")
-                        .orderByChild("idtempat")
-                        .equalTo(idtempat)
-                        .addListenerForSingleValueEvent(new ValueEventListener() {
-                            @Override
-                            public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                if (!snapshot.exists()) {
-                                    checkboxInsert(checkboxjam2);
-                                    if (checkboxjam2.size()==0){
-                                        jamtersedia.setText("Lapangan penuh untuk "+date+", mohon cari waktu lain");
+        mDatabase = FirebaseDatabase.getInstance().getReference();
+        mDatabase.child("pemesanan")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot childSnapshot : snapshot.getChildren()){
+                            PemesananModel pemesananModel = childSnapshot.getValue(PemesananModel.class);
+                            if (pemesananModel.getIdtempat().contains(idtempat) && pemesananModel.getIdlapangan().contains(idlapangan) && pemesananModel.getTanggalpemesanan().contains(date)){
+                                sudahdipesan = (pemesananModel.getWaktupemesanan());
+                                String sudahdipesanbaru = String.valueOf(sudahdipesan.replaceAll("[\\[\\]\\(\\)]", ""));
+                                ArrayList<String> myList = new ArrayList<String>(Arrays.asList(sudahdipesanbaru.split(",")));
+
+                                java.util.List<String> needToRemove = new ArrayList<>();
+                                for (int i = 0; i < checkboxjam2.size(); i++) {
+                                    if (myList.contains(checkboxjam2.get(i))) {
+                                        needToRemove.add((String) addpemesanan.this.checkboxjam2.get(i));
                                     }
-                                    else{
-                                        jamtersedia.setText("Jam Tersedia :");
-                                    }
-                                } else {
-                                    mDatabase.child("pemesanan")
-                                            .orderByChild("idlapangan")
-                                            .equalTo(idlapangan)
-                                            .addListenerForSingleValueEvent(new ValueEventListener() {
-                                                @Override
-                                                public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                    if (!snapshot.exists()) {
-                                                        checkboxInsert(checkboxjam2);
-                                                        if (checkboxjam2.size()==0){
-                                                            jamtersedia.setText("Lapangan penuh untuk "+date+", mohon cari waktu lain");
-                                                        }
-                                                        else{
-                                                            jamtersedia.setText("Jam Tersedia");
-                                                        }
-                                                    } else {
-                                                        mDatabase.child("pemesanan")
-                                                                .orderByChild("tanggalpemesanan")
-                                                                .equalTo(date)
-                                                                .addListenerForSingleValueEvent(new ValueEventListener() {
-                                                                    @Override
-                                                                    public void onDataChange(@NonNull DataSnapshot snapshot) {
-                                                                        if (!snapshot.exists()) {
-                                                                            checkboxInsert(checkboxjam2);
-                                                                            if (checkboxjam2.size()==0){
-                                                                                jamtersedia.setText("Lapangan penuh untuk "+date+", mohon cari waktu lain");
-                                                                            }
-                                                                            else{
-                                                                                jamtersedia.setText("Jam Tersedia");
-                                                                            }
-                                                                        } else {
-                                                                            for (DataSnapshot childSnapshot : snapshot.getChildren()) {
-                                                                                PemesananModel pemesananModel = childSnapshot.getValue(PemesananModel.class);
-                                                                                sudahdipesan = (pemesananModel.getWaktupemesanan());
-                                                                                String sudahdipesanbaru = String.valueOf(sudahdipesan.replaceAll("[\\[\\]\\(\\)]", ""));
-                                                                                ArrayList<String> myList = new ArrayList<String>(Arrays.asList(sudahdipesanbaru.split(",")));
+                                }
+                                checkboxjam2.removeAll(needToRemove);
+                                checkboxInsert(checkboxjam2);
+                                if (checkboxjam2.size()==0){
+                                    jamtersedia.setText("Lapangan penuh untuk "+date+", mohon cari waktu lain");
+                                }
+                                else{
+                                    jamtersedia.setText("Jam Tersedia");
+                                }
+                                //coba.setText(String.valueOf(checkboxjam2.size()));
 
-                                                                                java.util.List<String> needToRemove = new ArrayList<>();
-                                                                                for (int i = 0; i < checkboxjam2.size(); i++) {
-                                                                                    if (myList.contains(checkboxjam2.get(i))) {
-                                                                                        needToRemove.add((String) addpemesanan.this.checkboxjam2.get(i));
-                                                                                    }
-                                                                                }
-                                                                                checkboxjam2.removeAll(needToRemove);
-
-                                                                                //coba.setText(String.valueOf(checkboxjam2.size()));
-                                                                                checkboxInsert(checkboxjam2);
-                                                                                if (checkboxjam2.size()==0){
-                                                                                    jamtersedia.setText("Lapangan penuh untuk "+date+", mohon cari waktu lain");
-                                                                                }
-                                                                                else{
-                                                                                    jamtersedia.setText("Jam Tersedia");
-                                                                                }
-
-
-
-                                                                            }
-
-
-                                                                        }
-                                                                    }
-                                                                    @Override
-                                                                    public void onCancelled(@NonNull DatabaseError error) {
-                                                                        Log.d(TAG, error.getMessage());
-                                                                    }
-                                                                });
-                                                    }
-                                                }
-                                                @Override
-                                                public void onCancelled(@NonNull DatabaseError error) {
-                                                    Log.d(TAG, error.getMessage());
-                                                }
-                                            });
+                            }
+                            else {
+                                checkboxInsert(checkboxjam2);
+                                if (checkboxjam2.size()==0){
+                                    jamtersedia.setText("Lapangan penuh untuk "+date+", mohon cari waktu lain");
+                                }
+                                else{
+                                    jamtersedia.setText("Jam Tersedia");
                                 }
                             }
-                            @Override
-                            public void onCancelled(@NonNull DatabaseError error) {
+                        }
+                    }
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
 
-                            }
-                        });
+                    }
+                });
     }
+
 
     private void checkboxInsert(ArrayList checkboxjam2){
         LinearLayout linearLayout = (LinearLayout)findViewById(R.id.rootlayout);

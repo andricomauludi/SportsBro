@@ -7,13 +7,11 @@ import android.widget.Button;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.cobaskripsi.LoginActivity;
 import com.example.cobaskripsi.PengelolaUI.bookinglist.BookingList;
 import com.example.cobaskripsi.PengelolaUI.datalapangan.datalapanganmitra;
 import com.example.cobaskripsi.PengelolaUI.pendinglist.PendingList;
 import com.example.cobaskripsi.PengelolaUI.profilemitra.ProfileMitra;
 import com.example.cobaskripsi.R;
-import com.example.cobaskripsi.preferences;
 
 public class HomemitraActivity extends AppCompatActivity {
 
@@ -62,9 +60,4 @@ public class HomemitraActivity extends AppCompatActivity {
 
     }
 
-    public void logout(View view) {
-        startActivity(new Intent(this, LoginActivity.class));
-        preferences.clearData(this);
-        finish();
-    }
 }

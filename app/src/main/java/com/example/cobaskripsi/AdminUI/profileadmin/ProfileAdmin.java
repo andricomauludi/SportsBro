@@ -27,19 +27,19 @@ public class ProfileAdmin extends AppCompatActivity {
         namaadmin = findViewById(R.id.namaadminprofile);
         notelpadmin= findViewById(R.id.nomortelpadminprofile);
         emailadmin= findViewById(R.id.emailadminprofile);
-        logoutt=findViewById(R.id.logoutadmin);
 
         namaadmin.setText(preferences.getUsername(ProfileAdmin.this));
         notelpadmin.setText("mantab");
         emailadmin.setText("mantab");
 
-        logoutt.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ProfileAdmin.this, LoginActivity.class));
-                preferences.clearData(ProfileAdmin.this);
-                finish();
-            }
-        });
+    }
+
+    public void logoutadmin(View view){
+        preferences.clearData(ProfileAdmin.this);
+        Intent intent=new Intent(ProfileAdmin.this,LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
+        finish();
+
     }
 }
