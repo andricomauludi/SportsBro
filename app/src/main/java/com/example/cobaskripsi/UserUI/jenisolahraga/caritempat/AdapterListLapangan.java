@@ -71,7 +71,7 @@ public class AdapterListLapangan extends RecyclerView.Adapter<AdapterListLapanga
             public void onClick(View v) {
                 AppCompatActivity activity=(AppCompatActivity)v.getContext();
 
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new DetailLapangan(tempatModel.getNamatempat(),tempatModel.getMarker(),tempatModel.getGambar(),tempatModel.getAlamattempat(),tempatModel.getIdtempat())).addToBackStack(null).commit();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new DetailLapangan(tempatModel.getNamatempat(),tempatModel.getMarker(),tempatModel.getGambar(),tempatModel.getAlamattempat(),tempatModel.getIdtempat(),tempatModel.getJenisolahraga())).addToBackStack(null).commit();
             }
         });
     }

@@ -63,7 +63,7 @@ public class DetailRiwayatPelanggan extends AppCompatActivity {
             jenisolahraga= (String) savedInstanceState.getSerializable("JENISOLAHRAGA");
             namatempat= (String) savedInstanceState.getSerializable("NAMATEMPAT");
             namalapangan= (String) savedInstanceState.getSerializable("NAMALAPANGAN");
-            //statuspemesanan= (String) savedInstanceState.getSerializable("STATUSPEMESANAN");
+            statuspemesanan= (String) savedInstanceState.getSerializable("STATUSPEMESANAN");
             waktupemesanan= (String) savedInstanceState.getSerializable("WAKTUPEMESANAN");
         }
 
@@ -80,16 +80,16 @@ public class DetailRiwayatPelanggan extends AppCompatActivity {
         waktupemesanan1= (TextView)findViewById(R.id.jammaindetailriwayat);
         backbutton = findViewById(R.id.backbutton);
 
-        namapemesan1.setText("Atas Nama Pemesan :    "+namapemesan.substring(0, 1).toUpperCase() + namapemesan.substring(1).toLowerCase());
-        nomortelppemesan1.setText("Nomor HP Pemesan :   "+nomortelppemesan);
-        tanggalpemesan1.setText("Tanggal Main :     "+tanggalpemesanan);
-        timestamp1.setText("Tanggal Pesan :     "+timestamp);
-        jenisolahraga1.setText("Jenis Olahraga :    "+jenisolahraga.substring(0, 1).toUpperCase() + jenisolahraga.substring(1).toLowerCase());
+        namapemesan1.setText(namapemesan.substring(0, 1).toUpperCase() + namapemesan.substring(1).toLowerCase());
+        nomortelppemesan1.setText(nomortelppemesan);
+        tanggalpemesan1.setText(tanggalpemesanan);
+        timestamp1.setText(timestamp);
+        jenisolahraga1.setText(jenisolahraga.substring(0, 1).toUpperCase() + jenisolahraga.substring(1).toLowerCase());
         namatempat1.setText(namatempat.substring(0, 1).toUpperCase() + namatempat.substring(1).toLowerCase());
-        namalapangan1.setText("Jenis Lapangan :     "+namalapangan.substring(0, 1).toUpperCase() + namalapangan.substring(1).toLowerCase());
+        namalapangan1.setText(namalapangan.substring(0, 1).toUpperCase() + namalapangan.substring(1).toLowerCase());
 
         if(statuspemesanan.equals("Menunggu Konfirmasi")){
-           statuspemesanan1.setTextColor(Color.YELLOW);
+           statuspemesanan1.setTextColor(Color.rgb(255,165,0));
            statuspemesanan1.setText(statuspemesanan.substring(0, 1).toUpperCase() + statuspemesanan.substring(1).toLowerCase());
         }else if (statuspemesanan.equals("Booked")){
             statuspemesanan1.setTextColor(Color.GREEN);
@@ -99,7 +99,7 @@ public class DetailRiwayatPelanggan extends AppCompatActivity {
             statuspemesanan1.setText(statuspemesanan.substring(0, 1).toUpperCase() + statuspemesanan.substring(1).toLowerCase());
         }
 
-        waktupemesanan1.setText("Jam Main :     "+waktupemesanan);
+        waktupemesanan1.setText(waktupemesanan);
 
         backbutton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,6 +113,5 @@ public class DetailRiwayatPelanggan extends AppCompatActivity {
 
 
 
-    public void onBackPressed(){
-    }
+
 }

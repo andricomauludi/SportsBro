@@ -35,7 +35,7 @@ public class DetailBookingList extends AppCompatActivity {
         tanggalpemesanan = findViewById(R.id.tanggalpemesanandetailbookinglist);
         waktupemesanan = findViewById(R.id.waktupemesanandetailbookinglist);
         statuspemesanan= findViewById(R.id.statuspemesanandetailbookinglist);
-        notelp= findViewById(R.id.nomortelppemesanan);
+        notelp= findViewById(R.id.nomortelpdetailbookinglist);
 
         back = findViewById(R.id.backbookinglist);
 
@@ -65,7 +65,7 @@ public class DetailBookingList extends AppCompatActivity {
         namalapangan .setText(namalapangan1);
         tanggalpemesanan .setText(tanggalpemesanan1);
         waktupemesanan.setText(simpenlist.toString());
-        //notelp.setText(notelp1);
+        notelp.setText(notelp1);
 
         if(statuspemesanan1.equals("Menunggu Konfirmasi")){
             statuspemesanan.setTextColor(Color.RED);

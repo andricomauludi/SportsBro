@@ -317,7 +317,9 @@ public class  addpemesanan extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot childSnapshot : snapshot.getChildren()){
                             PemesananModel pemesananModel = childSnapshot.getValue(PemesananModel.class);
-                            if (pemesananModel.getIdtempat().contains(idtempat) && pemesananModel.getIdlapangan().contains(idlapangan) && pemesananModel.getTanggalpemesanan().contains(date)){
+                            if (pemesananModel.getIdtempat().contains(idtempat) &&
+                                    pemesananModel.getIdlapangan().contains(idlapangan) &&
+                                    pemesananModel.getTanggalpemesanan().contains(date)){
                                 sudahdipesan = (pemesananModel.getWaktupemesanan());
                                 String sudahdipesanbaru = String.valueOf(sudahdipesan.replaceAll("[\\[\\]\\(\\)]", ""));
                                 ArrayList<String> myList = new ArrayList<String>(Arrays.asList(sudahdipesanbaru.split(",")));

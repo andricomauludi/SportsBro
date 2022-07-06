@@ -1,48 +1,131 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical"
-    android:gravity="center"
-    android:background="@color/warnabackground"
-    tools:context=".PengelolaUI.profilemitra.ProfileMitra">
-
-    <TextView
-        android:id="@+id/namamitraprofile"
+    android:padding="40dp"
+    tools:context=".PengelolaUI.profilemitra.ProfileMitra"
+    android:background="@color/warnabackground">
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Nama Mitra"
-        android:gravity="center"
-        android:textSize="30sp"/>
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            >
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:cardBackgroundColor="#F3F3F3"
+                >
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="50dp">
+                    <TextView
+                        android:id="@+id/namamitraprofile"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Nama Pengguna"
+                        android:gravity="center"
+                        android:textSize="30sp"/>
+                    <LinearLayout
 
-    <TextView
-        android:id="@+id/emailmitraprofile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:text="Email Mitra"
-        android:gravity="center"
-        android:textSize="20sp"/>
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp">
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginEnd="10dp"
+                            android:src="@drawable/ic_baseline_email_24" />
 
-    <TextView
-        android:id="@+id/nomortelpmitraprofile"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Nomor Telepon"
-        android:gravity="center"
-        android:layout_marginTop="15dp"
-        android:textSize="20sp"/>
+                        <TextView
+                            android:id="@+id/emailmitraprofile"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Email Pengguna"
+                            android:gravity="center"
+                            android:textSize="20sp"/>
 
-    <Button
-        android:layout_width="300dp"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="40dp"
-        android:id="@+id/logoutmitra"
-        android:background="@drawable/button_login"
-        android:text="Logout" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp">
+                        <ImageView
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            android:layout_marginEnd="10dp"
+                            android:src="@drawable/ic_baseline_phone_24" />
+
+                        <TextView
+                            android:id="@+id/nomortelpmitraprofile"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:text="Nomor Telepon"
+                            android:textSize="20sp"/>
+
+                    </LinearLayout>
 
 
 
-</LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+
+
+        <LinearLayout
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:gravity=""
+            >
+            <Button
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Privacy &amp; Policy"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:textColor="#ffffff"
+                android:background="@drawable/button_login"
+                android:padding="10dp" />
+            <Button
+                android:id="@+id/logoutmitra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Logout"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:textColor="#ffffff"
+                android:background="@drawable/button_login"
+                android:padding="10dp" />
+        </LinearLayout>
+
+
+
+
+
+
+
+
+
+
+    </LinearLayout>
+</FrameLayout>

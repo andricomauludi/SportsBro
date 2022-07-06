@@ -4,6 +4,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -15,16 +16,28 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.example.cobaskripsi.R;
 import com.example.cobaskripsi.UserUI.jenisolahraga.caritempat.detail.PemesananModel;
 import com.example.cobaskripsi.preferences;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.Query;
+import com.google.firebase.database.ValueEventListener;
+
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.ArrayList;
+import java.util.Calendar;
+import java.util.Date;
 
 public class RiwayatpelangganFragment extends Fragment {
     private RecyclerView recyclerView;
     ConstraintLayout constraintLayout;
     String username,userid;
     TextView nonedata;
-
-    RandomNumListAdapter adapter;
+    Button semuariwayat,sudahselesai,menunggukonfirmasi,booked,ditolak;
+    ArrayList<PemesananModel> arrayList;
+    DatabaseReference databaseReference;
+    AdapterRiwayatPemesanan myadapter;
 
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -33,41 +46,274 @@ public class RiwayatpelangganFragment extends Fragment {
 
         username= preferences.getUsername(getActivity());
         userid=preferences.getUserID(getContext());
+        semuariwayat=root.findViewById(R.id.semuariwayat);
+        sudahselesai=root.findViewById(R.id.sudahselesai);
+        menunggukonfirmasi=root.findViewById(R.id.menunggukonfirmasi);
+        booked=root.findViewById(R.id.booked);
+        ditolak=root.findViewById(R.id.ditolak);
 
-        if (userid!=null){
+        arrayList= new ArrayList<>();
+        databaseReference = FirebaseDatabase.getInstance().getReference().child("pemesanan");
+
+
         recyclerView = root.findViewById(R.id.recyclerviewriwayat);
         recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
-        recyclerView.setHasFixedSize(true);
-       // recyclerView.setAdapter(new RandomNumListAdapter(1234));
 
-        FirebaseRecyclerOptions<PemesananModel> options =
-                new FirebaseRecyclerOptions.Builder<PemesananModel>()
-                        .setQuery(FirebaseDatabase.getInstance().getReference().child("pemesanan").orderByChild("idpemesan").equalTo(userid), PemesananModel.class)
-                        .build();
-        adapter = new RandomNumListAdapter(options);
-        recyclerView.setAdapter(adapter);}
-        else {
-            constraintLayout=root.findViewById(R.id.wrapper2);
-            nonedata = new TextView(getActivity());
-            nonedata.setText("Anda belum melakukan pemesanan");
-            nonedata.setId(0);
-            nonedata.setLayoutParams(new ConstraintLayout.LayoutParams(
-                    ConstraintLayout.LayoutParams.MATCH_PARENT,
-                    ConstraintLayout.LayoutParams.WRAP_CONTENT));
-            constraintLayout.addView(nonedata);
-        }
+        Date todayDate = Calendar.getInstance().getTime();
+        SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy");
+        String todayString = formatter.format(todayDate);
+
+        SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
+
+        recyclerView.setItemAnimator(null);
+        Query query=databaseReference.orderByChild("iduser").equalTo(userid);
+        query.addValueEventListener(new ValueEventListener() {
+            @Override
+            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                if (snapshot.hasChildren()){
+                    arrayList.clear();
+                    for (DataSnapshot snap : snapshot.getChildren()){
+                        final PemesananModel pemesananModel = snap.getValue(PemesananModel.class);
+                        arrayList.add(pemesananModel);
+
+                    }
+
+                    myadapter =  new AdapterRiwayatPemesanan(getActivity().getApplicationContext(),arrayList);
+                    recyclerView.setAdapter(myadapter);
+                    myadapter.notifyDataSetChanged();
+                }
+            }
+
+            @Override
+            public void onCancelled(@NonNull DatabaseError error) {
+
+            }
+        });
+
+        semuariwayat.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recyclerView.setItemAnimator(null);
+                Query query=databaseReference.orderByChild("iduser").equalTo(userid);
+                query.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.hasChildren()){
+                            arrayList.clear();
+                            for (DataSnapshot snap : snapshot.getChildren()){
+                                final PemesananModel pemesananModel = snap.getValue(PemesananModel.class);
+                                arrayList.add(pemesananModel);
+
+                            }
+
+                            myadapter =  new AdapterRiwayatPemesanan(getActivity().getApplicationContext(),arrayList);
+                            recyclerView.setAdapter(myadapter);
+                            myadapter.notifyDataSetChanged();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
+
+        sudahselesai.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recyclerView.setItemAnimator(null);
+                Query query=databaseReference.orderByChild("iduser").equalTo(userid);
+                query.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.hasChildren()){
+                            arrayList.clear();
+                            for (DataSnapshot snap : snapshot.getChildren()){
+                                final PemesananModel pemesananModel = snap.getValue(PemesananModel.class);
+                                String tanggalpesan = pemesananModel.getTanggalpemesanan();
+
+                                Date tanggal = null;
+                                try {
+                                    tanggal = sdf.parse(tanggalpesan);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                                Date today = null;
+                                try {
+                                    today = sdf.parse(todayString);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+
+                                if (tanggal.compareTo(today)<0){
+                                    arrayList.add(pemesananModel);
+                                }
+
+                            }
+
+                            myadapter =  new AdapterRiwayatPemesanan(getActivity().getApplicationContext(),arrayList);
+                            recyclerView.setAdapter(myadapter);
+                            myadapter.notifyDataSetChanged();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
+        menunggukonfirmasi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recyclerView.setItemAnimator(null);
+                Query query=databaseReference.orderByChild("iduser").equalTo(userid);
+                query.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.hasChildren()){
+                            arrayList.clear();
+                            for (DataSnapshot snap : snapshot.getChildren()){
+                                final PemesananModel pemesananModel = snap.getValue(PemesananModel.class);
+                                String tanggalpesan = pemesananModel.getTanggalpemesanan();
+
+                                Date tanggal = null;
+                                try {
+                                    tanggal = sdf.parse(tanggalpesan);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                                Date today = null;
+                                try {
+                                    today = sdf.parse(todayString);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+
+                                if (tanggal.compareTo(today)>=0){
+                                    if (pemesananModel.getStatuspemesanan().contains("Menunggu Konfirmasi")){
+                                        arrayList.add(pemesananModel);
+                                    }
+                                }
+
+                            }
+
+                            myadapter =  new AdapterRiwayatPemesanan(getActivity().getApplicationContext(),arrayList);
+                            recyclerView.setAdapter(myadapter);
+                            myadapter.notifyDataSetChanged();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
+        booked.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recyclerView.setItemAnimator(null);
+                Query query=databaseReference.orderByChild("iduser").equalTo(userid);
+                query.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.hasChildren()){
+                            arrayList.clear();
+                            for (DataSnapshot snap : snapshot.getChildren()){
+                                final PemesananModel pemesananModel = snap.getValue(PemesananModel.class);
+                                String tanggalpesan = pemesananModel.getTanggalpemesanan();
+
+                                Date tanggal = null;
+                                try {
+                                    tanggal = sdf.parse(tanggalpesan);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                                Date today = null;
+                                try {
+                                    today = sdf.parse(todayString);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+
+                                if (tanggal.compareTo(today)>=0){
+                                    if (pemesananModel.getStatuspemesanan().contains("Booked")){
+                                        arrayList.add(pemesananModel);
+                                    }
+
+                                }
+
+                            }
+
+                            myadapter =  new AdapterRiwayatPemesanan(getActivity().getApplicationContext(),arrayList);
+                            recyclerView.setAdapter(myadapter);
+                            myadapter.notifyDataSetChanged();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
+        ditolak.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recyclerView.setItemAnimator(null);
+                Query query=databaseReference.orderByChild("iduser").equalTo(userid);
+                query.addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        if (snapshot.hasChildren()){
+                            arrayList.clear();
+                            for (DataSnapshot snap : snapshot.getChildren()){
+                                final PemesananModel pemesananModel = snap.getValue(PemesananModel.class);
+                                String tanggalpesan = pemesananModel.getTanggalpemesanan();
+
+                                Date tanggal = null;
+                                try {
+                                    tanggal = sdf.parse(tanggalpesan);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+                                Date today = null;
+                                try {
+                                    today = sdf.parse(todayString);
+                                } catch (ParseException e) {
+                                    e.printStackTrace();
+                                }
+
+                                if (tanggal.compareTo(today)<0){
+                                    if (pemesananModel.getStatuspemesanan().contains("Ditolak")){
+                                        arrayList.add(pemesananModel);
+                                    }
+                                }
+
+                            }
+
+                            myadapter =  new AdapterRiwayatPemesanan(getActivity().getApplicationContext(),arrayList);
+                            recyclerView.setAdapter(myadapter);
+                            myadapter.notifyDataSetChanged();
+                        }
+                    }
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
+            }
+        });
 
         return root;
     }
 
-    public void onStart() {
-        super.onStart();
-        adapter.startListening();
-    }
 
-    @Override
-    public void onStop() {
-        super.onStop();
-        adapter.stopListening();
-    }
 }

@@ -1,5 +1,7 @@
 package com.example.cobaskripsi.UserUI.profilepelanggan;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -35,7 +37,27 @@ public class ProfilepelangganFragment extends Fragment {
         logouts.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                logout();
+                AlertDialog.Builder builder=new AlertDialog.Builder(logouts.getContext());
+                builder.setTitle("Logout");
+                builder.setMessage("Anda yakin ingin logout?");
+
+
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        logout();
+                    }
+                });
+
+
+                builder.show();
+
             }
         });
 

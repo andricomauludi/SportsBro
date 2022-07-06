@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -7,6 +7,82 @@
     android:id="@+id/wrapper2"
     tools:context=".UserUI.riwayatpemesanan.RiwayatpelangganFragment"
     android:background="@color/warnabackground">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="#EFEFEF"
+            android:padding="10dp"
+            >
+
+            <Button
+                android:id="@+id/menunggukonfirmasi"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Menunggu Konfirmasi"
+                android:textSize="8sp"
+                android:background="@drawable/button_login"
+                android:layout_margin="2dp"
+
+                />
+
+            <Button
+                android:id="@+id/booked"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Booked"
+                android:textSize="8sp"
+                android:background="@drawable/button_login"
+                android:layout_margin="2dp"/>
+
+            <Button
+                android:id="@+id/ditolak"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Ditolak"
+                android:textSize="8sp"
+                android:background="@drawable/button_login"
+                android:layout_margin="2dp"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="#EFEFEF"
+            android:padding="10dp"
+            >
+
+            <Button
+                android:id="@+id/semuariwayat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Semua riwayat"
+                android:background="@drawable/button_login"
+                android:textSize="8sp"
+                android:layout_margin="2dp"
+
+                />
+
+
+            <Button
+                android:id="@+id/sudahselesai"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Expired"
+                android:background="@drawable/button_login"
+                android:textSize="8sp"
+                android:layout_margin="2dp"/>
+        </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerviewriwayat"
@@ -20,4 +96,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-</androidx.constraintlayout.widget.ConstraintLayout>
+
+    </LinearLayout>
+</FrameLayout>

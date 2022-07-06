@@ -1,5 +1,7 @@
 package com.example.cobaskripsi.PengelolaUI.profilemitra;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -28,17 +30,37 @@ public class ProfileMitra extends AppCompatActivity {
         logoutt=findViewById(R.id.logoutmitra);
 
         namamitra.setText(preferences.getUsername(ProfileMitra.this));
-        notelpmitra.setText("mantab");
-        emailmitra.setText("mantab");
+        notelpmitra.setText(preferences.getNotelp(ProfileMitra.this));
+        emailmitra.setText(preferences.getEmail(ProfileMitra.this));
 
         logoutt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                preferences.clearData(ProfileMitra.this);
-                Intent intent=new Intent(ProfileMitra.this,LoginActivity.class);
-                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
-                startActivity(intent);
-                ProfileMitra.this.finish();
+                AlertDialog.Builder builder=new AlertDialog.Builder(logoutt.getContext());
+                builder.setTitle("Logout");
+                builder.setMessage("Anda yakin ingin logout?");
+
+
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        preferences.clearData(ProfileMitra.this);
+                        Intent intent=new Intent(ProfileMitra.this,LoginActivity.class);
+                        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                        startActivity(intent);
+                        ProfileMitra.this.finish();
+                    }
+                });
+
+
+                builder.show();
+
             }
         });
     }

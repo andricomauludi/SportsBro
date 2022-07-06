@@ -60,4 +60,8 @@ public class HomemitraActivity extends AppCompatActivity {
 
     }
 
+    public void onBackPressed(){
+
+    }
+
 }

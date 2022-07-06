@@ -14,80 +14,86 @@
         tools:ignore="MissingConstraints"
         >
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/white"
             android:orientation="vertical">
-
-            <TextView
-                android:id="@+id/jenisolahragariwayat"
-                android:layout_width="wrap_content"
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="4dp"
-                android:text="Jenis olahraga"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:orientation="horizontal">
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+                    <TextView
+                        android:id="@+id/jenisolahragariwayat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Jenis olahraga"
+                        android:textSize="20sp"
+                        android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/namatempatriwayat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:text="Nama Tempat"
-                android:textSize="18sp"
-                android:textStyle="bold"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/jenisolahragariwayat" />
+                    <TextView
+                        android:id="@+id/namatempatriwayat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nama Tempat"
+                        android:textStyle="bold" />
+                    <TextView
+                        android:id="@+id/namalapanganriwayat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Nama Lapangan"
+                        android:textSize="14sp"/>
+                    <TextView
+                        android:id="@+id/tanggalpemesananriwayat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Tanggal Pemesanan"
+                        android:textSize="14sp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/namalapanganriwayat" />
 
-            <TextView
-                android:id="@+id/tanggalpemesananriwayat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:text="Tanggal Pemesanan"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/namalapanganriwayat" />
-
-            <TextView
-                android:id="@+id/waktupemesananriwayat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:text="Waktu dipesan"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tanggalpemesananriwayat"
-                android:paddingBottom="5dp"/>
-
-            <TextView
-                android:id="@+id/namalapanganriwayat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="24dp"
-                android:text="Nama Lapangan"
-                android:textSize="14sp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/namatempatriwayat" />
-
-            <Button
-                android:id="@+id/lihatdetailriwayat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="28dp"
-                android:text="lihat"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.58"
-                />
+                    <TextView
+                        android:id="@+id/waktupemesananriwayat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Waktu dipesan"
+                        android:textSize="14sp"
+                        android:paddingBottom="5dp"/>
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="0.5"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center"
+                    android:layout_gravity="center"
+                    >
+                    <Button
+                        android:id="@+id/lihatdetailriwayat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/button_login"
+                        android:text="detail"
+                        android:textSize="10sp"
+                        />
+                </LinearLayout>
+            </LinearLayout>
+
+
+
+
+
+
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

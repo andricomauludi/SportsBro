@@ -1,21 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:android="http://schemas.android.com/apk/res/android">
+<FrameLayout
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/warnabackground"
     tools:context=".UserUI.riwayatpemesanan.DetailRiwayatPelanggan">
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        >
+
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingTop="20dp"
-            android:paddingEnd="20dp"
-            android:paddingStart="20dp"
-            android:paddingBottom="20dp"
+            android:layout_margin="40dp"
+            android:padding="30dp"
+            android:background="@color/white"
             android:orientation="vertical"
             >
 
@@ -24,25 +24,43 @@
                 android:layout_height="wrap_content"
                 android:text="DETAIL PEMESANAN"
                 android:textStyle="bold"
-                android:textSize="35sp"/>
+                android:textSize="25sp"/>
 
             <TextView
                 android:id="@+id/namatempatdetailriwayat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nama Tempat"
-                android:textSize="30sp"
+                android:textSize="25sp"
                 android:textStyle="bold"
                 android:layout_marginTop="30dp"
                 />
 
             <TextView
+
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Nama pemesan :"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginTop="30dp"
+                />
+            <TextView
                 android:id="@+id/namapemesandetailriwayat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Nama pemesan"
-                android:textSize="20sp"
-                android:layout_marginTop="30dp"
+                android:textSize="15sp"
+                android:layout_marginTop="5dp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Timestamp :"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp"
                 />
 
             <TextView
@@ -50,7 +68,15 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Timestamp"
-                android:textSize="20sp"
+                android:textSize="15sp"
+                android:layout_marginTop="5dp"
+                />
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pilihan Lapangan :"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 android:layout_marginTop="5dp"
                 />
 
@@ -59,16 +85,33 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Pilihan Lapangan"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:layout_marginTop="5dp"
                 />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Jenis Olahraga :"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp"
+                />
             <TextView
                 android:id="@+id/jenisolahragadetailriwayat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Jenis Olahraga"
-                android:textSize="20sp"
+                android:textSize="15sp"
+                android:layout_marginTop="5dp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tanggal Main :"
+                android:textSize="15sp"
+                android:textStyle="bold"
                 android:layout_marginTop="5dp"
                 />
 
@@ -77,25 +120,40 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Tanggal Main"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:layout_marginTop="5dp"
                 />
 
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Jam Main :"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp"
+                />
             <TextView
                 android:id="@+id/jammaindetailriwayat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Jam Main"
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:layout_marginTop="5dp"
                 />
-
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="No HP :"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                android:layout_marginTop="5dp"
+                />
             <TextView
                 android:id="@+id/nomortelpdetailriwayat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="No HP."
-                android:textSize="20sp"
+                android:textSize="15sp"
                 android:layout_marginTop="5dp"
                 />
             <TextView
@@ -103,7 +161,8 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Status Pemesanan"
-                android:textSize="40sp"
+                android:textSize="25sp"
+                android:textStyle="bold"
                 android:layout_marginTop="30dp"
                 />
 
@@ -112,12 +171,13 @@
                 android:layout_height="wrap_content"
                 android:text="Back"
                 android:gravity="center"
-                android:layout_marginTop="35dp"
+                android:layout_marginTop="20dp"
                 android:layout_gravity="center"
                 android:id="@+id/backbutton"/>
 
 
         </LinearLayout>
-    </ScrollView>
+
 
 </FrameLayout>
+</ScrollView>

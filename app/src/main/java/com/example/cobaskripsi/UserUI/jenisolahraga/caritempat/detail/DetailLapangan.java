@@ -52,12 +52,13 @@ public class DetailLapangan extends Fragment {
 
     }
 
-    public DetailLapangan(String namatempat, String marker, String gambar,String alamattempat, String idtempat) {
+    public DetailLapangan(String namatempat, String marker, String gambar,String alamattempat, String idtempat, String jenisolahraga) {
         this.namatempat = namatempat;
         this.marker = marker;
         this.gambar = gambar;
         this.alamattempat = alamattempat;
         this.idtempat=idtempat;
+        this.jenisolahraga=jenisolahraga;
     }
 
 
@@ -182,6 +183,7 @@ public class DetailLapangan extends Fragment {
                         }
 
                         Button[] addlapangan = new Button[namalapangan.size()];
+                        linearLayout.removeAllViews();
                         for (int i=0;i<namalapangan.size();i++) {
                             Button addbtn = new Button (getActivity());
                             if (linearLayout!=null){

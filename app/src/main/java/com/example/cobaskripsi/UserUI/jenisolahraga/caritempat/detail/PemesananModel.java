@@ -12,8 +12,9 @@ public class PemesananModel {
     String namalapangan;
     String statuspemesanan;
     String idpemesanan;
+    String iduser;
 
-    public PemesananModel(String idtempat, String idlapangan, String namapemesan, String nomortelppemesan, String tanggalpemesanan, String timestamp, String waktupemesanan, String jenisolahraga, String namalapangan, String statuspemesanan, String idpemesanan, String namatempat) {
+    public PemesananModel(String idtempat, String idlapangan, String namapemesan, String nomortelppemesan, String tanggalpemesanan, String timestamp, String waktupemesanan, String jenisolahraga, String namalapangan, String statuspemesanan, String idpemesanan, String iduser, String namatempat) {
         this.idtempat = idtempat;
         this.idlapangan = idlapangan;
         this.namapemesan = namapemesan;
@@ -25,9 +26,17 @@ public class PemesananModel {
         this.namalapangan = namalapangan;
         this.statuspemesanan = statuspemesanan;
         this.idpemesanan = idpemesanan;
+        this.iduser = iduser;
         this.namatempat = namatempat;
     }
 
+    public String getIduser() {
+        return iduser;
+    }
+
+    public void setIduser(String iduser) {
+        this.iduser = iduser;
+    }
     public String getIdpemesanan() {
         return idpemesanan;
     }

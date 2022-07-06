@@ -1,6 +1,6 @@
 package com.example.cobaskripsi.UserUI.riwayatpemesanan;
 
-
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,31 +14,38 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.cobaskripsi.R;
 import com.example.cobaskripsi.UserUI.jenisolahraga.caritempat.detail.PemesananModel;
-import com.firebase.ui.database.FirebaseRecyclerAdapter;
-import com.firebase.ui.database.FirebaseRecyclerOptions;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
 
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.HashMap;
 import java.util.Map;
 
-public class RandomNumListAdapter extends FirebaseRecyclerAdapter<PemesananModel,RandomNumListAdapter.myviewholder> {
-    private DatabaseReference mDatabase = FirebaseDatabase.getInstance().getReference();
+public class AdapterRiwayatPemesanan extends RecyclerView.Adapter<AdapterRiwayatPemesanan.myviewholder> {
+
+    public Context c;
+    public ArrayList<PemesananModel> arrayList;
+
+    public AdapterRiwayatPemesanan(Context c, ArrayList<PemesananModel> arrayList) {
+        this.arrayList=arrayList;
+        this.c=c;
+    }
 
 
-    public RandomNumListAdapter(@NonNull FirebaseRecyclerOptions<PemesananModel> options) {
-        super(options);
-
+    @NonNull
+    @Override
+    public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.riwayatuser_row,parent,false);
+        return new myviewholder(v);
     }
 
     @Override
-    protected void onBindViewHolder(@NonNull myviewholder holder, int position, @NonNull PemesananModel model) {
+    public void onBindViewHolder(@NonNull myviewholder holder, int position) {
+        PemesananModel pemesananModel = arrayList.get(position);
         String sudahdipesan;
         String simpen,simpen2;
         ArrayList<String> simpenlist = new ArrayList();
-        sudahdipesan = (model.getWaktupemesanan());
+        sudahdipesan = (pemesananModel.getWaktupemesanan());
         String sudahdipesanbaru = String.valueOf(sudahdipesan.replaceAll("[\\[\\]\\(\\)]", ""));
         ArrayList<String> myList = new ArrayList<String>(Arrays.asList(sudahdipesanbaru.split(",")));
         for (int i=0; i<myList.size();i++){
@@ -46,42 +53,39 @@ public class RandomNumListAdapter extends FirebaseRecyclerAdapter<PemesananModel
             simpenlist.add(jamdictionary(simpen));
         }
 
-        holder.namatempat.setText((model.getNamatempat()).substring(0, 1).toUpperCase() + (model.getNamatempat()).substring(1).toLowerCase());
-        holder.jenisolahraga.setText(model.getJenisolahraga().substring(0, 1).toUpperCase() + model.getJenisolahraga().substring(1).toLowerCase());
-        holder.namalapangan.setText(model.getNamalapangan());
+        holder.namatempat.setText((pemesananModel.getNamatempat()).substring(0, 1).toUpperCase() + (pemesananModel.getNamatempat()).substring(1).toLowerCase());
+        holder.jenisolahraga.setText(pemesananModel.getJenisolahraga().substring(0, 1).toUpperCase() + pemesananModel.getJenisolahraga().substring(1).toLowerCase());
+        holder.namalapangan.setText(pemesananModel.getNamalapangan());
         holder.waktupemesanan.setText(simpenlist.toString());
-        holder.tanggalpemesanan.setText(model.getTanggalpemesanan());
+        holder.tanggalpemesanan.setText(pemesananModel.getTanggalpemesanan());
 
         holder.lihatriwayat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), DetailRiwayatPelanggan.class);
                 Bundle extras = new Bundle();
-                extras.putString("NAMAPEMESAN", model.getNamapemesan());
-                extras.putString("NOTELPPEMESAN", model.getNomortelppemesan());
-                extras.putString("TANGGALPEMESANAN", model.getTanggalpemesanan());
-                extras.putString("TIMESTAMP", model.getTimestamp());
-                extras.putString("JENISOLAHRAGA", model.getJenisolahraga());
-                extras.putString("NAMATEMPAT", model.getNamatempat());
-                extras.putString("NAMALAPANGAN", model.getNamalapangan());
-                extras.putString("STATUSPEMESANAN", model.getStatuspemesanan());
+                extras.putString("NAMAPEMESAN", pemesananModel.getNamapemesan());
+                extras.putString("NOTELPPEMESAN", pemesananModel.getNomortelppemesan());
+                extras.putString("TANGGALPEMESANAN", pemesananModel.getTanggalpemesanan());
+                extras.putString("TIMESTAMP", pemesananModel.getTimestamp());
+                extras.putString("JENISOLAHRAGA", pemesananModel.getJenisolahraga());
+                extras.putString("NAMATEMPAT", pemesananModel.getNamatempat());
+                extras.putString("NAMALAPANGAN", pemesananModel.getNamalapangan());
+                extras.putString("STATUSPEMESANAN", pemesananModel.getStatuspemesanan());
                 extras.putString("WAKTUPEMESANAN", simpenlist.toString());
                 intent.putExtras(extras);
                 v.getContext().startActivity(intent);
 
-                }
+            }
         });
-
     }
 
-    @NonNull
+
+
     @Override
-    public myviewholder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.riwayatuser_row, parent, false);
-        return new myviewholder(view);
+    public int getItemCount() {
+        return arrayList.size();
     }
-
-
     public class myviewholder extends RecyclerView.ViewHolder{
 
         TextView namatempat, namalapangan,tanggalpemesanan,waktupemesanan, jenisolahraga;
@@ -98,7 +102,6 @@ public class RandomNumListAdapter extends FirebaseRecyclerAdapter<PemesananModel
 
         }
     }
-
     private String jamdictionary(String str){
         Map<String, String> m = new HashMap<>();
         m.put("0","07:00 - 08:00");
@@ -128,6 +131,4 @@ public class RandomNumListAdapter extends FirebaseRecyclerAdapter<PemesananModel
         String dict = m.get(str);
         return dict;
     }
-
-
 }

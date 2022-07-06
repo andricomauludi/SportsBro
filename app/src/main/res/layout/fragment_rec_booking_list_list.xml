@@ -5,9 +5,83 @@
     android:layout_height="match_parent"
     tools:context=".PengelolaUI.bookinglist.RecBookingList">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recviewbookinglist"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        >
+
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="#EFEFEF"
+            android:padding="10dp"
+            >
+
+            <Button
+                android:id="@+id/semuariwayatbookinglist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Semua Riwayat"
+                android:textSize="8sp"
+                android:background="@drawable/button_login"
+                android:layout_margin="2dp"
+
+                />
+
+            <Button
+                android:id="@+id/berlangsungbookinglist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Sedang berlangsung"
+                android:textSize="8sp"
+                android:background="@drawable/button_login"
+                android:layout_margin="2dp"/>
+
+            <Button
+                android:id="@+id/expiredbookinglist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Expired"
+                android:textSize="8sp"
+                android:background="@drawable/button_login"
+                android:layout_margin="2dp"/>
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:gravity="center"
+            android:background="#EFEFEF"
+            android:padding="10dp"
+            >
+
+            <Button
+                android:id="@+id/filtertanggal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Filter Tanggal"
+                android:textSize="8sp"
+                android:background="@drawable/button_login"
+                android:layout_margin="2dp"/>
+
+
+
+        </LinearLayout>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:id="@+id/rootlayoutfiltertanggal"/>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recviewbookinglist"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+    </LinearLayout>
 
 </FrameLayout>
