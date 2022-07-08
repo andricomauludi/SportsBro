@@ -13,6 +13,7 @@ public class UserList extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().setTitle("User List");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_user_list);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);

@@ -33,7 +33,7 @@ public class RiwayatpelangganFragment extends Fragment {
     private RecyclerView recyclerView;
     ConstraintLayout constraintLayout;
     String username,userid;
-    TextView nonedata;
+    TextView nonedata, pilihan;
     Button semuariwayat,sudahselesai,menunggukonfirmasi,booked,ditolak;
     ArrayList<PemesananModel> arrayList;
     DatabaseReference databaseReference;
@@ -51,6 +51,7 @@ public class RiwayatpelangganFragment extends Fragment {
         menunggukonfirmasi=root.findViewById(R.id.menunggukonfirmasi);
         booked=root.findViewById(R.id.booked);
         ditolak=root.findViewById(R.id.ditolak);
+        pilihan=root.findViewById(R.id.pilihantext);
 
         arrayList= new ArrayList<>();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("pemesanan");
@@ -65,6 +66,7 @@ public class RiwayatpelangganFragment extends Fragment {
 
         SimpleDateFormat sdf = new SimpleDateFormat("dd/MM/yyyy");
 
+        pilihan.setText("Menunggu Konfirmasi");
         recyclerView.setItemAnimator(null);
         Query query=databaseReference.orderByChild("iduser").equalTo(userid);
         query.addValueEventListener(new ValueEventListener() {
@@ -74,7 +76,26 @@ public class RiwayatpelangganFragment extends Fragment {
                     arrayList.clear();
                     for (DataSnapshot snap : snapshot.getChildren()){
                         final PemesananModel pemesananModel = snap.getValue(PemesananModel.class);
-                        arrayList.add(pemesananModel);
+                        String tanggalpesan = pemesananModel.getTanggalpemesanan();
+
+                        Date tanggal = null;
+                        try {
+                            tanggal = sdf.parse(tanggalpesan);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+                        Date today = null;
+                        try {
+                            today = sdf.parse(todayString);
+                        } catch (ParseException e) {
+                            e.printStackTrace();
+                        }
+
+                        if (tanggal.compareTo(today)>=0){
+                            if (pemesananModel.getStatuspemesanan().contains("Menunggu Konfirmasi")){
+                                arrayList.add(pemesananModel);
+                            }
+                        }
 
                     }
 
@@ -93,6 +114,7 @@ public class RiwayatpelangganFragment extends Fragment {
         semuariwayat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pilihan.setText("Semua Riwayat");
                 recyclerView.setItemAnimator(null);
                 Query query=databaseReference.orderByChild("iduser").equalTo(userid);
                 query.addValueEventListener(new ValueEventListener() {
@@ -123,6 +145,7 @@ public class RiwayatpelangganFragment extends Fragment {
         sudahselesai.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pilihan.setText("Expired");
                 recyclerView.setItemAnimator(null);
                 Query query=databaseReference.orderByChild("iduser").equalTo(userid);
                 query.addValueEventListener(new ValueEventListener() {
@@ -169,6 +192,7 @@ public class RiwayatpelangganFragment extends Fragment {
         menunggukonfirmasi.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pilihan.setText("Menunggu Konfirmasi");
                 recyclerView.setItemAnimator(null);
                 Query query=databaseReference.orderByChild("iduser").equalTo(userid);
                 query.addValueEventListener(new ValueEventListener() {
@@ -217,6 +241,7 @@ public class RiwayatpelangganFragment extends Fragment {
         booked.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pilihan.setText("Booked");
                 recyclerView.setItemAnimator(null);
                 Query query=databaseReference.orderByChild("iduser").equalTo(userid);
                 query.addValueEventListener(new ValueEventListener() {
@@ -266,6 +291,7 @@ public class RiwayatpelangganFragment extends Fragment {
         ditolak.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pilihan.setText("Ditolak");
                 recyclerView.setItemAnimator(null);
                 Query query=databaseReference.orderByChild("iduser").equalTo(userid);
                 query.addValueEventListener(new ValueEventListener() {
@@ -289,11 +315,8 @@ public class RiwayatpelangganFragment extends Fragment {
                                 } catch (ParseException e) {
                                     e.printStackTrace();
                                 }
-
-                                if (tanggal.compareTo(today)<0){
-                                    if (pemesananModel.getStatuspemesanan().contains("Ditolak")){
-                                        arrayList.add(pemesananModel);
-                                    }
+                                if (pemesananModel.getStatuspemesanan().contains("Ditolak")){
+                                    arrayList.add(pemesananModel);
                                 }
 
                             }

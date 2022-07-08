@@ -317,9 +317,13 @@ public class  addpemesanan extends AppCompatActivity {
                     public void onDataChange(@NonNull DataSnapshot snapshot) {
                         for (DataSnapshot childSnapshot : snapshot.getChildren()){
                             PemesananModel pemesananModel = childSnapshot.getValue(PemesananModel.class);
+
+
                             if (pemesananModel.getIdtempat().contains(idtempat) &&
                                     pemesananModel.getIdlapangan().contains(idlapangan) &&
-                                    pemesananModel.getTanggalpemesanan().contains(date)){
+                                    pemesananModel.getTanggalpemesanan().contains(date) && (pemesananModel.getStatuspemesanan().contains("Booked")
+                            || pemesananModel.getStatuspemesanan().contains("Menunggu Konfirmasi"))
+                            ){
                                 sudahdipesan = (pemesananModel.getWaktupemesanan());
                                 String sudahdipesanbaru = String.valueOf(sudahdipesan.replaceAll("[\\[\\]\\(\\)]", ""));
                                 ArrayList<String> myList = new ArrayList<String>(Arrays.asList(sudahdipesanbaru.split(",")));
@@ -340,8 +344,7 @@ public class  addpemesanan extends AppCompatActivity {
                                 }
                                 //coba.setText(String.valueOf(checkboxjam2.size()));
 
-                            }
-                            else {
+                            }else {
                                 checkboxInsert(checkboxjam2);
                                 if (checkboxjam2.size()==0){
                                     jamtersedia.setText("Lapangan penuh untuk "+date+", mohon cari waktu lain");

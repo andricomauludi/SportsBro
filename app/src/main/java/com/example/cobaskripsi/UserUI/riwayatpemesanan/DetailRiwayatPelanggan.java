@@ -13,6 +13,7 @@ import com.example.cobaskripsi.R;
 import com.example.cobaskripsi.UserUI.Homepelanggan;
 
 public class DetailRiwayatPelanggan extends AppCompatActivity {
+
     String namapemesan,
             nomortelppemesan,
             tanggalpemesanan,
@@ -29,6 +30,7 @@ public class DetailRiwayatPelanggan extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detailriwayatpengguna);
         if (savedInstanceState == null) {

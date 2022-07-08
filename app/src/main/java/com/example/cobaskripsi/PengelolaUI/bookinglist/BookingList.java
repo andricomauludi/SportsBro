@@ -13,6 +13,7 @@ public class BookingList extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().setTitle("Booking List");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_bookinglist);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);

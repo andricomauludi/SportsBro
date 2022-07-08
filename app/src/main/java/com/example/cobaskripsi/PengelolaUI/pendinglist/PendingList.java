@@ -13,6 +13,7 @@ public class PendingList extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().setTitle("Pending List");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_pending_list);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,WindowManager.LayoutParams.FLAG_FULLSCREEN);

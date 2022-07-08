@@ -47,13 +47,19 @@ public class DataTempatAdapter extends FirebaseRecyclerAdapter<TempatModel, Data
                 context.startActivity(intent);
             }
         });
+        holder.edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                context.startActivity(new Intent(context,editdatatempat.class));
+            }
+        });
 
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
 
         TextView namatempat, jenisolahraga;
-        Button detail;
+        Button detail,delete,edit;
 
         public ViewHolder(View view) {
             super(view);
@@ -61,6 +67,9 @@ public class DataTempatAdapter extends FirebaseRecyclerAdapter<TempatModel, Data
             namatempat=view.findViewById(R.id.namatempatdatatempat);
             detail =view.findViewById(R.id.detailtempatdatatempat);
             jenisolahraga= view.findViewById(R.id.jenisolahragadatatempat);
+            delete=view.findViewById(R.id.deletedatatempat);
+            edit=view.findViewById(R.id.editdatatempat);
+
 
         }
 

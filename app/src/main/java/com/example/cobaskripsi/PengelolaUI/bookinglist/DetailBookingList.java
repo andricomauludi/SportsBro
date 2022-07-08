@@ -26,6 +26,7 @@ public class DetailBookingList extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().setTitle("Detail Booking List");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_booking_list);
 

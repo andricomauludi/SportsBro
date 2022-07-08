@@ -21,6 +21,7 @@ public class ProfileAdmin extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().setTitle("Profil Admin");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_admin);
 
@@ -29,8 +30,8 @@ public class ProfileAdmin extends AppCompatActivity {
         emailadmin= findViewById(R.id.emailadminprofile);
 
         namaadmin.setText(preferences.getUsername(ProfileAdmin.this));
-        notelpadmin.setText("mantab");
-        emailadmin.setText("mantab");
+        notelpadmin.setText(preferences.getNotelp(ProfileAdmin.this));
+        emailadmin.setText(preferences.getEmail(ProfileAdmin.this));
 
     }
 

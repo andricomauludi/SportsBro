@@ -19,6 +19,7 @@ public class DetailUserList extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().setTitle("Detail User List");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_user_list);
 

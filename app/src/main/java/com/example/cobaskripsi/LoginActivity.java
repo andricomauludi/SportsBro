@@ -3,6 +3,9 @@ package com.example.cobaskripsi;
 import android.Manifest;
 import android.content.Intent;
 import android.os.Bundle;
+import android.text.method.HideReturnsTransformationMethod;
+import android.text.method.PasswordTransformationMethod;
+import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -32,6 +35,7 @@ public class LoginActivity extends AppCompatActivity {
     String input1,input2,input3;
     Switch active;
     DatabaseReference databaseReference = FirebaseDatabase.getInstance().getReference();
+    Boolean passwordVisible = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +46,36 @@ public class LoginActivity extends AppCompatActivity {
 
         username = findViewById(R.id.username);
         password = findViewById(R.id.password);
+
+        password.setOnTouchListener(new View.OnTouchListener() {
+            @Override
+            public boolean onTouch(View v, MotionEvent event) {
+                final int Right=2;
+                if (event.getAction()==MotionEvent.ACTION_UP){
+                    if (event.getRawX()>=password.getRight()-password.getCompoundDrawables()[Right].getBounds().width()){
+                        int selection=password.getSelectionEnd();
+                        if (passwordVisible){
+                            //set drawable
+                            password.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_baseline_visibility_off_24,0);
+                            //for hide passworrd
+                            password.setTransformationMethod(PasswordTransformationMethod.getInstance());
+                            passwordVisible=false;
+                        }else {
+                            //set drawable
+                            password.setCompoundDrawablesRelativeWithIntrinsicBounds(0,0,R.drawable.ic_baseline_visibility_24,0);
+                            //for show passworrd
+                            password.setTransformationMethod(HideReturnsTransformationMethod.getInstance());
+                            passwordVisible=true;
+                        }
+                        password.setSelection(selection);
+                        return true;
+                    }
+                }
+                return false;
+            }
+        });
+
+
         login = findViewById(R.id.login);
         //coba = findViewById(R.id.cobalogin);
         toregister = findViewById(R.id.toregister);
@@ -183,5 +217,6 @@ public class LoginActivity extends AppCompatActivity {
             return true;
         }
     }
+
 
 }

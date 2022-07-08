@@ -30,6 +30,8 @@ public class EditUserList extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        getSupportActionBar().setTitle("Edit User");
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_user_list);
 
