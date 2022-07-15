@@ -6,10 +6,14 @@
     android:layout_height="match_parent"
     android:orientation="vertical"
     android:gravity="center"
+    android:background="@color/darkbluetheme"
     tools:context=".UserUI.jenisolahraga.caritempat.detail.addpemesanan">
 <ScrollView
     android:layout_width="match_parent"
-    android:layout_height="wrap_content">
+    android:layout_height="wrap_content"
+    android:background="@drawable/button_white"
+    android:layout_margin="20dp"
+    android:padding="20dp">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -22,7 +26,7 @@
             android:id="@+id/namatempat"
             android:textSize="20sp"
             android:hint="Nama Tempat"
-            android:textColor="@color/darkteal"
+            android:textColor="@color/darkbluetheme"
             android:layout_marginBottom="15dp" />
         <TextView
             android:layout_width="200dp"
@@ -31,7 +35,7 @@
             android:id="@+id/jenislapangan"
             android:textSize="20sp"
             android:hint="Jenis Lapangan"
-            android:textColor="@color/darkteal"
+            android:textColor="@color/darkbluetheme"
             android:layout_marginBottom="15dp" />
         <LinearLayout
             android:layout_width="match_parent"
@@ -47,7 +51,7 @@
                 android:textSize="20sp"
                 android:hint="Tanggal Pesan"
                 android:layout_marginBottom="15dp"
-                android:textColor="@color/darkteal"/>
+                android:textColor="@color/darkbluetheme"/>
 
             <Button
                 android:layout_width="wrap_content"
@@ -66,7 +70,7 @@
             android:textSize="20sp"
             android:hint="Nama Pemesan"
             android:layout_marginBottom="15dp"
-            android:textColor="@color/darkteal"/>
+            android:textColor="@color/darkbluetheme"/>
 
         <EditText
             android:layout_width="300dp"
@@ -76,7 +80,7 @@
             android:hint="Nomor Telpon Pemesan"
             android:layout_marginBottom="15dp"
             android:inputType = "number"
-            android:textColor="@color/darkteal"/>
+            android:textColor="@color/darkbluetheme"/>
 
         <TextView
             android:layout_width="200dp"
@@ -86,7 +90,7 @@
             android:textSize="20sp"
             android:hint=""
             android:layout_marginBottom="15dp"
-            android:textColor="@color/darkteal"/>
+            android:textColor="@color/darkbluetheme"/>
 
         <ScrollView
             android:layout_width="match_parent"

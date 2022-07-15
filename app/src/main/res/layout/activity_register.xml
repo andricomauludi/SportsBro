@@ -8,7 +8,7 @@
     android:gravity="center"
     android:padding="20dp"
     tools:context=".RegisterActivity"
-    android:background="@color/warnabackground">
+    android:background="@color/darkbluetheme">
 
     <TextView
         android:layout_width="wrap_content"
@@ -16,6 +16,7 @@
         android:layout_marginBottom="25dp"
         android:layout_gravity="center_horizontal"
         android:text="Please register Here"
+        android:textColor="@color/white"
         android:textSize="30sp"/>
 
 
@@ -79,9 +80,9 @@
             android:id="@+id/register1"
             android:layout_width="130dp"
             android:layout_height="wrap_content"
-
+            app:backgroundTint="@null"
             android:background="@drawable/button_login"
-            android:hint="Register"
+            android:text="Register"
             android:padding="10dp"
             android:textColor="@color/white" />
 
@@ -91,7 +92,8 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="10dp"
             android:background="@drawable/button_login"
-            android:hint="Cancel"
+            app:backgroundTint="@null"
+            android:text="Cancel"
             android:padding="10dp"
             android:textColor="@color/white" />
     </LinearLayout>

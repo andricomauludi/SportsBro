@@ -41,7 +41,7 @@ public class AdapterListLapanganLama extends FirebaseRecyclerAdapter<TempatModel
                     public void onClick(View v) {
                         AppCompatActivity activity=(AppCompatActivity)v.getContext();
 
-                        activity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new DetailLapangan(model.getNamatempat(),model.getMarker(),model.getGambar(),model.getAlamattempat(),model.getIdtempat(),model.jenisolahraga)).addToBackStack(null).commit();
+                        activity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new DetailLapangan(model.getNamatempat(),model.getMarker(),model.getGambar(),model.getAlamattempat(),model.getIdtempat(),model.jenisolahraga,model.getNotelptempat())).addToBackStack(null).commit();
                     }
                 });
 

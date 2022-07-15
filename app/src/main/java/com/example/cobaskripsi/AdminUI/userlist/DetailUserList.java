@@ -19,7 +19,6 @@ public class DetailUserList extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().setTitle("Detail User List");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_user_list);
 
@@ -46,7 +45,7 @@ public class DetailUserList extends AppCompatActivity {
             role.setTextColor(Color.RED);
             role.setText(role1.substring(0, 1).toUpperCase() + role1.substring(1).toLowerCase());
         }else if (role1.equals("mitra")){
-            role.setTextColor(Color.YELLOW);
+            role.setTextColor(Color.rgb(255,165,0));
             role.setText(role1.substring(0, 1).toUpperCase() + role1.substring(1).toLowerCase());
         }
 

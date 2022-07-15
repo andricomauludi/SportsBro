@@ -37,6 +37,7 @@ import java.util.Map;
 
 public class  addpemesanan extends AppCompatActivity {
 
+
     EditText namapemesan,nomortelppemesan;
     TextView namatempat,jenislapangan,jamtersedia, coba,tanggalpemesanan;
     Button pesan,cancel,lihattanggal;
@@ -56,7 +57,6 @@ public class  addpemesanan extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
-        getSupportActionBar().hide();
         setContentView(R.layout.activity_addpemesanan);
 
 

@@ -15,7 +15,6 @@ public class DataTempat extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().setTitle("Data Tempat");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_data_tempat);
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);

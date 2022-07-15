@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:padding="20dp"
+    android:background="@color/darkbluetheme"
+    tools:context=".PengelolaUI.datatempatmitra.datatempatmitra"
+    >
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="30dp"
+        android:background="@color/white"
+        android:layout_gravity="center">
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Detail Tempat"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:gravity="top"
+            android:textSize="25sp"
+            android:layout_marginBottom="35dp"/>
+
+        <TextView
+            android:id="@+id/namatempatdatatempatmitra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nama Tempat"
+            android:textColor="@color/black"
+            android:textStyle="bold"
+            android:gravity="top"
+            android:textSize="20sp"
+            android:layout_marginBottom="30dp"/>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jenis Olahraga     :"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:textSize="15sp"
+            />
+        <TextView
+            android:id="@+id/jenisolahragadatatempatmitra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:textSize="15sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Alamat Tempat     :"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:textSize="15sp"
+            />
+
+        <TextView
+            android:id="@+id/alamattempatdatatempatmitra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:textSize="15sp"
+            />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Nomor Telepon Tempat      :"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:textSize="15sp"
+            />
+
+        <TextView
+            android:id="@+id/nomortelpdatatempatmitra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:textSize="15sp"
+            />
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Marker      :"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:textSize="15sp"
+            />
+
+        <TextView
+            android:id="@+id/markerdatatempatmitra"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="-"
+            android:textColor="@color/black"
+            android:gravity="top"
+            android:textSize="15sp"
+            android:layout_marginBottom="30dp"
+            />
+
+        <Button
+            android:id="@+id/editdatatempatmitra"
+            android:layout_width="150dp"
+            android:layout_height="wrap_content"
+            android:text="Atur Hari Buka Tempat"
+            android:gravity="center"
+            android:layout_gravity="center"
+            />
+
+    </LinearLayout>
+
+</ScrollView>

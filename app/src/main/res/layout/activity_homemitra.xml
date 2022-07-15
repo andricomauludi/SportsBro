@@ -6,58 +6,89 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    android:background="@color/warnabackground"
+    android:background="@drawable/splashscreen1"
     tools:context=".PengelolaUI.HomemitraActivity">
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Hallo Mitra !"
-            android:textSize="30sp"
-            android:gravity="center"
-            android:textColor="@color/darkteal"/>
-        <Button
-            android:id="@+id/datalapanganmitra"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:text="Data Lapangan"
-            android:background="@drawable/button_login"
-            />
 
-        <Button
-            android:id="@+id/pendinglistmitra"
+        <ImageView
+            android:layout_gravity="center"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
+            android:src="@drawable/sportsbrologo"/>
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:text="Pending List"
-            android:background="@drawable/button_login"
-            />
-        <Button
-            android:id="@+id/bookinglistmitra"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:text="Booking List"
-            android:background="@drawable/button_login"
-            />
+            android:orientation="vertical"
+            android:layout_margin="30dp"
+            android:padding="30dp"
+            android:background="@color/white">
 
-        <Button
-            android:id="@+id/profilmitra"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginEnd="20dp"
-            android:text="Profil"
-            android:background="@drawable/button_login"
-            />
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="Halo Mitra !"
+                    android:textSize="30sp"
+                    android:gravity="center"
+                    android:textColor="@color/black"/>
 
+                <Button
+                    android:id="@+id/datatempatmitra"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="Data Tempat"
+                    app:backgroundTint="@null"
+                    android:background="@drawable/buttonround_gradient"
+                    />
+                <Button
+                    android:id="@+id/datalapanganmitra"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="Data Lapangan"
+                    app:backgroundTint="@null"
+                    android:background="@drawable/buttonround_gradient"
+                    />
 
+                <Button
+                    android:id="@+id/pendinglistmitra"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="Pending List"
+                    app:backgroundTint="@null"
+                    android:background="@drawable/buttonround_gradient"
+                    />
+                <Button
+                    android:id="@+id/bookinglistmitra"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="Booking List"
+                    app:backgroundTint="@null"
+                    android:background="@drawable/buttonround_gradient"
+                    />
+
+                <Button
+                    android:id="@+id/profilmitra"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:text="Profil"
+                    app:backgroundTint="@null"
+                    android:background="@drawable/buttonround_gradient"
+                    />
+
+        </LinearLayout>
 
 </LinearLayout>

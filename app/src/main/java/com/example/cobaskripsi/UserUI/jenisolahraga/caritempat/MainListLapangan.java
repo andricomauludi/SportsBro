@@ -8,12 +8,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.cobaskripsi.R;
 import com.example.cobaskripsi.preferences;
 
-public class MainListLapangan extends AppCompatActivity {
+public class MainListLapangan extends AppCompatActivity{
+
     public String jenisolahraga, jenisolahraga1;
 
     @Override
     protected void onCreate (Bundle savedInstanceState) {
-        getSupportActionBar().setTitle("Daftar sarana "+preferences.getJenisolahraga(this).toLowerCase() +" terdekat");
 
 
         if (savedInstanceState == null) {

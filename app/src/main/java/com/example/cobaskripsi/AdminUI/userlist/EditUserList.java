@@ -7,22 +7,34 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.Spinner;
+import android.widget.TextView;
 import android.widget.Toast;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.example.cobaskripsi.PengelolaUI.datalapangan.datalapanganmitra;
+import com.example.cobaskripsi.AdminUI.HomeadminActivity;
+import com.example.cobaskripsi.PengelolaUI.datalapangan.TempatcontributorsModel;
 import com.example.cobaskripsi.R;
+import com.example.cobaskripsi.UserUI.jenisolahraga.caritempat.TempatModel;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.Map;
 
 public class EditUserList extends AppCompatActivity {
 
     EditText username,email,notelp;
-    String username1,email1,notelp1,role1,rolebaru,iduser;
+    String username1,email1,notelp1,role1,rolebaru,iduser, tempatterpilih, ada,tempatcont,tempatcontjadi;
     Button back;
     Spinner spinnerrole;
     DatabaseReference reference;
@@ -30,16 +42,18 @@ public class EditUserList extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().setTitle("Edit User");
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_edit_user_list);
+
+
 
 
         username=findViewById(R.id.namauseredituserlist);
         email=findViewById(R.id.emailedituserlist);
         notelp=findViewById(R.id.notelpedituserulist);
         back=findViewById(R.id.backedituserlist);
+        LinearLayout layout =findViewById(R.id.rootlayoutedituser3);
         reference = FirebaseDatabase.getInstance().getReference("user");
 
         Intent intent = getIntent();
@@ -67,11 +81,89 @@ public class EditUserList extends AppCompatActivity {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String roleterpilih = spinnerArray.get(position);
+                layout.removeAllViews();
+                if (roleterpilih.equals("mitra")){
+
+                    TextView tempat = findViewById(R.id.tempatedituser);
+
+                    ArrayList<String> arraytempat = new ArrayList<String>();
+                    ArrayList<String> arraynamatempat = new ArrayList<String>();
+                    FirebaseDatabase.getInstance().getReference("tempat")
+                            .addValueEventListener(new ValueEventListener() {
+                                @Override
+                                public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                    for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+                                        TempatModel tempatModel = childSnapshot.getValue(TempatModel.class);
+
+                                        arraytempat.add(tempatModel.getNamatempat());
+                                        arraynamatempat.add(tempatModel.getIdtempat());
+                                    }
+
+                                        Spinner spinnertempat = new Spinner(EditUserList.this);
+                                        ArrayAdapter<String> spinnerTempatAdapter = new ArrayAdapter<String>(EditUserList.this, android.R.layout.simple_spinner_dropdown_item, arraytempat);
+                                        spinnertempat.setAdapter(spinnerTempatAdapter);
+                                        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                                                LinearLayout.LayoutParams.MATCH_PARENT,
+                                                LinearLayout.LayoutParams.MATCH_PARENT
+                                        );
+                                        spinnertempat.setLayoutParams(params);
+
+                                        layout.addView(spinnertempat);
+                                        tempat.setText("Tempat  :");
+
+                                        spinnertempat.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+                                            @Override
+                                            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                                                tempatterpilih=arraynamatempat.get(position);
+                                                FirebaseDatabase.getInstance().getReference().child("tempatcontributors")
+                                                        .addValueEventListener(new ValueEventListener() {
+                                                            @Override
+                                                            public void onDataChange(@NonNull DataSnapshot snapshot) {
+                                                                for (DataSnapshot childSnapshot : snapshot.getChildren()) {
+                                                                    TempatcontributorsModel tempatcontributorsModel = childSnapshot.getValue(TempatcontributorsModel.class);
+                                                                    if (tempatcontributorsModel.getIduser().contains(iduser)
+                                                                    ) {
+                                                                        ada="ada";
+                                                                        tempatcont= tempatcontributorsModel.getIdtempatcontributors();
+
+                                                                    }else if (!ada.equals("ada")){
+                                                                        ada="tidak ada";
+                                                                    }
+                                                                }
+                                                                tempatcontjadi=tempatcont;
+                                                            }
+
+                                                            @Override
+                                                            public void onCancelled(@NonNull DatabaseError error) {
+
+                                                            }
+                                                        });
+
+
+                                            }
+
+                                            @Override
+                                            public void onNothingSelected(AdapterView<?> parent) {
+
+                                            }
+                                        });
+
+
+                                }
+
+                                @Override
+                                public void onCancelled(@NonNull DatabaseError error) {
+
+                                }
+                            });
+
+                }
                 rolebaru = roleterpilih;
-                Toast.makeText(EditUserList.this, rolebaru, Toast.LENGTH_SHORT).show();
     }
 
-            @Override
+
+
+    @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
@@ -87,15 +179,48 @@ public class EditUserList extends AppCompatActivity {
     }
 
     public void updateuser(View view){
-        if (isUsernameChanged() || isEmailChanged() || isNoTelpChanged()){
+        if (isUsernameChanged() || isEmailChanged() || isNoTelpChanged() || isRoleChanged()){
             Toast.makeText(this, "Data sudah diperbaharui",Toast.LENGTH_LONG).show();
-            startActivity(new Intent(this, datalapanganmitra.class));
+            startActivity(new Intent(this, HomeadminActivity.class));
             finish();
         }
         else {
             Toast.makeText(this, "Data tidak ada yang berubah",Toast.LENGTH_LONG).show();
         }
 
+    }
+
+    private boolean isRoleChanged() {
+            reference.child(iduser).child("role").setValue(rolebaru);
+            if (rolebaru.equals("mitra")){
+                if (ada.equals("ada")){
+                    FirebaseDatabase.getInstance().getReference("tempatcontributors").child(tempatcontjadi).child("idtempat").setValue(tempatterpilih);
+                }
+                else{
+                    String key = FirebaseDatabase.getInstance().getReference().child("tempatcontributors").push().getKey();
+                    Map<String,Object> map = new HashMap<>();
+                    map.put("idtempat",tempatterpilih);
+                    map.put("iduser", iduser);
+                    map.put("idtempatcontributors",key);
+                    FirebaseDatabase.getInstance().getReference().child("tempatcontributors").child(key)
+                            .setValue(map)
+                            .addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+
+                                    Toast.makeText(getApplicationContext(),"Data telah ditambahkan",Toast.LENGTH_LONG).show();
+                                }
+                            })
+                            .addOnFailureListener(new OnFailureListener() {
+                                @Override
+                                public void onFailure(@NonNull Exception e) {
+                                    Toast.makeText(getApplicationContext(),"Data tidak dapat ditambahkan",Toast.LENGTH_LONG).show();
+                                }
+                            });
+                }
+            }
+
+            return true;
     }
 
     private boolean isEmailChanged() {

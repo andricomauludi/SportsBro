@@ -16,8 +16,10 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CobaSkripsi">
-        <activity android:name=".AdminUI.datatempat.editdatatempat"></activity>
+        android:theme="@style/Theme.CobaSkripsi.NoActionBar">
+        <activity android:name=".PengelolaUI.datatempatmitra.editdatatempatmitra"></activity>
+        <activity android:name=".PengelolaUI.datatempatmitra.datatempatmitra" />
+        <activity android:name=".AdminUI.datatempat.editdatatempat" />
         <activity android:name=".AdminUI.datatempat.addtempat" />
         <activity android:name=".AdminUI.userlist.EditUserList" />
         <activity android:name=".AdminUI.profileadmin.ProfileAdmin" />

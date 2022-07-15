@@ -3,9 +3,12 @@ package com.example.cobaskripsi.UserUI.jenisolahraga.caritempat.detail;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -17,26 +20,36 @@ import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 
-import com.bumptech.glide.Glide;
 import com.example.cobaskripsi.R;
 import com.example.cobaskripsi.UserUI.jenisolahraga.caritempat.GetLocation;
 import com.example.cobaskripsi.UserUI.jenisolahraga.caritempat.RecListLapangan;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.database.ValueEventListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class DetailLapangan extends Fragment {
 
+    private StorageReference mStorageReference;
+
     private DatabaseReference mDatabase;
-    Button lapangan1,newbtn;
+    Button whatsapp,telepon;
     ListView listView;
-    TextView cobain;
+    TextView nomortelp;
+
 
 
 
@@ -46,19 +59,20 @@ public class DetailLapangan extends Fragment {
 
     private String mParam1;
     private String mParam2;
-    String namatempat,marker,gambar,jenisolahraga,alamattempat,idtempat;
+    String namatempat,marker,gambar,jenisolahraga,alamattempat,idtempat,notelp;
 
     public DetailLapangan() {
 
     }
 
-    public DetailLapangan(String namatempat, String marker, String gambar,String alamattempat, String idtempat, String jenisolahraga) {
+    public DetailLapangan(String namatempat, String marker, String gambar,String alamattempat, String idtempat, String jenisolahraga,String notelp) {
         this.namatempat = namatempat;
         this.marker = marker;
         this.gambar = gambar;
         this.alamattempat = alamattempat;
         this.idtempat=idtempat;
         this.jenisolahraga=jenisolahraga;
+        this.notelp=notelp;
     }
 
 
@@ -86,19 +100,51 @@ public class DetailLapangan extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        ((AppCompatActivity) getActivity()).getSupportActionBar().hide();
 
         View view= inflater.inflate(R.layout.fragment_detail_lapangan, container, false);
 
+        
+        
         ImageView imageholder= view.findViewById(R.id.gambarlapangan);
         TextView nameholder= view.findViewById(R.id.namalapangan);
         TextView alamatlapangan = view.findViewById(R.id.lokasilapangan);
         TextView cobain= view.findViewById(R.id.cobain);
         Button direction = view.findViewById(R.id.directionbutton);
+        whatsapp = view.findViewById(R.id.whatsapptempat);
+        telepon=view.findViewById(R.id.telepontempat);
+        nomortelp=view.findViewById(R.id.nomortelpdetaillapangan);
+
+        mStorageReference = FirebaseStorage.getInstance().getReference().child("picture/"+gambar+".jpg");
+
+        try {
+            final File localFile = File.createTempFile("girl","jpg");
+            mStorageReference.getFile(localFile)
+                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+
+                            Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                            ((ImageView)view.findViewById(R.id.gambarlapangan)).setImageBitmap(bitmap);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                    
+                }
+            })   ;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
         //TextView markerholder= view.findViewById(R.id.markerlapangan);
+
+
+
+
+
 
         nameholder.setText(namatempat);
         alamatlapangan.setText(alamattempat);
+        nomortelp.setText(notelp);
         String str = marker;
 
         String[] latlong = str.split(",");
@@ -116,16 +162,17 @@ public class DetailLapangan extends Fragment {
             public void onClick(View v) {
 
                 AlertDialog.Builder builder=new AlertDialog.Builder(direction.getContext());
+                builder.setTitle("Direction");
                 builder.setMessage("Anda akan diarahkan google maps untuk melihat rute menuju lokasi");
 
 
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
                     }
                 });
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         GetLocation getLocation = new GetLocation(getActivity());
@@ -146,8 +193,66 @@ public class DetailLapangan extends Fragment {
             }
         });
 
+        whatsapp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder=new AlertDialog.Builder(direction.getContext());
+                builder.setTitle("Whatsapp");
+                builder.setMessage("Anda akan diarahkan ke Whatsapp");
+
+
+                builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String url = "https://api.whatsapp.com/send?phone="+notelp;
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(url));
+                        startActivity(intent);
+                    }
+                });
+
+
+                builder.show();
+
+            }
+        });
+        telepon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder=new AlertDialog.Builder(direction.getContext());
+                builder.setTitle("Telepon");
+                builder.setMessage("Anda akan diahrahkan ke menu panggilan");
+
+
+                builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(Intent.ACTION_DIAL);
+                        intent.setData(Uri.parse("tel:"+notelp));
+                        startActivity(intent);
+                    }
+                });
+
+
+                builder.show();
+
+            }
+        });
+
         //markerholder.setText(stringjarak);
-        Glide.with(getContext()).load(R.drawable.basket_bucketlist).into(imageholder);
+      
 
 
        // listView = view.findViewById(R.id.listView);
@@ -159,7 +264,7 @@ public class DetailLapangan extends Fragment {
        // final ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(), R.layout.list_item, list);
        // listView.setAdapter(adapter);
 
-        LinearLayout linearLayout = view.findViewById(R.id.rootlayout);
+        LinearLayout linearLayout = view.findViewById(R.id.rootlayoutdetail);
 
         mDatabase = FirebaseDatabase.getInstance().getReference();
         mDatabase.child("lapangan")
@@ -188,15 +293,33 @@ public class DetailLapangan extends Fragment {
                             Button addbtn = new Button (getActivity());
                             if (linearLayout!=null){
                                 linearLayout.addView(addbtn);
+                                addbtn.setTextSize(TypedValue.COMPLEX_UNIT_SP,10);
                                 addbtn.setText(namalapangan.get(i));
+
                                 addbtn.setId(i);
 
+
                                 LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
-                                        LinearLayout.LayoutParams.MATCH_PARENT,
+                                        LinearLayout.LayoutParams.WRAP_CONTENT,
                                         LinearLayout.LayoutParams.WRAP_CONTENT
                                 );
                                 params.setMargins(20,0,10,0);
                                 addbtn.setLayoutParams(params);
+
+                                addbtn.setTextColor(getResources().getColor(R.color.white));
+                                final int sdk = android.os.Build.VERSION.SDK_INT;
+                                if(sdk < android.os.Build.VERSION_CODES.JELLY_BEAN) {
+
+                                    addbtn.setBackgroundDrawable(ContextCompat.getDrawable(getContext(), R.drawable.buttonround_gradient) );
+
+                                } else {
+                                    addbtn.setBackground(ContextCompat.getDrawable(getContext(), R.drawable.buttonround_gradient));
+
+                                }
+
+
+                                //addbtn.getBackground().setColorFilter(ContextCompat.getColor(getContext(), R.color.darkrosered), PorterDuff.Mode.MULTIPLY);
+
 
 
                                 //addlapangan[i]=view.findViewById(R.id.lapangan1);

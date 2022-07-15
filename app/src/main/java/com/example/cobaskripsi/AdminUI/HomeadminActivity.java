@@ -21,7 +21,6 @@ public class HomeadminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_homeadmin);
 
-        getSupportActionBar().hide();
 
         datatempat=findViewById(R.id.datatempatadmin);
         userlist=findViewById(R.id.userlistadmin);

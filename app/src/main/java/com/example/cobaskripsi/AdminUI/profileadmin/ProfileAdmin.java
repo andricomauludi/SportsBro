@@ -21,7 +21,6 @@ public class ProfileAdmin extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().setTitle("Profil Admin");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_admin);
 

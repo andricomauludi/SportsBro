@@ -1,6 +1,8 @@
 package com.example.cobaskripsi.UserUI.jenisolahraga.caritempat;
 
 import android.content.Context;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.location.Location;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -12,10 +14,16 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.cardview.widget.CardView;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.bumptech.glide.Glide;
 import com.example.cobaskripsi.R;
 import com.example.cobaskripsi.UserUI.jenisolahraga.caritempat.detail.DetailLapangan;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FileDownloadTask;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 
 import de.hdodenhof.circleimageview.CircleImageView;
@@ -24,6 +32,7 @@ public class AdapterListLapangan extends RecyclerView.Adapter<AdapterListLapanga
 
     public Context c;
     public ArrayList<TempatModel> arrayList;
+    StorageReference mStorageReference;
 
     public AdapterListLapangan(Context c, ArrayList<TempatModel> arrayList){
         this.c=c;
@@ -59,19 +68,35 @@ public class AdapterListLapangan extends RecyclerView.Adapter<AdapterListLapanga
         String stringjarak = jarak+"";
 
         holder.jarak.setText(stringjarak + " km");
-        Glide.with(holder.img.getContext())
-                .load(tempatModel.getGambar())
-                .placeholder(R.drawable.basket_bucketlist)
-                .circleCrop()
-                .error(R.drawable.basket4)
-                .into(holder.img);
+        holder.alamat.setText(tempatModel.getAlamattempat());
+        mStorageReference = FirebaseStorage.getInstance().getReference().child("picture/"+tempatModel.getGambar()+".jpg");
+
+        try {
+            final File localFile = File.createTempFile("girl","jpg");
+            mStorageReference.getFile(localFile)
+                    .addOnSuccessListener(new OnSuccessListener<FileDownloadTask.TaskSnapshot>() {
+                        @Override
+                        public void onSuccess(FileDownloadTask.TaskSnapshot taskSnapshot) {
+                            Bitmap bitmap = BitmapFactory.decodeFile(localFile.getAbsolutePath());
+                            ((CircleImageView)holder.itemView.findViewById(R.id.basketImageView)).setImageBitmap(bitmap);
+                        }
+                    }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception e) {
+                }
+            })   ;
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
+
 
         holder.listlapangan.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 AppCompatActivity activity=(AppCompatActivity)v.getContext();
 
-                activity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new DetailLapangan(tempatModel.getNamatempat(),tempatModel.getMarker(),tempatModel.getGambar(),tempatModel.getAlamattempat(),tempatModel.getIdtempat(),tempatModel.getJenisolahraga())).addToBackStack(null).commit();
+                activity.getSupportFragmentManager().beginTransaction().replace(R.id.wrapper, new DetailLapangan(tempatModel.getNamatempat(),tempatModel.getMarker(),tempatModel.getGambar(),tempatModel.getAlamattempat(),tempatModel.getIdtempat(),tempatModel.getJenisolahraga(),tempatModel.getNotelptempat())).addToBackStack(null).commit();
             }
         });
     }
@@ -88,15 +113,17 @@ public class AdapterListLapangan extends RecyclerView.Adapter<AdapterListLapanga
 
     public class myviewholder extends RecyclerView.ViewHolder{
 
-        TextView nama, jarak;
-        CircleImageView img;
+
+
+        TextView nama, jarak,alamat;
         CardView listlapangan;
         double latitudeSaya, longitudeSaya;
         public myviewholder(View itemView){
             super(itemView);
             nama=itemView.findViewById(R.id.basketText1);
             jarak=itemView.findViewById(R.id.basketText2);
-            img=itemView.findViewById(R.id.basketImageView);
+            alamat=itemView.findViewById(R.id.alamatlisttempat);
+
             listlapangan=itemView.findViewById(R.id.cardviewlistlapangan);
             GetLocation getLocation = new GetLocation(itemView.getContext());
             Location location = getLocation.getLocation();

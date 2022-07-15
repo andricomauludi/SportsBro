@@ -21,7 +21,6 @@ public class ProfileMitra extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().setTitle("Profil Mitra");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_profile_mitra);
 

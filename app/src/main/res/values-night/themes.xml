@@ -1,9 +1,9 @@
 <resources xmlns:tools="http://schemas.android.com/tools">
     <!-- Base application theme. -->
-    <style name="Theme.CobaSkripsi" parent="Theme.MaterialComponents.Light.DarkActionBar">
+    <style name="Theme.CobaSkripsi" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Primary brand color. -->
-        <item name="colorPrimary">@color/darkrosered</item>
-        <item name="colorPrimaryVariant">@color/darkteal</item>
+        <item name="colorPrimary">@color/gold</item>
+        <item name="colorPrimaryVariant">@color/darkbluetheme</item>
         <item name="colorOnPrimary">@color/white</item>
         <!-- Secondary brand color. -->
         <item name="colorSecondary">@color/teal_200</item>

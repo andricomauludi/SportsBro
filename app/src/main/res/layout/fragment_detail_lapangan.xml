@@ -1,94 +1,185 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@color/white"
     tools:context=".UserUI.jenisolahraga.caritempat.detail.DetailLapangan">
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
 
-        <LinearLayout
+
+    <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:gravity="center_horizontal"
+            android:layout_margin="10dp"
+            android:padding="20dp"
             android:orientation="vertical">
 
             <TextView
                 android:id="@+id/namalapangan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="10dp"
                 android:text="Nama Lapangan"
+                android:textColor="@color/darkbluetheme"
                 android:textSize="25sp"
-                android:textStyle="bold" />
+                android:textStyle="bold"
+                android:layout_gravity="center"
+                />
 
             <ImageView
                 android:id="@+id/gambarlapangan"
                 android:layout_width="240dp"
                 android:layout_height="228dp"
-                android:layout_marginTop="40dp"
+                android:layout_marginTop="20dp"
+                android:layout_marginBottom="20dp"
                 android:src="@color/common_google_signin_btn_text_dark_disabled" />
 
-            <RelativeLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="left"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
                 android:text="Detail Lapangan"
-                android:textColor="@color/darkteal"
+                android:textColor="@color/black"
+                android:textStyle="bold"
                 android:textSize="20sp" />
+                <TextView
+                    android:id="@+id/lokasilapangan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text=" lokasilapangan"
+                    android:textSize="15sp"
+                    android:textColor="@color/black"
+                    android:layout_marginRight="20dp"
+                    android:layout_marginLeft="20dp"
+                    android:justificationMode="inter_word"
+                    />
 
-            </RelativeLayout>
+            </LinearLayout>
 
-            <TextView
-                android:id="@+id/lokasilapangan"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" lokasilapangan"
-                android:textSize="15sp"
-                android:layout_marginRight="20dp"
-                android:layout_marginLeft="20dp"
-                android:justificationMode="inter_word"/>
+
 
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:layout_margin="5dp">
 
             <Button
                 android:id="@+id/directionbutton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:backgroundTint="@null"
+                android:textColor="@color/white"
+                android:background="@drawable/buttonround_gradient"
+                android:textSize="10sp"
                 android:text="Direction"
-                android:layout_alignParentRight="true"
-                android:layout_marginRight="10dp"/>
+                android:layout_alignParentRight="true" />
             </RelativeLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_marginBottom="5dp"
+                android:layout_marginTop="10dp"
+                >
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Kontak :"
+                        android:textColor="@color/black"
+                        android:textSize="20sp"
+                        android:textStyle="bold"/>
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:id="@+id/nomortelpdetaillapangan"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="08121261983 :"
+                        android:textColor="@color/black"
+                        android:layout_marginRight="20dp"
+                        android:layout_marginLeft="20dp"
+                        android:textSize="15sp"/>
+
+                </LinearLayout>
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_margin="5dp"
+                >
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical"
+                    android:gravity="center">
+
+                    <Button
+                        android:id="@+id/whatsapptempat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:backgroundTint="@null"
+                        android:textColor="@color/white"
+                        android:background="@drawable/buttonround_gradient"
+                        android:text="Whatsapp"
+                        android:textSize="10sp"/>
+
+                </LinearLayout>
+                <LinearLayout
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+                    <Button
+                        android:id="@+id/telepontempat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:backgroundTint="@null"
+                        android:textColor="@color/white"
+                        android:background="@drawable/buttonround_gradient"
+                        android:text="Telepon"
+                        android:textSize="10sp"/>
+
+                </LinearLayout>
+            </LinearLayout>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:text="Pilih Lapangan : "
                 android:gravity="left"
-                android:textColor="@color/darkteal"
+                android:textColor="@color/black"
+                android:textStyle="bold"
                 android:layout_marginTop="10dp"
-                android:layout_marginLeft="10dp"
                 android:textSize="20sp"/>
             <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 >
                 <LinearLayout
-                    android:id="@+id/rootlayout"
+                    android:id="@+id/rootlayoutdetail"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:layout_marginTop="50dp"
-                    android:gravity="center"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_gravity="center"
+                    android:padding="20dp"
                     android:orientation="horizontal">
                 </LinearLayout>
             </HorizontalScrollView>
@@ -100,6 +191,5 @@
                 />
 
         </LinearLayout>
-    </ScrollView>
 
-</FrameLayout>
+</ScrollView>

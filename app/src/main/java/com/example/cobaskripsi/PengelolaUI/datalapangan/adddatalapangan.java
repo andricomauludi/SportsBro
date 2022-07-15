@@ -34,7 +34,6 @@ public class adddatalapangan extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().hide();;
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_adddatalapangan);
 
@@ -176,7 +175,7 @@ public class adddatalapangan extends AppCompatActivity {
         String noSpaceStr = str.replaceAll("\\s", "");
         jamtersedia = noSpaceStr;
 **/
-        String key = FirebaseDatabase.getInstance().getReference().child("pemesanan").push().getKey();
+        String key = FirebaseDatabase.getInstance().getReference().child("lapangan").push().getKey();
         Map<String,Object> map = new HashMap<>();
         map.put("namalapangan",namalapangan.getText().toString());
         map.put("idtempat", preferences.getIdtempatmitra(getApplicationContext()));

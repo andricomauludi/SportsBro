@@ -33,7 +33,6 @@ public class editdatalapangan extends AppCompatActivity {
     DatabaseReference reference;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().hide();
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_editdatalapangan);
 

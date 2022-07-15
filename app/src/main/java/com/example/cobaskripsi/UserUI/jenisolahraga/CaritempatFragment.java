@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,7 +17,7 @@ import com.example.cobaskripsi.preferences;
 
 public class CaritempatFragment extends Fragment {
 
-    private Button btnBasket,btnTenis,btnBadminton,btnFutsal;
+    private ImageView btnBasket,btnTenis,btnBadminton,btnFutsal;
     TextView jenisbasket, jenistenis, jenisfutsal, jenisbadminton;
 
     public View onCreateView(@NonNull LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {

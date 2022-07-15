@@ -6,7 +6,7 @@
     android:layout_height="match_parent"
     android:id="@+id/wrapper2"
     tools:context=".UserUI.riwayatpemesanan.RiwayatpelangganFragment"
-    android:background="@color/warnabackground">
+    android:background="@color/transparent">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,73 +16,89 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:background="#EFEFEF"
-            android:padding="10dp"
-            >
+            android:orientation="vertical"
+            android:background="@drawable/gradient">
 
-            <Button
-                android:id="@+id/menunggukonfirmasi"
-                android:layout_width="wrap_content"
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Menunggu Konfirmasi"
-                android:textSize="8sp"
-                android:background="@drawable/button_login"
-                android:layout_margin="2dp"
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:padding="10dp"
+                >
 
-                />
+                <Button
+                    android:id="@+id/menunggukonfirmasi"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Menunggu Konfirmasi"
+                    android:textSize="8sp"
+                    app:backgroundTint="@null"
+                    android:textColor="@color/black"
+                    android:background="@drawable/button_darkwhite"
+                    android:layout_margin="2dp"
 
-            <Button
-                android:id="@+id/booked"
-                android:layout_width="wrap_content"
+                    />
+
+                <Button
+                    android:id="@+id/booked"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Booked"
+                    android:textSize="8sp"
+                    app:backgroundTint="@null"
+                    android:textColor="@color/black"
+                    android:background="@drawable/button_darkwhite"
+                    android:layout_margin="2dp"/>
+
+                <Button
+                    android:id="@+id/ditolak"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Ditolak"
+                    android:textSize="8sp"
+                    app:backgroundTint="@null"
+                    android:textColor="@color/black"
+                    android:background="@drawable/button_darkwhite"
+                    android:layout_margin="2dp"/>
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:text="Booked"
-                android:textSize="8sp"
-                android:background="@drawable/button_login"
-                android:layout_margin="2dp"/>
+                android:orientation="horizontal"
+                android:gravity="center"
+                android:padding="10dp"
+                >
 
-            <Button
-                android:id="@+id/ditolak"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Ditolak"
-                android:textSize="8sp"
-                android:background="@drawable/button_login"
-                android:layout_margin="2dp"/>
+                <Button
+                    android:id="@+id/semuariwayat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Semua riwayat"
+                    app:backgroundTint="@null"
+                    android:textColor="@color/black"
+                    android:background="@drawable/button_darkwhite"
+                    android:textSize="8sp"
+                    android:layout_margin="2dp"
 
-        </LinearLayout>
-
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="horizontal"
-            android:gravity="center"
-            android:background="#EFEFEF"
-            android:padding="10dp"
-            >
-
-            <Button
-                android:id="@+id/semuariwayat"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Semua riwayat"
-                android:background="@drawable/button_login"
-                android:textSize="8sp"
-                android:layout_margin="2dp"
-
-                />
+                    />
 
 
-            <Button
-                android:id="@+id/sudahselesai"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Expired"
-                android:background="@drawable/button_login"
-                android:textSize="8sp"
-                android:layout_margin="2dp"/>
+                <Button
+                    android:id="@+id/sudahselesai"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Expired"
+                    app:backgroundTint="@null"
+                    android:textColor="@color/black"
+                    android:background="@drawable/button_darkwhite"
+                    android:textSize="8sp"
+                    android:layout_margin="2dp"/>
 
+            </LinearLayout>
         </LinearLayout>
         <TextView
             android:id="@+id/pilihantext"
@@ -108,5 +124,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+
     </LinearLayout>
+
 </FrameLayout>

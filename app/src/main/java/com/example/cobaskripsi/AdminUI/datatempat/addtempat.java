@@ -1,9 +1,11 @@
 package com.example.cobaskripsi.AdminUI.datatempat;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.Spinner;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -14,13 +16,14 @@ import java.util.ArrayList;
 
 public class addtempat extends AppCompatActivity {
     Spinner spinner;
+    Button back;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        getSupportActionBar().setTitle("Tambah Tempat");
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_addtempat);
         spinner=findViewById(R.id.spinnerjenisolahraga);
+        back=findViewById(R.id.backadddatatempat);
 
         ArrayList<String> spinnerArray = new ArrayList<String>(24);
         spinnerArray.add("basket");
@@ -39,6 +42,12 @@ public class addtempat extends AppCompatActivity {
             @Override
             public void onNothingSelected(AdapterView<?> parent) {
 
+            }
+        });
+        back.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(addtempat.this,DataTempat.class));
             }
         });
 

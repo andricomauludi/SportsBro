@@ -12,7 +12,10 @@
     <color name="darkteal">#008080</color>
     <color name="warnabackground">#BBF1F1</color>
     <color name="teal">#35B5AC</color>
+    <color name="darkbluetheme">#023750</color>
     <color name="red">#BF0000</color>
     <color name="green">#15CF00</color>
+    <color name="gold">#ccb144</color>
+    <color name="transparent">#00CCB144</color>
 
 </resources>

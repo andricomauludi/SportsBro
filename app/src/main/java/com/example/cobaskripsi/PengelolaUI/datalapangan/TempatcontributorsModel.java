@@ -2,7 +2,21 @@ package com.example.cobaskripsi.PengelolaUI.datalapangan;
 
 public class TempatcontributorsModel {
 
-    String idtempat, iduser;
+    String idtempat, iduser, idtempatcontributors;
+
+    public String getIdtempatcontributors() {
+        return idtempatcontributors;
+    }
+
+    public void setIdtempatcontributors(String idtempatcontributors) {
+        this.idtempatcontributors = idtempatcontributors;
+    }
+
+    public TempatcontributorsModel(String idtempat, String iduser, String idtempatcontributors) {
+        this.idtempat = idtempat;
+        this.iduser = iduser;
+        this.idtempatcontributors = idtempatcontributors;
+    }
 
     TempatcontributorsModel() {
 
@@ -24,8 +38,5 @@ public class TempatcontributorsModel {
         this.iduser = iduser;
     }
 
-    public TempatcontributorsModel(String idtempat, String iduser) {
-        this.idtempat = idtempat;
-        this.iduser = iduser;
-    }
+
 }
