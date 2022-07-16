@@ -18,7 +18,7 @@
         android:orientation="vertical"
         android:gravity="center"
         android:padding="30dp"
-        android:background="@color/white"
+        android:background="@drawable/button_white"
         android:layout_gravity="center">
 
         <TextView

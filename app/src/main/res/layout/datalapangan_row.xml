@@ -13,13 +13,15 @@
         android:layout_height="wrap_content"
         android:background="@drawable/button_darkwhite"
         tools:ignore="MissingConstraints"
+
         >
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="94dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/button_darkwhite"
             android:orientation="vertical"
+            android:padding="10dp"
             >
 
 
@@ -31,37 +33,36 @@
                 android:text="Nama Lapangan"
                 android:textSize="20sp"
                 android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.238" />
+                 />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-            <Button
-                android:id="@+id/deletedatalapanganmitra"
-                android:layout_width="75dp"
-                android:layout_height="35dp"
-                android:layout_marginStart="8dp"
-                android:text="Delete"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/editdatalapanganmitra"
-                app:layout_constraintTop_toBottomOf="@+id/namalapangandatamitra"
-                app:layout_constraintVertical_bias="0.407" />
+                <Button
+                    android:id="@+id/deletedatalapanganmitra"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:text="Delete"
+                    android:textSize="8sp"
+                     />
 
-            <Button
-                android:id="@+id/editdatalapanganmitra"
-                android:layout_width="75dp"
-                android:layout_height="34dp"
-                android:layout_marginStart="16dp"
-                android:text="Edit"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/namalapangandatamitra"
-                app:layout_constraintVertical_bias="0.428" />
+                <Button
+                    android:id="@+id/editdatalapanganmitra"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="16dp"
+                    android:text="Edit"
+                    android:textSize="8sp"
+                     />
+
+            </LinearLayout>
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

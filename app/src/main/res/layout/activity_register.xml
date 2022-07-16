@@ -10,6 +10,13 @@
     tools:context=".RegisterActivity"
     android:background="@color/darkbluetheme">
 
+    <ImageView
+        android:layout_width="300dp"
+        android:layout_height="100dp"
+        android:layout_marginBottom="20dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/sportsbrologo" />
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -17,7 +24,7 @@
         android:layout_gravity="center_horizontal"
         android:text="Please register Here"
         android:textColor="@color/white"
-        android:textSize="30sp"/>
+        android:textSize="20sp"/>
 
 
     <EditText

@@ -116,6 +116,40 @@
             android:gravity=""
             >
             <Button
+                android:id="@+id/pelayananpelangganmitra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pelayanan Pelanggan"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:textColor="#ffffff"
+                android:background="@drawable/button_login"
+                android:padding="10dp" />
+            <Button
+                android:id="@+id/tentangaplikasimitra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tentang  Aplikasi"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:textColor="#ffffff"
+                android:background="@drawable/button_login"
+                android:padding="10dp" />
+            <Button
+                android:id="@+id/panduanketentuanmitra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Panduan Aplikasi"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:textColor="#ffffff"
+                android:background="@drawable/button_login"
+                android:padding="10dp" />
+
+            <Button
                 android:id="@+id/logoutmitra"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

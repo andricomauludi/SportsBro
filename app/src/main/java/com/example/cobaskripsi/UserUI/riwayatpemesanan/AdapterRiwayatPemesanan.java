@@ -2,6 +2,7 @@ package com.example.cobaskripsi.UserUI.riwayatpemesanan;
 
 import android.content.Context;
 import android.content.Intent;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -59,6 +60,19 @@ public class AdapterRiwayatPemesanan extends RecyclerView.Adapter<AdapterRiwayat
         holder.waktupemesanan.setText(simpenlist.toString());
         holder.tanggalpemesanan.setText(pemesananModel.getTanggalpemesanan());
 
+        String statuspemesanan = pemesananModel.getStatuspemesanan();
+
+        if(statuspemesanan.equals("Menunggu Konfirmasi")){
+            holder.status.setTextColor(Color.rgb(255,165,0));
+            holder.status.setText(statuspemesanan.substring(0, 1).toUpperCase() + statuspemesanan.substring(1).toLowerCase());
+        }else if (statuspemesanan.equals("Booked")){
+            holder.status.setTextColor(Color.GREEN);
+            holder.status.setText(statuspemesanan.substring(0, 1).toUpperCase() + statuspemesanan.substring(1).toLowerCase());
+        }else if (statuspemesanan.equals("Ditolak")){
+            holder.status.setTextColor(Color.RED);
+            holder.status.setText(statuspemesanan.substring(0, 1).toUpperCase() + statuspemesanan.substring(1).toLowerCase());
+        }
+
         holder.lihatriwayat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -88,7 +102,7 @@ public class AdapterRiwayatPemesanan extends RecyclerView.Adapter<AdapterRiwayat
     }
     public class myviewholder extends RecyclerView.ViewHolder{
 
-        TextView namatempat, namalapangan,tanggalpemesanan,waktupemesanan, jenisolahraga;
+        TextView namatempat, namalapangan,tanggalpemesanan,waktupemesanan, jenisolahraga, status;
         Button lihatriwayat;
 
         public myviewholder(@NonNull View itemView) {
@@ -99,6 +113,7 @@ public class AdapterRiwayatPemesanan extends RecyclerView.Adapter<AdapterRiwayat
             waktupemesanan = (TextView)itemView.findViewById(R.id.waktupemesananriwayat);
             lihatriwayat = (Button)itemView.findViewById(R.id.lihatdetailriwayat);
             jenisolahraga = (TextView)itemView.findViewById(R.id.jenisolahragariwayat);
+            status = (TextView)itemView.findViewById(R.id.statuspemesananriwayat);
 
         }
     }

@@ -108,6 +108,7 @@
             android:textSize="20sp"
             android:textColor="@color/black"
             android:padding="10dp"
+            android:background="@drawable/button_darkwhite"
             android:gravity="center"/>
 
 

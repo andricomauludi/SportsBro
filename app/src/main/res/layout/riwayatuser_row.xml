@@ -34,7 +34,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Jenis olahraga"
-                        android:textSize="20sp"
+                        android:textSize="15sp"
                         android:textStyle="bold" />
 
                     <TextView
@@ -48,13 +48,13 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Nama Lapangan"
-                        android:textSize="14sp"/>
+                        android:textSize="10sp"/>
                     <TextView
                         android:id="@+id/tanggalpemesananriwayat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Tanggal Pemesanan"
-                        android:textSize="14sp"
+                        android:textSize="10sp"
                         app:layout_constraintStart_toStartOf="parent"
                         app:layout_constraintTop_toBottomOf="@+id/namalapanganriwayat" />
 
@@ -63,28 +63,36 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Waktu dipesan"
-                        android:textSize="14sp"
+                        android:textSize="10sp"
+                        android:paddingBottom="5dp"/>
+
+                    <TextView
+                        android:id="@+id/statuspemesananriwayat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Status"
+                        android:textSize="10sp"
                         android:paddingBottom="5dp"/>
 
 
 
                 </LinearLayout>
                 <LinearLayout
-                    android:layout_weight="0.5"
+                    android:layout_weight="1"
                     android:layout_width="0dp"
                     android:layout_height="match_parent"
                     android:orientation="vertical"
                     android:gravity="center"
                     android:layout_gravity="center"
                     >
+
                     <Button
                         android:id="@+id/lihatdetailriwayat"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:background="@drawable/button_login"
                         android:text="detail"
-                        android:textSize="10sp"
-                        />
+                        android:textSize="10sp" />
                 </LinearLayout>
             </LinearLayout>
 

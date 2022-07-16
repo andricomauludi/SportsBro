@@ -6,20 +6,25 @@
     android:layout_height="match_parent"
     android:padding="40dp"
     tools:context=".UserUI.profilepelanggan.ProfilepelangganFragment"
-    android:background="@color/white">
+    android:background="@color/white"
+    >
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:background="@color/transparent">
         <LinearLayout
             android:layout_weight="1"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:orientation="vertical"
+            android:background="@color/transparent"
             >
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                app:cardElevation="@null"
+                android:background="@color/transparent"
                 >
                 <LinearLayout
                     android:layout_width="match_parent"
@@ -99,7 +104,39 @@
             android:orientation="vertical"
             android:gravity=""
             >
-            
+            <Button
+                android:id="@+id/pelayananpelanggan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Pelayanan Pelanggan"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:textColor="#ffffff"
+                android:background="@drawable/button_login"
+                android:padding="10dp" />
+            <Button
+                android:id="@+id/tentangaplikasi"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Tentang  Aplikasi"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:textColor="#ffffff"
+                android:background="@drawable/button_login"
+                android:padding="10dp" />
+            <Button
+                android:id="@+id/panduanketentuanpelanggan"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Panduan Aplikasi"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:textColor="#ffffff"
+                android:background="@drawable/button_login"
+                android:padding="10dp" />
             <Button
                 android:id="@+id/logoutt"
                 android:layout_width="match_parent"

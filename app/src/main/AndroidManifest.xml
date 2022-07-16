@@ -17,7 +17,13 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CobaSkripsi.NoActionBar">
-        <activity android:name=".PengelolaUI.datatempatmitra.editdatatempatmitra"></activity>
+        <activity android:name=".PengelolaUI.profilemitra.TentangAplikasiMitra"></activity>
+        <activity android:name=".PengelolaUI.profilemitra.PelayananPelangganMitra" />
+        <activity android:name=".PengelolaUI.profilemitra.PanduanAplikasiMitra" />
+        <activity android:name=".UserUI.profilepelanggan.PelayananPelanggan" />
+        <activity android:name=".UserUI.profilepelanggan.TentangAplikasiPelanggan" />
+        <activity android:name=".UserUI.profilepelanggan.PanduanAplikasiPelanggan" />
+        <activity android:name=".PengelolaUI.datatempatmitra.editdatatempatmitra" />
         <activity android:name=".PengelolaUI.datatempatmitra.datatempatmitra" />
         <activity android:name=".AdminUI.datatempat.editdatatempat" />
         <activity android:name=".AdminUI.datatempat.addtempat" />

@@ -12,12 +12,13 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cobaskripsi.LoginActivity;
 import com.example.cobaskripsi.R;
+import com.example.cobaskripsi.UserUI.profilepelanggan.TentangAplikasiPelanggan;
 import com.example.cobaskripsi.preferences;
 
 public class ProfileMitra extends AppCompatActivity {
 
     TextView namamitra, notelpmitra, emailmitra;
-    Button logoutt;
+    Button logoutt,panduan,tentangaplikasi, pelayananpelanggan;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,9 @@ public class ProfileMitra extends AppCompatActivity {
         notelpmitra= findViewById(R.id.nomortelpmitraprofile);
         emailmitra= findViewById(R.id.emailmitraprofile);
         logoutt=findViewById(R.id.logoutmitra);
+        panduan=findViewById(R.id.panduanketentuanmitra);
+        tentangaplikasi=findViewById(R.id.tentangaplikasimitra);
+        pelayananpelanggan=findViewById(R.id.pelayananpelangganmitra);
 
         namamitra.setText(preferences.getUsername(ProfileMitra.this));
         notelpmitra.setText(preferences.getNotelp(ProfileMitra.this));
@@ -41,13 +45,13 @@ public class ProfileMitra extends AppCompatActivity {
                 builder.setMessage("Anda yakin ingin logout?");
 
 
-                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
 
                     }
                 });
-                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         preferences.clearData(ProfileMitra.this);
@@ -61,6 +65,27 @@ public class ProfileMitra extends AppCompatActivity {
 
                 builder.show();
 
+            }
+        });
+
+        panduan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProfileMitra.this, PanduanAplikasiMitra.class));
+            }
+        });
+
+        tentangaplikasi.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProfileMitra.this, TentangAplikasiMitra.class));
+            }
+        });
+
+        pelayananpelanggan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProfileMitra.this, PelayananPelangganMitra.class));
             }
         });
     }

@@ -94,8 +94,8 @@ public class LoginActivity extends AppCompatActivity {
                                  public void onDataChange(@NonNull DataSnapshot snapshot) {
                                      for (DataSnapshot childSnapshot : snapshot.getChildren()) {
                                          UserModel userModel = childSnapshot.getValue(UserModel.class);
-                                         if (userModel.getUsername().contains(input1) &&
-                                                 userModel.getPassword().contains(input2) && userModel.getRole().contains("mitra")){
+                                         if (userModel.getUsername().equals(input1) &&
+                                                 userModel.getPassword().equals(input2) && userModel.getRole().contains("mitra")){
                                              String iduser = userModel.getIduser();
                                              preferences.setDataLogin(LoginActivity.this,true);
                                              preferences.setUsername(LoginActivity.this,input1);
@@ -130,8 +130,8 @@ public class LoginActivity extends AppCompatActivity {
                                              startActivity(new Intent(LoginActivity.this, HomemitraActivity.class));
                                              finish();
                                          }
-                                         else if(userModel.getUsername().contains(input1) &&
-                                                 userModel.getPassword().contains(input2) && userModel.getRole().contains("admin")) {
+                                         else if(userModel.getUsername().equals(input1) &&
+                                                 userModel.getPassword().equals(input2) && userModel.getRole().contains("admin")) {
                                              String iduser = userModel.getIduser();
                                              preferences.setDataLogin(LoginActivity.this, true);
                                              preferences.setUsername(LoginActivity.this, input1);
@@ -143,8 +143,8 @@ public class LoginActivity extends AppCompatActivity {
                                              preferences.setDataRole(LoginActivity.this, "admin");
                                              startActivity(new Intent(LoginActivity.this, HomeadminActivity.class));
                                              finish();
-                                         }else if(userModel.getUsername().contains(input1) &&
-                                                 userModel.getPassword().contains(input2) && userModel.getRole().contains("pelanggan")) {
+                                         }else if(userModel.getUsername().equals(input1) &&
+                                                 userModel.getPassword().equals(input2) && userModel.getRole().contains("pelanggan")) {
                                              String iduser = userModel.getIduser();
                                              preferences.setDataLogin(LoginActivity.this, true);
                                              preferences.setUsername(LoginActivity.this, input1);
@@ -157,6 +157,7 @@ public class LoginActivity extends AppCompatActivity {
                                              startActivity(new Intent(LoginActivity.this, Homepelanggan.class));
                                              finish();
                                          }
+
                                      }
 
                                  }
@@ -165,7 +166,8 @@ public class LoginActivity extends AppCompatActivity {
                                  public void onCancelled(@NonNull DatabaseError error) {
 
                                  }
-                             });                 }
+                             });
+                }
 
 
 

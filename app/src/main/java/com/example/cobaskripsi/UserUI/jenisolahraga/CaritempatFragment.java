@@ -18,7 +18,7 @@ import com.example.cobaskripsi.preferences;
 public class CaritempatFragment extends Fragment {
 
     private ImageView btnBasket,btnTenis,btnBadminton,btnFutsal;
-    TextView jenisbasket, jenistenis, jenisfutsal, jenisbadminton;
+    TextView jenisbasket, jenistenis, jenisfutsal, jenisbadminton,nama;
 
     public View onCreateView(@NonNull LayoutInflater inflater,ViewGroup container, Bundle savedInstanceState) {
 
@@ -33,6 +33,8 @@ public class CaritempatFragment extends Fragment {
         jenisbadminton = (TextView)root.findViewById(R.id.jenisbadminton);
         jenistenis = (TextView)root.findViewById(R.id.jenistenis);
         jenisfutsal = (TextView)root.findViewById(R.id.jenisfutsal);
+        nama=root.findViewById(R.id.namapelangganhome);
+        nama.setText("Halo, "+preferences.getUsername(getActivity())+" !");
 
         String jenisbasket1 = jenisbasket.getText().toString();
         String jenisbadminton1 = jenisbadminton.getText().toString();

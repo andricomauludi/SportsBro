@@ -1,13 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
+    android:background="@color/darkbluetheme"
+    android:layout_gravity="center"
     xmlns:android="http://schemas.android.com/apk/res/android">
-    <FrameLayout
+    <LinearLayout
         xmlns:app="http://schemas.android.com/apk/res-auto"
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/warnabackground"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:background="@color/darkbluetheme"
         tools:context=".PengelolaUI.pendinglist.DetailPendingList">
 
         <LinearLayout
@@ -15,7 +19,7 @@
             android:layout_height="wrap_content"
             android:layout_margin="40dp"
             android:padding="30dp"
-            android:background="@color/white"
+            android:background="@drawable/button_white"
             android:orientation="vertical"
             android:gravity="center">
 
@@ -184,5 +188,5 @@
         </LinearLayout>
 
 
-    </FrameLayout>
+    </LinearLayout>
 </ScrollView>

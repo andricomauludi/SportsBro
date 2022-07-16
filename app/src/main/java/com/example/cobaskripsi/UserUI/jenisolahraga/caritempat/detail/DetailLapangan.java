@@ -108,7 +108,6 @@ public class DetailLapangan extends Fragment {
         ImageView imageholder= view.findViewById(R.id.gambarlapangan);
         TextView nameholder= view.findViewById(R.id.namalapangan);
         TextView alamatlapangan = view.findViewById(R.id.lokasilapangan);
-        TextView cobain= view.findViewById(R.id.cobain);
         Button direction = view.findViewById(R.id.directionbutton);
         whatsapp = view.findViewById(R.id.whatsapptempat);
         telepon=view.findViewById(R.id.telepontempat);
