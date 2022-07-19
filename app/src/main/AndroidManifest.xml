@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CobaSkripsi.NoActionBar">
-        <activity android:name=".PengelolaUI.profilemitra.TentangAplikasiMitra"></activity>
+        <activity android:name=".AdminUI.profileadmin.TentangAplikasiAdmin"></activity>
+        <activity android:name=".PengelolaUI.profilemitra.TentangAplikasiMitra" />
         <activity android:name=".PengelolaUI.profilemitra.PelayananPelangganMitra" />
         <activity android:name=".PengelolaUI.profilemitra.PanduanAplikasiMitra" />
         <activity android:name=".UserUI.profilepelanggan.PelayananPelanggan" />

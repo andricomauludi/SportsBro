@@ -16,7 +16,7 @@ public class ProfileAdmin extends AppCompatActivity {
 
 
     TextView namaadmin, notelpadmin, emailadmin;
-    Button logoutt;
+    Button logoutt, tentang;
 
 
     @Override
@@ -27,10 +27,18 @@ public class ProfileAdmin extends AppCompatActivity {
         namaadmin = findViewById(R.id.namaadminprofile);
         notelpadmin= findViewById(R.id.nomortelpadminprofile);
         emailadmin= findViewById(R.id.emailadminprofile);
+        tentang=findViewById(R.id.tentangaplikasiadmin);
 
         namaadmin.setText(preferences.getUsername(ProfileAdmin.this));
         notelpadmin.setText(preferences.getNotelp(ProfileAdmin.this));
         emailadmin.setText(preferences.getEmail(ProfileAdmin.this));
+
+        tentang.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ProfileAdmin.this, TentangAplikasiAdmin.class));
+            }
+        });
 
     }
 
@@ -42,4 +50,6 @@ public class ProfileAdmin extends AppCompatActivity {
         finish();
 
     }
+
+
 }
