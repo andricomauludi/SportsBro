@@ -1,16 +1,25 @@
 package com.example.cobaskripsi;
 
 public class UserModel {
-    String nomortelpuser, password, role, username,iduser, emailuser;
+    String nomortelpuser, role, username,iduser, emailuser, useridauth;
 
-    public UserModel(String nomortelpuser, String password, String role, String username, String iduser, String emailuser) {
+    public String getUseridauth() {
+        return useridauth;
+    }
+
+    public void setUseridauth(String useridauth) {
+        this.useridauth = useridauth;
+    }
+
+    public UserModel(String nomortelpuser, String role, String username, String iduser, String emailuser, String useridauth) {
         this.nomortelpuser = nomortelpuser;
-        this.password = password;
         this.role = role;
         this.username = username;
         this.iduser = iduser;
         this.emailuser = emailuser;
+        this.useridauth = useridauth;
     }
+
 
     public String getEmailuser() {
         return emailuser;
@@ -30,14 +39,6 @@ public class UserModel {
 
     public void setNomortelpuser(String nomortelpuser) {
         this.nomortelpuser = nomortelpuser;
-    }
-
-    public String getPassword() {
-        return password;
-    }
-
-    public void setPassword(String password) {
-        this.password = password;
     }
 
     public String getRole() {

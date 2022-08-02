@@ -17,7 +17,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.CobaSkripsi.NoActionBar">
-        <activity android:name=".AdminUI.profileadmin.TentangAplikasiAdmin"></activity>
+        <activity android:name=".ForgotPassword"></activity>
+        <activity android:name=".AdminUI.profileadmin.TentangAplikasiAdmin" />
         <activity android:name=".PengelolaUI.profilemitra.TentangAplikasiMitra" />
         <activity android:name=".PengelolaUI.profilemitra.PelayananPelangganMitra" />
         <activity android:name=".PengelolaUI.profilemitra.PanduanAplikasiMitra" />
@@ -70,7 +71,8 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".LoginActivity" />
+        <activity android:name=".LoginActivity"
+            />
         <activity android:name=".UserUI.jenisolahraga.caritempat.MainListLapangan" />
     </application>
 

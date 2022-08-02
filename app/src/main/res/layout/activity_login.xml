@@ -17,13 +17,12 @@
         android:layout_gravity="center_horizontal"
         android:src="@drawable/sportsbrologo" />
 
-
     <EditText
-        android:id="@+id/username"
-        android:inputType="text"
+        android:id="@+id/emaillogin"
+        android:inputType="textEmailAddress"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:hint="Username"
+        android:hint="Email"
         android:layout_marginStart="20dp"
         android:background="@drawable/input_text"
         android:layout_marginEnd="20dp"
@@ -42,6 +41,25 @@
         android:padding="10dp"
         android:drawableRight="@drawable/ic_baseline_visibility_off_24"
         android:longClickable="false"/>
+
+    <TextView
+        android:id="@+id/lupapassword"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Lupa Password?"
+        android:textSize="15sp"
+        android:textColor="@color/white"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        />
+
+    <ProgressBar
+        android:id="@+id/progressbarlogin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:visibility="gone"
+        />
 
     <Button
         android:id="@+id/login"

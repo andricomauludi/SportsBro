@@ -1,7 +1,6 @@
 package com.example.cobaskripsi.UserUI;
 
 import android.os.Bundle;
-import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.navigation.NavController;
@@ -10,7 +9,6 @@ import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
 
 import com.example.cobaskripsi.R;
-import com.example.cobaskripsi.preferences;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class Homepelanggan extends AppCompatActivity {

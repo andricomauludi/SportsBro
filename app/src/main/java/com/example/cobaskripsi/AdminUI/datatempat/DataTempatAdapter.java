@@ -11,10 +11,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cobaskripsi.PengelolaUI.datalapangan.TempatcontributorsModel;
 import com.example.cobaskripsi.R;
 import com.example.cobaskripsi.UserUI.jenisolahraga.caritempat.TempatModel;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
+import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class DataTempatAdapter extends FirebaseRecyclerAdapter<TempatModel, DataTempatAdapter.ViewHolder> {
@@ -35,6 +40,22 @@ public class DataTempatAdapter extends FirebaseRecyclerAdapter<TempatModel, Data
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull TempatModel model) {
         holder.namatempat.setText(model.getNamatempat());
         holder.jenisolahraga.setText("Olahraga "+model.getJenisolahraga());
+        FirebaseDatabase.getInstance().getReference().child("tempatcontributors")
+                .addValueEventListener(new ValueEventListener() {
+                    @Override
+                    public void onDataChange(@NonNull DataSnapshot snapshot) {
+                        for (DataSnapshot childSnapshot : snapshot.getChildren()){
+                            TempatcontributorsModel tempatcontributorsModel = childSnapshot.getValue(TempatcontributorsModel.class);
+                            if (tempatcontributorsModel.getIdtempat().equals(model.getIdtempat())){
+                                holder.simpanmitra=tempatcontributorsModel.getUsername();
+                            }
+                        }}
+
+                    @Override
+                    public void onCancelled(@NonNull DatabaseError error) {
+
+                    }
+                });
         holder.detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -43,7 +64,7 @@ public class DataTempatAdapter extends FirebaseRecyclerAdapter<TempatModel, Data
                 intent.putExtra("JENISOLAHRAGA",model.getJenisolahraga());
                 intent.putExtra("ALAMAT", model.getAlamattempat());
                 intent.putExtra("NOTELP", model.getNotelptempat());
-                intent.putExtra("MITRA", "dummy");
+                intent.putExtra("MITRA", holder.simpanmitra);
                 context.startActivity(intent);
             }
         });
@@ -60,7 +81,7 @@ public class DataTempatAdapter extends FirebaseRecyclerAdapter<TempatModel, Data
 
         TextView namatempat, jenisolahraga;
         Button detail,delete,edit;
-
+        String simpanmitra ="";
         public ViewHolder(View view) {
             super(view);
             context=context=view.getContext();

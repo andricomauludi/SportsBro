@@ -15,6 +15,14 @@
       },
       "oauth_client": [
         {
+          "client_id": "482309713239-cnnospif8jc0k9vvhlrtl7v3p8fjvp4q.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.cobaskripsi",
+            "certificate_hash": "cef175f6e0038ccb897961faca2f356bb7c21355"
+          }
+        },
+        {
           "client_id": "482309713239-2si9hcf6ioflar62d2a8blrgc76ce1d0.apps.googleusercontent.com",
           "client_type": 3
         }

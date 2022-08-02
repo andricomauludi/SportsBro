@@ -12,8 +12,8 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.cobaskripsi.LoginActivity;
 import com.example.cobaskripsi.R;
-import com.example.cobaskripsi.UserUI.profilepelanggan.TentangAplikasiPelanggan;
 import com.example.cobaskripsi.preferences;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class ProfileMitra extends AppCompatActivity {
 
@@ -54,6 +54,7 @@ public class ProfileMitra extends AppCompatActivity {
                 builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
+                        FirebaseAuth.getInstance().signOut();
                         preferences.clearData(ProfileMitra.this);
                         Intent intent=new Intent(ProfileMitra.this,LoginActivity.class);
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);

@@ -16,6 +16,7 @@ import androidx.fragment.app.Fragment;
 import com.example.cobaskripsi.LoginActivity;
 import com.example.cobaskripsi.R;
 import com.example.cobaskripsi.preferences;
+import com.google.firebase.auth.FirebaseAuth;
 
 public class ProfilepelangganFragment extends Fragment {
 
@@ -89,9 +90,11 @@ public class ProfilepelangganFragment extends Fragment {
     }
 
     public void logout(){
-        startActivity(new Intent(getActivity(), LoginActivity.class));
+        FirebaseAuth.getInstance().signOut();
         preferences.clearData(getActivity());
-        getActivity().finish();
+        Intent intent = new Intent(getActivity(), LoginActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+        startActivity(intent);
     }
 }
 

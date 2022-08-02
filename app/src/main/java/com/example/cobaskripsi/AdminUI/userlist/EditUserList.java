@@ -34,10 +34,11 @@ import java.util.Map;
 public class EditUserList extends AppCompatActivity {
 
     EditText username,email,notelp;
-    String username1,email1,notelp1,role1,rolebaru,iduser, tempatterpilih, ada,tempatcont,tempatcontjadi;
+    String username1,email1,notelp1,role1,rolebaru,iduser, tempatterpilih, namaterpilih, ada,tempatcont,tempatcontjadi,tempatrolesebelum;
     Button back;
     Spinner spinnerrole;
     DatabaseReference reference;
+    TextView role;
 
 
     @Override
@@ -53,6 +54,8 @@ public class EditUserList extends AppCompatActivity {
         email=findViewById(R.id.emailedituserlist);
         notelp=findViewById(R.id.notelpedituserulist);
         back=findViewById(R.id.backedituserlist);
+        role=findViewById(R.id.rolesebelum);
+        TextView tempat = findViewById(R.id.tempatedituser);
         LinearLayout layout =findViewById(R.id.rootlayoutedituser3);
         reference = FirebaseDatabase.getInstance().getReference("user");
 
@@ -62,10 +65,20 @@ public class EditUserList extends AppCompatActivity {
         notelp1 = intent.getStringExtra("NOTELP");
         role1 = intent.getStringExtra("ROLE");
         iduser = intent.getStringExtra("IDUSER");
+        tempatrolesebelum = intent.getStringExtra("NAMATEMPAT");
 
         username.setText(username1);
         email.setText(email1);
         notelp.setText(notelp1);
+
+        if (tempatrolesebelum.equals("")){
+            role.setText(role1);
+        }
+        else{
+            role.setText(role1+" untuk "+tempatrolesebelum);
+        }
+
+
 
 
         ArrayList<String> spinnerArray = new ArrayList<String>(24);
@@ -82,9 +95,10 @@ public class EditUserList extends AppCompatActivity {
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String roleterpilih = spinnerArray.get(position);
                 layout.removeAllViews();
+                tempat.setVisibility(View.GONE);
                 if (roleterpilih.equals("mitra")){
 
-                    TextView tempat = findViewById(R.id.tempatedituser);
+
 
                     ArrayList<String> arraytempat = new ArrayList<String>();
                     ArrayList<String> arraynamatempat = new ArrayList<String>();
@@ -109,12 +123,13 @@ public class EditUserList extends AppCompatActivity {
                                         spinnertempat.setLayoutParams(params);
 
                                         layout.addView(spinnertempat);
-                                        tempat.setText("Tempat  :");
+                                        tempat.setVisibility(View.VISIBLE);
 
                                         spinnertempat.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
                                             @Override
                                             public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                                                 tempatterpilih=arraynamatempat.get(position);
+                                                namaterpilih = arraytempat.get(position);
                                                 FirebaseDatabase.getInstance().getReference().child("tempatcontributors")
                                                         .addValueEventListener(new ValueEventListener() {
                                                             @Override
@@ -126,7 +141,7 @@ public class EditUserList extends AppCompatActivity {
                                                                         ada="ada";
                                                                         tempatcont= tempatcontributorsModel.getIdtempatcontributors();
 
-                                                                    }else if (!ada.equals("ada")){
+                                                                    }else {
                                                                         ada="tidak ada";
                                                                     }
                                                                 }
@@ -201,6 +216,8 @@ public class EditUserList extends AppCompatActivity {
                     Map<String,Object> map = new HashMap<>();
                     map.put("idtempat",tempatterpilih);
                     map.put("iduser", iduser);
+                    map.put("namatempat",namaterpilih);
+                    map.put("username",username1);
                     map.put("idtempatcontributors",key);
                     FirebaseDatabase.getInstance().getReference().child("tempatcontributors").child(key)
                             .setValue(map)

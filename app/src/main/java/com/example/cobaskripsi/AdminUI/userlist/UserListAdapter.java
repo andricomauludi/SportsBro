@@ -13,11 +13,15 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.example.cobaskripsi.PengelolaUI.datalapangan.TempatcontributorsModel;
 import com.example.cobaskripsi.R;
 import com.example.cobaskripsi.UserModel;
 import com.firebase.ui.database.FirebaseRecyclerAdapter;
 import com.firebase.ui.database.FirebaseRecyclerOptions;
+import com.google.firebase.database.DataSnapshot;
+import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.database.ValueEventListener;
 
 
 public class UserListAdapter extends FirebaseRecyclerAdapter<UserModel, UserListAdapter.ViewHolder> {
@@ -39,6 +43,25 @@ public class UserListAdapter extends FirebaseRecyclerAdapter<UserModel, UserList
     protected void onBindViewHolder(@NonNull ViewHolder holder, int position, @NonNull UserModel model) {
         holder.namauser.setText(model.getUsername());
         holder.roleuser.setText("Role "+model.getRole());
+        if (model.getRole().equals("mitra")){
+            FirebaseDatabase.getInstance().getReference().child("tempatcontributors")
+                    .addValueEventListener(new ValueEventListener() {
+                        @Override
+                        public void onDataChange(@NonNull DataSnapshot snapshot) {
+                            for (DataSnapshot childSnapshot : snapshot.getChildren()){
+                                TempatcontributorsModel tempatcontributorsModel = childSnapshot.getValue(TempatcontributorsModel.class);
+                                if (tempatcontributorsModel.getIduser().equals(model.getIduser())){
+                                    holder.tempat.setText(tempatcontributorsModel.getNamatempat());
+                                    holder.simpantempat=tempatcontributorsModel.getNamatempat();
+                                }
+                        }}
+
+                        @Override
+                        public void onCancelled(@NonNull DatabaseError error) {
+
+                        }
+                    });
+            }
         holder.detail.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -47,6 +70,7 @@ public class UserListAdapter extends FirebaseRecyclerAdapter<UserModel, UserList
                 intent.putExtra("ROLE",model.getRole());
                 intent.putExtra("EMAIL", model.getEmailuser());
                 intent.putExtra("NOTELP", model.getNomortelpuser());
+                intent.putExtra("NAMATEMPAT",holder.simpantempat);
                 context.startActivity(intent);
             }
         });
@@ -59,6 +83,7 @@ public class UserListAdapter extends FirebaseRecyclerAdapter<UserModel, UserList
                 intent.putExtra("ROLE",model.getRole());
                 intent.putExtra("EMAIL", model.getEmailuser());
                 intent.putExtra("NOTELP", model.getNomortelpuser());
+                intent.putExtra("NAMATEMPAT",holder.simpantempat);
                 context.startActivity(intent);
             }
         });
@@ -92,8 +117,9 @@ public class UserListAdapter extends FirebaseRecyclerAdapter<UserModel, UserList
 
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView namauser, roleuser;
+        TextView namauser, roleuser,tempat;
         Button detail, delete,edit;
+        String simpantempat="";
 
         public ViewHolder(View view) {
             super(view);
@@ -103,6 +129,7 @@ public class UserListAdapter extends FirebaseRecyclerAdapter<UserModel, UserList
             detail=view.findViewById(R.id.detailuseruserlist);
             edit = view.findViewById(R.id.edituseruserlist);
             delete = view.findViewById(R.id.deleteuseruserlist);
+            tempat = view.findViewById(R.id.tempatuseruserlist);
 
         }
 

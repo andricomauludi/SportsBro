@@ -20,24 +20,28 @@
             android:background="@drawable/button_darkwhite"
             android:padding="10dp"
             android:orientation="vertical">
+            <TextView
+                android:id="@+id/namauseruserlist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Nama User"
+                android:textSize="20sp"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:id="@+id/roleuseruserlist"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Role User"
+                android:textSize="15sp"
+                android:textStyle="bold"
+                />
+            <TextView
+                android:id="@+id/tempatuseruserlist"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
 
-
-                <TextView
-                    android:id="@+id/namauseruserlist"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Nama User"
-                    android:textSize="20sp"
-                    android:textStyle="bold"
-                    />
-                <TextView
-                    android:id="@+id/roleuseruserlist"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Role User"
-                    android:textSize="15sp"
-                    android:textStyle="bold"
-                    />
+                android:textSize="15sp"/>
             <LinearLayout
                 android:orientation="horizontal"
                 android:layout_width="wrap_content"

@@ -24,8 +24,8 @@
             android:textColor="@color/darkteal"
             android:textStyle="bold"
             android:gravity="top"
-            android:textSize="30sp"
-            android:layout_marginBottom="35dp"/>
+            android:textSize="30sp" />
+
 
         <EditText
             android:id="@+id/namauseredituserlist"
@@ -56,6 +56,26 @@
             android:textSize="15sp"
             android:layout_marginBottom="15dp"
             />
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Role Sebelumnya :"
+            android:textColor="@color/darkteal"
+            android:textStyle="bold"
+            android:gravity="top"
+            android:textSize="15sp"
+            />
+        <TextView
+            android:id="@+id/rolesebelum"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Role Sebelumnya :"
+            android:textColor="@color/darkteal"
+            android:textStyle="bold"
+            android:gravity="top"
+            android:textSize="15sp"
+            android:layout_marginBottom="15dp"/>
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -106,6 +126,7 @@
 
                 <TextView
                     android:id="@+id/tempatedituser"
+                    android:text="Tempat :"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:textColor="@color/black"
