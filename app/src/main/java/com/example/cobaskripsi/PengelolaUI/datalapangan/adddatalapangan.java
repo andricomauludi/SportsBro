@@ -27,7 +27,7 @@ import java.util.Map;
 
 public class adddatalapangan extends AppCompatActivity {
 
-    EditText namalapangan;
+    EditText namalapangan,deskripsilapangan;
     Button submit, back;
     CheckBox[] addcheckbox;
     String jamtersedia, jamtersediabarustring;
@@ -39,6 +39,7 @@ public class adddatalapangan extends AppCompatActivity {
 
         namalapangan=findViewById(R.id.addnamalapangan);
         submit=findViewById(R.id.tambahdatalapangan);
+        deskripsilapangan=findViewById(R.id.adddeskripsilapangan);
 
         LinearLayout layout = new LinearLayout(adddatalapangan.this);
         layout=findViewById(R.id.rootlayoutadddatalapangan);
@@ -178,6 +179,7 @@ public class adddatalapangan extends AppCompatActivity {
         String key = FirebaseDatabase.getInstance().getReference().child("lapangan").push().getKey();
         Map<String,Object> map = new HashMap<>();
         map.put("namalapangan",namalapangan.getText().toString());
+        map.put("deskripsilapangan",deskripsilapangan.getText().toString());
         map.put("idtempat", preferences.getIdtempatmitra(getApplicationContext()));
         map.put("jamtersedia",jamtersediabarustring);
         map.put("idlapangan",key);

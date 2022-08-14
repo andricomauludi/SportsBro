@@ -53,18 +53,6 @@
         android:longClickable="false"/>
 
     <EditText
-        android:id="@+id/nomortelpuser"
-        android:inputType="number"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:hint="Nomor Telepon"
-        android:layout_marginStart="20dp"
-        android:background="@drawable/input_text"
-        android:layout_marginEnd="20dp"
-        android:layout_marginTop="10dp"
-        android:padding="10dp"/>
-
-    <EditText
         android:id="@+id/emailuser"
         android:inputType="textEmailAddress"
         android:layout_width="match_parent"
@@ -76,6 +64,44 @@
         android:layout_marginTop="10dp"
         android:padding="10dp"/>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:background="@drawable/input_text"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:orientation="horizontal">
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="+62"
+            android:textColor="@color/black"
+            android:textSize="18sp"/>
+        <EditText
+            android:id="@+id/nomortelpuser"
+            android:inputType="number"
+            android:layout_marginStart="10dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Nomor Telepon" />
+
+    </LinearLayout>
+
+
+
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        android:textSize="10sp"
+        android:text="Contoh Nomor Valid : +62 81212121212"
+        android:textColor="@color/white"/>
     <ProgressBar
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

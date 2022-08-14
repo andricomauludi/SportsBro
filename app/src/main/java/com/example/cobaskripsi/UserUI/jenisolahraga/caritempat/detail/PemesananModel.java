@@ -13,8 +13,9 @@ public class PemesananModel {
     String statuspemesanan;
     String idpemesanan;
     String iduser;
+    String notelptempat;
 
-    public PemesananModel(String idtempat, String idlapangan, String namapemesan, String nomortelppemesan, String tanggalpemesanan, String timestamp, String waktupemesanan, String jenisolahraga, String namalapangan, String statuspemesanan, String idpemesanan, String iduser, String namatempat) {
+    public PemesananModel(String idtempat, String idlapangan, String namapemesan, String nomortelppemesan, String tanggalpemesanan, String timestamp, String waktupemesanan, String jenisolahraga, String namalapangan, String statuspemesanan, String idpemesanan, String iduser, String notelptempat, String namatempat) {
         this.idtempat = idtempat;
         this.idlapangan = idlapangan;
         this.namapemesan = namapemesan;
@@ -27,7 +28,16 @@ public class PemesananModel {
         this.statuspemesanan = statuspemesanan;
         this.idpemesanan = idpemesanan;
         this.iduser = iduser;
+        this.notelptempat = notelptempat;
         this.namatempat = namatempat;
+    }
+
+    public String getNotelptempat() {
+        return notelptempat;
+    }
+
+    public void setNotelptempat(String notelptempat) {
+        this.notelptempat = notelptempat;
     }
 
     public String getIduser() {

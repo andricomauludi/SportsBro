@@ -64,12 +64,25 @@ public class AdapterListLapangan extends RecyclerView.Adapter<AdapterListLapanga
 
 
         double jarak = getDistance(latitudeTujuan, longitudeTujuan, holder.latitudeSaya, holder.longitudeSaya);
-        jarak = Math.ceil(jarak / 1000);
-        String stringjarak = jarak+"";
+        jarak = (jarak / 1000);
+        double roundOff = (double) Math.round(jarak * 10) / 10;
+        String stringjarak = roundOff+"";
 
         holder.jarak.setText(stringjarak + " km");
         holder.alamat.setText(tempatModel.getAlamattempat());
-        mStorageReference = FirebaseStorage.getInstance().getReference().child("picture/"+tempatModel.getGambar()+".jpg");
+
+        String namagambar =tempatModel.getGambar();
+        String[] namagambarafter=namagambar.split("\\.");
+
+        String namafile =namagambar;
+
+
+
+        mStorageReference = FirebaseStorage.getInstance().getReference().child("picture/"+tempatModel.getGambar());
+
+
+
+
 
         try {
             final File localFile = File.createTempFile("girl","jpg");

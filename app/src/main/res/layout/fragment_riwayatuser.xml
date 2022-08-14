@@ -56,7 +56,7 @@
                     android:id="@+id/ditolak"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Ditolak"
+                    android:text="Ditolak / Batal"
                     android:textSize="8sp"
                     app:backgroundTint="@null"
                     android:textColor="@color/black"
@@ -72,6 +72,19 @@
                 android:gravity="center"
                 android:padding="10dp"
                 >
+
+                <Button
+                    android:id="@+id/pengajuanpembatalan"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Pengajuan Pembatalan"
+                    app:backgroundTint="@null"
+                    android:textColor="@color/black"
+                    android:background="@drawable/button_darkwhite"
+                    android:textSize="8sp"
+                    android:layout_margin="2dp"
+
+                    />
 
                 <Button
                     android:id="@+id/semuariwayat"

@@ -1,58 +1,96 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.cobaskripsi">
+    package="com.example.cobaskripsi"
+    android:exported="true">
     <!--
          The ACCESS_COARSE/FINE_LOCATION permissions are not required to use
          Google Maps Android API v2, but you must specify either coarse or fine
          location permissions for the "MyLocation" functionality.
     -->
-    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION" />
-    <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION" />
+    <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"
+        android:exported="true"/>
+    <uses-permission android:name="android.permission.INTERNET"
+        android:exported="true"/>
+    <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"
+        android:exported="true"/>
 
     <application
+        android:taskAffinity=".string"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.CobaSkripsi.NoActionBar">
-        <activity android:name=".ForgotPassword"></activity>
-        <activity android:name=".AdminUI.profileadmin.TentangAplikasiAdmin" />
-        <activity android:name=".PengelolaUI.profilemitra.TentangAplikasiMitra" />
-        <activity android:name=".PengelolaUI.profilemitra.PelayananPelangganMitra" />
-        <activity android:name=".PengelolaUI.profilemitra.PanduanAplikasiMitra" />
-        <activity android:name=".UserUI.profilepelanggan.PelayananPelanggan" />
-        <activity android:name=".UserUI.profilepelanggan.TentangAplikasiPelanggan" />
-        <activity android:name=".UserUI.profilepelanggan.PanduanAplikasiPelanggan" />
-        <activity android:name=".PengelolaUI.datatempatmitra.editdatatempatmitra" />
-        <activity android:name=".PengelolaUI.datatempatmitra.datatempatmitra" />
-        <activity android:name=".AdminUI.datatempat.editdatatempat" />
-        <activity android:name=".AdminUI.datatempat.addtempat" />
-        <activity android:name=".AdminUI.userlist.EditUserList" />
-        <activity android:name=".AdminUI.profileadmin.ProfileAdmin" />
-        <activity android:name=".AdminUI.userlist.DetailUserList" />
-        <activity android:name=".AdminUI.userlist.UserList" />
-        <activity android:name=".AdminUI.datatempat.DetailDataTempat" />
-        <activity android:name=".AdminUI.datatempat.DataTempat" />
-        <activity android:name=".PengelolaUI.profilemitra.ProfileMitra" />
-        <activity android:name=".PengelolaUI.bookinglist.DetailBookingList" />
-        <activity android:name=".PengelolaUI.bookinglist.BookingList" />
-        <activity android:name=".PengelolaUI.pendinglist.DetailPendingList" />
-        <activity android:name=".PengelolaUI.pendinglist.PendingList" />
-        <activity android:name=".PengelolaUI.datalapangan.editdatalapangan" />
-        <activity android:name=".PengelolaUI.datalapangan.adddatalapangan" />
+        android:exported="true"
+        android:theme="@style/Theme.CobaSkripsi.NoActionBar"
+        >
+        <activity android:name=".ForgotPassword"
+            android:exported="true"></activity>
+        <activity android:name=".AdminUI.profileadmin.TentangAplikasiAdmin"
+            android:exported="true"/>
+        <activity android:name=".PengelolaUI.profilemitra.TentangAplikasiMitra"
+            android:exported="true"/>
+        <activity android:name=".PengelolaUI.profilemitra.PelayananPelangganMitra"
+            android:exported="true"/>
+        <activity android:name=".PengelolaUI.profilemitra.PanduanAplikasiMitra"
+            android:exported="true"/>
+        <activity android:name=".UserUI.profilepelanggan.PelayananPelanggan"
+            android:exported="true"/>
+        <activity android:name=".UserUI.profilepelanggan.TentangAplikasiPelanggan"
+            android:exported="true"/>
+        <activity android:name=".UserUI.profilepelanggan.PanduanAplikasiPelanggan"
+            android:exported="true"/>
+        <activity android:name=".PengelolaUI.datatempatmitra.editdatatempatmitra"
+            android:exported="true"/>
+        <activity android:name=".PengelolaUI.datatempatmitra.datatempatmitra"
+            android:exported="true"/>
+        <activity android:name=".AdminUI.datatempat.editdatatempat"
+            android:exported="true"/>
+        <activity android:name=".AdminUI.datatempat.addtempat"
+            android:exported="true"/>
+        <activity android:name=".AdminUI.userlist.EditUserList"
+            android:exported="true"/>
+        <activity android:name=".AdminUI.profileadmin.ProfileAdmin"
+            android:exported="true"/>
+        <activity android:name=".AdminUI.userlist.DetailUserList"
+            android:exported="true"/>
+        <activity android:name=".AdminUI.userlist.UserList"
+            android:exported="true"/>
+        <activity android:name=".AdminUI.datatempat.DetailDataTempat"
+            android:exported="true"/>
+        <activity android:name=".AdminUI.datatempat.DataTempat"
+            android:exported="true"/>
+        <activity android:name=".PengelolaUI.profilemitra.ProfileMitra"
+            android:exported="true"/>
+        <activity android:name=".PengelolaUI.bookinglist.DetailBookingList"
+            android:exported="true"/>
+        <activity android:name=".PengelolaUI.bookinglist.BookingList"
+            android:exported="true"/>
+        <activity android:name=".PengelolaUI.pendinglist.DetailPendingList"
+            android:exported="true"/>
+        <activity android:name=".PengelolaUI.pendinglist.PendingList"
+            android:exported="true"/>
+        <activity android:name=".PengelolaUI.datalapangan.editdatalapangan"
+            android:exported="true"/>
+        <activity android:name=".PengelolaUI.datalapangan.adddatalapangan"
+            android:exported="true"/>
         <activity
             android:name=".PengelolaUI.datalapangan.datalapanganmitra"
             android:label="@string/title_activity_datalapanganmitra"
             android:theme="@style/Theme.CobaSkripsi.NoActionBar" />
-        <activity android:name=".UserUI.riwayatpemesanan.DetailRiwayatPelanggan" />
-        <activity android:name=".RegisterActivity" />
-        <activity android:name=".AdminUI.HomeadminActivity" />
-        <activity android:name=".PengelolaUI.HomemitraActivity" />
-        <activity android:name=".UserUI.jenisolahraga.caritempat.detail.addpemesanan" />
-        <activity android:name=".UserUI.jenisolahraga.caritempat.cobahitungjarak" />
-        <activity android:name=".UserUI.jenisolahraga.caritempat.detail.DetailLapangan" />
+        <activity android:name=".UserUI.riwayatpemesanan.DetailRiwayatPelanggan"
+            android:exported="true"/>
+        <activity android:name=".RegisterActivity"
+            android:exported="true"/>
+        <activity android:name=".AdminUI.HomeadminActivity"
+            android:exported="true"/>
+        <activity android:name=".PengelolaUI.HomemitraActivity"
+            android:exported="true"/>
+        <activity android:name=".UserUI.jenisolahraga.caritempat.detail.addpemesanan"
+            android:exported="true"/>
+        <activity android:name=".UserUI.jenisolahraga.caritempat.cobahitungjarak"
+            android:exported="true"/>
+
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
              (See the file "res/values/google_maps_api.xml").
@@ -63,17 +101,25 @@
         -->
         <activity
             android:name=".UserUI.Homepelanggan"
-            android:label="@string/title_activity_home" />
-        <activity android:name=".SplashScreenActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+            android:label="@string/title_activity_home"
+            android:exported="true"
+            />
+        <activity android:name=".SplashScreenActivity"
+            android:exported="true">
+            <intent-filter
+                android:exported="true">
+                <action android:name="android.intent.action.MAIN"
+                    android:exported="true"/>
 
-                <category android:name="android.intent.category.LAUNCHER" />
+                <category android:name="android.intent.category.LAUNCHER"
+                    android:exported="true"/>
             </intent-filter>
         </activity>
         <activity android:name=".LoginActivity"
+            android:exported="true"
             />
-        <activity android:name=".UserUI.jenisolahraga.caritempat.MainListLapangan" />
+        <activity android:name=".UserUI.jenisolahraga.caritempat.MainListLapangan"
+            android:exported="true"/>
     </application>
 
 </manifest>

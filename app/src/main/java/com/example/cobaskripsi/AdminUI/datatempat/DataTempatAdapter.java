@@ -1,6 +1,8 @@
 package com.example.cobaskripsi.AdminUI.datatempat;
 
+import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -71,8 +73,40 @@ public class DataTempatAdapter extends FirebaseRecyclerAdapter<TempatModel, Data
         holder.edit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                context.startActivity(new Intent(context,editdatatempat.class));
+                Intent intent = new Intent(context, editdatatempat.class);
+                intent.putExtra("IDTEMPAT", model.getIdtempat());
+                intent.putExtra("NAMATEMPAT", model.getNamatempat());
+                intent.putExtra("JENISOLAHRAGA",model.getJenisolahraga());
+                intent.putExtra("ALAMAT", model.getAlamattempat());
+                intent.putExtra("NOTELP", model.getNotelptempat());
+                intent.putExtra("MARKER", model.getMarker());
+                context.startActivity(intent);
             }
+        });
+
+        holder.delete.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder=new AlertDialog.Builder(holder.namatempat.getContext());
+                builder.setTitle("Delete Panel");
+                builder.setMessage("Hapus "+model.getNamatempat()+" ?");
+
+                builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        FirebaseDatabase.getInstance().getReference().child("tempat")
+                                .child(getRef(position).getKey()).removeValue();
+                    }
+                });
+
+                builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+
+                builder.show();            }
         });
 
     }

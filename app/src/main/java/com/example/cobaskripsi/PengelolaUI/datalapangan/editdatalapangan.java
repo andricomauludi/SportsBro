@@ -26,8 +26,8 @@ import java.util.Map;
 public class editdatalapangan extends AppCompatActivity {
 
     Button back, submit;
-    String idtempat, jamtersedia,namalapangan,idlapangan,jamtersediabarustring;
-    EditText namalapangan1;
+    String idtempat, jamtersedia,namalapangan,idlapangan,jamtersediabarustring,deskripsilapangan;
+    EditText namalapangan1,deskripsilapangan1;
     TextView jamtersediashow;
 
     DatabaseReference reference;
@@ -37,6 +37,7 @@ public class editdatalapangan extends AppCompatActivity {
         setContentView(R.layout.activity_editdatalapangan);
 
         namalapangan1=findViewById(R.id.namalapanganeditdatamitra);
+        deskripsilapangan1=findViewById(R.id.deskripsilapanganeditdatamitra);
         jamtersediashow=findViewById(R.id.jamtersediamitraedit);
         reference = FirebaseDatabase.getInstance().getReference("lapangan");
 
@@ -45,7 +46,11 @@ public class editdatalapangan extends AppCompatActivity {
         jamtersedia = intent.getStringExtra("JAMTERSEDIA");
         idtempat = intent.getStringExtra("IDTEMPAT");
         idlapangan = intent.getStringExtra("IDLAPANGAN");
+        deskripsilapangan = intent.getStringExtra("DESKRIPSILAPANGAN");
+
+
         namalapangan1.setText(namalapangan);
+        deskripsilapangan1.setText(deskripsilapangan);
         String str = String.valueOf(jamtersedia.replaceAll("[\\[\\]\\(\\)]", ""));
         ArrayList<String> strlist = new ArrayList<String>(Arrays.asList(str.split(",")));
         jamtersediashow.setText("Jam Buka = "+jamdictionary(strlist.get(0))+" Jam Tutup : "+jamdictionary(strlist.get(strlist.size()-1)));
@@ -163,7 +168,7 @@ public class editdatalapangan extends AppCompatActivity {
     }
 
     public void update(View view){
-        if (isNamaLapanganChanged() || isJamTersediaChanged()){
+        if (isNamaLapanganChanged() || isJamTersediaChanged()|| isDeskripsiLapanganChanged()){
             Toast.makeText(this, "Data sudah diperbaharui",Toast.LENGTH_LONG).show();
             startActivity(new Intent(this,datalapanganmitra.class));
             finish();
@@ -172,6 +177,16 @@ public class editdatalapangan extends AppCompatActivity {
             Toast.makeText(this, "Data tidak ada yang berubah",Toast.LENGTH_LONG).show();
         }
 
+    }
+
+    private boolean isDeskripsiLapanganChanged() {
+        if (!deskripsilapangan.equals(deskripsilapangan1.getText().toString())){
+            reference.child(idlapangan).child("deskripsilapangan").setValue(deskripsilapangan1.getText().toString());
+            return true;
+        }
+        else{
+            return false;
+        }
     }
 
     private boolean isNamaLapanganChanged() {

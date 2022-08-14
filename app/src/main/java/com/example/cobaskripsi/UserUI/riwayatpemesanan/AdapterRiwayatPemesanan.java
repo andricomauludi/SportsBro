@@ -68,16 +68,20 @@ public class AdapterRiwayatPemesanan extends RecyclerView.Adapter<AdapterRiwayat
         }else if (statuspemesanan.equals("Booked")){
             holder.status.setTextColor(Color.GREEN);
             holder.status.setText(statuspemesanan.substring(0, 1).toUpperCase() + statuspemesanan.substring(1).toLowerCase());
-        }else if (statuspemesanan.equals("Ditolak")){
+        }else if (statuspemesanan.equals("Ditolak")||statuspemesanan.equals("Batal Pesan")){
             holder.status.setTextColor(Color.RED);
             holder.status.setText(statuspemesanan.substring(0, 1).toUpperCase() + statuspemesanan.substring(1).toLowerCase());
-        }
+        }else if (statuspemesanan.equals("Pengajuan Pembatalan")){
+        holder.status.setTextColor(Color.BLUE);
+        holder.status.setText(statuspemesanan.substring(0, 1).toUpperCase() + statuspemesanan.substring(1).toLowerCase());
+    }
 
         holder.lihatriwayat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(v.getContext(), DetailRiwayatPelanggan.class);
                 Bundle extras = new Bundle();
+                extras.putString("IDPEMESANAN", pemesananModel.getIdpemesanan());
                 extras.putString("NAMAPEMESAN", pemesananModel.getNamapemesan());
                 extras.putString("NOTELPPEMESAN", pemesananModel.getNomortelppemesan());
                 extras.putString("TANGGALPEMESANAN", pemesananModel.getTanggalpemesanan());
@@ -86,6 +90,7 @@ public class AdapterRiwayatPemesanan extends RecyclerView.Adapter<AdapterRiwayat
                 extras.putString("NAMATEMPAT", pemesananModel.getNamatempat());
                 extras.putString("NAMALAPANGAN", pemesananModel.getNamalapangan());
                 extras.putString("STATUSPEMESANAN", pemesananModel.getStatuspemesanan());
+                extras.putString("NOMORTELEPON", pemesananModel.getNotelptempat());
                 extras.putString("WAKTUPEMESANAN", simpenlist.toString());
                 intent.putExtras(extras);
                 v.getContext().startActivity(intent);

@@ -14,43 +14,73 @@
         tools:ignore="MissingConstraints"
         >
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <LinearLayout
+            android:padding="5dp"
             android:layout_width="match_parent"
-            android:layout_height="94dp"
+            android:layout_height="wrap_content"
             android:background="@drawable/button_darkwhite"
-            android:orientation="vertical"
+            android:orientation="horizontal"
             >
+            <LinearLayout
+                android:padding="10dp"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+                <TextView
+                    android:id="@+id/namapemesanpendinglist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Nama Pemesan"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                   />
+
+                <TextView
+                    android:id="@+id/tanggalpemesananpendinglist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Tanggal Pemesanan"
+                    android:textSize="15sp"
+                    />
+
+                <TextView
+                    android:id="@+id/statuspemesananpendinglist"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Status Pemesanan"
+                    android:textSize="15sp"
+                   />
+
+            </LinearLayout>
+            <LinearLayout
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                android:gravity="center">
+                <Button
+                    android:layout_gravity="center"
+                    android:id="@+id/detailpemesanpendinglist"
+                    android:layout_width="75dp"
+                    android:layout_height="35dp"
+                    android:text="Detail"
+                    android:textSize="10sp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.908"
+                    app:layout_constraintStart_toEndOf="@+id/namapemesanpendinglist"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.508" />
+
+            </LinearLayout>
 
 
-            <TextView
-                android:id="@+id/namapemesanpendinglist"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Nama Pemesan"
-                android:textSize="20sp"
-                android:textStyle="bold"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.064"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.507" />
-
-            <Button
-                android:id="@+id/detailpemesanpendinglist"
-                android:layout_width="75dp"
-                android:layout_height="35dp"
-                android:text="Detail"
-                android:textSize="10sp"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.908"
-                app:layout_constraintStart_toEndOf="@+id/namapemesanpendinglist"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintVertical_bias="0.508" />
 
 
-        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

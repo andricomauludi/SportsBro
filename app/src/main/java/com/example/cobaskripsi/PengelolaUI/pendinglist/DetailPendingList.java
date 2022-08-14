@@ -4,6 +4,7 @@ import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.graphics.Color;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
@@ -23,8 +24,8 @@ import java.util.Map;
 public class DetailPendingList extends AppCompatActivity {
 
     TextView namapemesan,timestamp,namalapangan,tanggalpemesanan,waktupemesanan,statuspemesanan;
-    String namapemesan1,timestamp1,namalapangan1,tanggalpemesanan1,waktupemesanan1,statuspemesanan1,idpemesanan1;
-    Button tolak, terima, back;
+    String namapemesan1,timestamp1,namalapangan1,tanggalpemesanan1,waktupemesanan1,statuspemesanan1,idpemesanan1,notelppemesan1;
+    Button tolak, terima, back,whatsapp,telepon,terimacancel;
     DatabaseReference reference;
 
     @Override
@@ -40,9 +41,13 @@ public class DetailPendingList extends AppCompatActivity {
         statuspemesanan= findViewById(R.id.statuspemesanandetailpendinglist);
 
 
+
+        whatsapp=findViewById(R.id.whatsapppendinglist);
+        telepon=findViewById(R.id.teleponpendinglist);
         tolak = findViewById(R.id.tolakpendinglist);
         terima = findViewById(R.id.terimapendinglist);
         back = findViewById(R.id.backpendinglist);
+        terimacancel=findViewById(R.id.terimacancelpendinglist);
 
         Intent intent = getIntent();
         namapemesan1 = intent.getStringExtra("NAMAPEMESAN");
@@ -52,6 +57,7 @@ public class DetailPendingList extends AppCompatActivity {
         waktupemesanan1 = intent.getStringExtra("WAKTUPEMESANAN");
         statuspemesanan1 = intent.getStringExtra("STATUSPEMESANAN");
         idpemesanan1 = intent.getStringExtra("IDPEMESANAN");
+        notelppemesan1 = intent.getStringExtra("NOMORTELEPON");
 
         String sudahdipesan;
         String simpen;
@@ -71,12 +77,72 @@ public class DetailPendingList extends AppCompatActivity {
         waktupemesanan.setText(simpenlist.toString());
 
         if(statuspemesanan1.equals("Menunggu Konfirmasi")){
-            statuspemesanan.setTextColor(Color.RED);
+            statuspemesanan.setTextColor(Color.rgb(255,165,0));
             statuspemesanan.setText(statuspemesanan1.substring(0, 1).toUpperCase() + statuspemesanan1.substring(1).toLowerCase());
-        }else{
-            statuspemesanan.setTextColor(Color.GREEN);
+            tolak.setVisibility(View.VISIBLE);
+            terima.setVisibility(View.VISIBLE);
+        }else if(statuspemesanan1.equals("Pengajuan Pembatalan")){
+            statuspemesanan.setTextColor(Color.BLUE);
             statuspemesanan.setText(statuspemesanan1.substring(0, 1).toUpperCase() + statuspemesanan1.substring(1).toLowerCase());
+            terimacancel.setVisibility(View.VISIBLE);
         }
+
+        whatsapp.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder=new AlertDialog.Builder(whatsapp.getContext());
+                builder.setTitle("Whatsapp");
+                builder.setMessage("Anda akan diarahkan ke Whatsapp");
+
+
+                builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String url = "https://api.whatsapp.com/send?phone="+notelppemesan1;
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(url));
+                        startActivity(intent);
+                    }
+                });
+
+
+                builder.show();
+            }
+        });
+
+        telepon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder=new AlertDialog.Builder(telepon.getContext());
+                builder.setTitle("Telepon");
+                builder.setMessage("Anda akan diahrahkan ke menu panggilan");
+
+
+                builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(Intent.ACTION_DIAL);
+                        intent.setData(Uri.parse("tel:"+notelppemesan1));
+                        startActivity(intent);
+                    }
+                });
+
+
+                builder.show();
+            }
+        });
 
         tolak.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -113,6 +179,32 @@ public class DetailPendingList extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         FirebaseDatabase.getInstance().getReference().child("pemesanan").child(idpemesanan1).child("statuspemesanan").setValue("Booked");
+                        startActivity(new Intent(DetailPendingList.this, PendingList.class));
+                        finish();
+                    }
+                });
+
+                builder.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+
+                builder.show();
+
+            }
+        });
+        terimacancel.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                AlertDialog.Builder builder=new AlertDialog.Builder(DetailPendingList.this);
+                builder.setMessage("Terima Pembatalan Pemesann ?");
+
+                builder.setPositiveButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        FirebaseDatabase.getInstance().getReference().child("pemesanan").child(idpemesanan1).child("statuspemesanan").setValue("Batal Pesan");
                         startActivity(new Intent(DetailPendingList.this, PendingList.class));
                         finish();
                     }

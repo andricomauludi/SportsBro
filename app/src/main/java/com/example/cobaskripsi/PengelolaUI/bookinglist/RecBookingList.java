@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
@@ -38,6 +39,7 @@ public class RecBookingList extends Fragment {
     BookingListAdapterBaru myadapter;
     Button berlangsungbookinglist,semuariwayat,expired, filtertanggal;
     ArrayList<PemesananModel> arrayList;
+    TextView pilihan;
     DatabaseReference databaseReference;
 
 
@@ -79,6 +81,7 @@ public class RecBookingList extends Fragment {
         expired=view.findViewById(R.id.expiredbookinglist);
         filtertanggal=view.findViewById(R.id.filtertanggal);
         LinearLayout linearLayout = view.findViewById(R.id.rootlayoutfiltertanggal);
+        pilihan=view.findViewById(R.id.pilihantextbookinglist);
 
         arrayList= new ArrayList<>();
         databaseReference = FirebaseDatabase.getInstance().getReference().child("pemesanan");
@@ -96,6 +99,7 @@ public class RecBookingList extends Fragment {
 
 
         recview.setItemAnimator(null);
+        pilihan.setText("Sedang Berlangsung");
         Query query=databaseReference.orderByChild("idtempat").equalTo(preferences.getIdtempatmitra(getActivity()));
         query.addValueEventListener(new ValueEventListener() {
             @Override
@@ -144,6 +148,7 @@ public class RecBookingList extends Fragment {
         semuariwayat.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pilihan.setText("Semua Riwayat");
                 linearLayout.removeAllViews();
                 recview.setItemAnimator(null);
                 Query query=databaseReference.orderByChild("idtempat").equalTo(preferences.getIdtempatmitra(getActivity()));
@@ -175,6 +180,7 @@ public class RecBookingList extends Fragment {
         berlangsungbookinglist.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pilihan.setText("Sedang Berlangsung");
                 linearLayout.removeAllViews();
                 recview.setItemAnimator(null);
                 Query query=databaseReference.orderByChild("idtempat").equalTo(preferences.getIdtempatmitra(getActivity()));
@@ -226,6 +232,7 @@ public class RecBookingList extends Fragment {
         expired.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pilihan.setText("Expired");
                 linearLayout.removeAllViews();
                 recview.setItemAnimator(null);
                 Query query=databaseReference.orderByChild("idtempat").equalTo(preferences.getIdtempatmitra(getActivity()));
@@ -279,6 +286,7 @@ public class RecBookingList extends Fragment {
         filtertanggal.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                pilihan.setText("Filter Tanggal");
                 linearLayout.removeAllViews();
                 recview.setItemAnimator(null);
                 Button addbtn = new Button (getActivity());

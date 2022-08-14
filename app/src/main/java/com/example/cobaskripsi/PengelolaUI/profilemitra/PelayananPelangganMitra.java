@@ -14,7 +14,7 @@ import com.example.cobaskripsi.R;
 
 public class PelayananPelangganMitra extends AppCompatActivity {
 
-    TextView telp, email;
+    TextView telp, email,wa;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,6 +23,7 @@ public class PelayananPelangganMitra extends AppCompatActivity {
 
         telp=findViewById(R.id.nomoradminmitra);
         email = findViewById(R.id.emailadminmitra);
+        wa=findViewById(R.id.whatsappadminmitra);
 
         telp.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -54,7 +55,57 @@ public class PelayananPelangganMitra extends AppCompatActivity {
         email.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                AlertDialog.Builder builder=new AlertDialog.Builder(email.getContext());
+                builder.setTitle("Email");
+                builder.setMessage("Anda akan diarahkan ke menu Email");
 
+
+                builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.setNegativeButton("Email", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        Uri data = Uri.parse("mailto:mauludi21@gmail.com?subject=" + "" + "&body=" + "");
+                        intent.setData(data);
+                        startActivity(intent);
+                    }
+                });
+
+                builder.show();
+            }
+        });
+
+        wa.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                AlertDialog.Builder builder=new AlertDialog.Builder(wa.getContext());
+                builder.setTitle("Whatsapp");
+                builder.setMessage("Anda akan diarahkan ke Whatsapp");
+
+
+                builder.setPositiveButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                builder.setNegativeButton("Yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        String url = "https://api.whatsapp.com/send?phone="+"+628121261983";
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse(url));
+                        startActivity(intent);
+                    }
+                });
+
+
+                builder.show();
             }
         });
 

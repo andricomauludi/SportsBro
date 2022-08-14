@@ -38,6 +38,16 @@
                 android:textColor="@color/darkteal"
                 />
 
+            <EditText
+                android:id="@+id/adddeskripsilapangan"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:hint="Deskripsi Lapangan"
+                android:textSize="20sp"
+                android:layout_marginBottom="15dp"
+                android:textColor="@color/darkteal"
+                />
+
             <TextView
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"

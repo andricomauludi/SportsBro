@@ -6,15 +6,16 @@
     android:layout_height="match_parent"
     android:gravity="center"
     android:orientation="vertical"
-    tools:context=".AdminUI.datatempat.editdatatempat"
+    tools:context=".AdminUI.datatempat.addtempat"
+
     android:background="@color/white">
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
         <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_width="300dp"
+            android:layout_height="wrap_content"
             android:gravity="center"
             android:layout_gravity="center"
             android:orientation="vertical">
@@ -25,17 +26,16 @@
                 android:gravity="center"
                 android:textStyle="bold"
                 android:textSize="35sp"
-                android:layout_marginTop="20dp"
                 android:textColor="@color/darkteal"
                 android:layout_marginBottom="100dp"/>
             <EditText
-                android:id="@+id/addnamatempat"
+                android:id="@+id/editnamatempat"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:hint="Bucketlist"
+                android:hint="Nama Tempat"
                 android:textSize="20sp"
                 android:layout_marginBottom="15dp"
-
+                android:textColor="@color/darkteal"
                 />
             <LinearLayout
                 android:layout_width="match_parent"
@@ -71,29 +71,49 @@
 
 
             <EditText
-                android:id="@+id/addalamattempat"
+                android:id="@+id/editalamattempat"
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:hint="Jl. R. H. Moh. Tohir No.1, RT.07/RW.10, Tanah Baru, Kec. Bogor Utara, Kota Bogor, Jawa Barat 16154"
-                android:textSize="20sp"
-                android:layout_marginBottom="15dp"
-                />
-
-            <EditText
-                android:id="@+id/notelptempat"
-                android:layout_width="300dp"
-                android:layout_height="wrap_content"
-                android:hint="08991111668"
+                android:hint="Alamat Tempat"
                 android:textSize="20sp"
                 android:layout_marginBottom="15dp"
                 android:textColor="@color/darkteal"
                 />
 
-            <EditText
-                android:id="@+id/markerlokasi"
+            <LinearLayout
                 android:layout_width="300dp"
                 android:layout_height="wrap_content"
-                android:hint="-6.591155, 106.815974"
+                android:orientation="horizontal">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="+62"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"/>
+
+                <EditText
+                    android:id="@+id/editnotelptempat"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="Nomor Telepon Tempat"
+                    android:textSize="20sp"
+                    android:textColor="@color/darkteal"
+                    />
+
+            </LinearLayout>
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="Contoh nomor valid : +62 8121261983"
+                android:textColor="@color/black"
+                android:layout_marginBottom="15dp"
+                android:textSize="15sp"/>
+
+            <EditText
+                android:id="@+id/editmarkerlokasi"
+                android:layout_width="300dp"
+                android:layout_height="wrap_content"
+                android:hint="Marker Lokasi Tempat"
                 android:textSize="20sp"
                 android:layout_marginBottom="15dp"
                 android:textColor="@color/darkteal"
@@ -102,15 +122,15 @@
 
 
             <Button
-                android:id="@+id/tambahdatatempat"
+                android:id="@+id/submiteditdatatempat"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
-                android:text="Tambahkan"
+                android:text="Submit"
 
                 />
 
             <Button
-                android:id="@+id/backdatatempat"
+                android:id="@+id/backeditdatatempatadmin"
                 android:layout_width="150dp"
                 android:layout_height="wrap_content"
                 android:text="Kembali"/>

@@ -1,17 +1,27 @@
 package com.example.cobaskripsi.UserUI.jenisolahraga.caritempat.detail;
 
 public class LapanganModel {
-    String idtempat,jamtersedia,namalapangan;
+    String idtempat,jamtersedia,namalapangan,deskripsilapangan;
+
+    public LapanganModel(String idtempat, String jamtersedia, String namalapangan, String deskripsilapangan) {
+        this.idtempat = idtempat;
+        this.jamtersedia = jamtersedia;
+        this.namalapangan = namalapangan;
+        this.deskripsilapangan = deskripsilapangan;
+    }
+
+    public String getDeskripsilapangan() {
+        return deskripsilapangan;
+    }
+
+    public void setDeskripsilapangan(String deskripsilapangan) {
+        this.deskripsilapangan = deskripsilapangan;
+    }
 
     public LapanganModel(){
 
     }
 
-    public LapanganModel(String idtempat, String jamtersedia, String namalapangan) {
-        this.idtempat = idtempat;
-        this.jamtersedia = jamtersedia;
-        this.namalapangan = namalapangan;
-    }
 
     public String getIdtempat() {
         return idtempat;

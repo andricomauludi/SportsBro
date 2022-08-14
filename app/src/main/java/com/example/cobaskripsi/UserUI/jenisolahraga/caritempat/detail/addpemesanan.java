@@ -39,12 +39,12 @@ public class  addpemesanan extends AppCompatActivity {
 
 
     EditText namapemesan,nomortelppemesan;
-    TextView namatempat,jenislapangan,jamtersedia, coba,tanggalpemesanan;
+    TextView namatempat,jenislapangan,jamtersedia, coba,tanggalpemesanan,deskripsilapangan;
     Button pesan,cancel,lihattanggal;
-    String sudahdipesan, nomortelppemesanfinal;
+    String sudahdipesan, notelp;
     DatePickerDialog datePickerDialog;
     SimpleDateFormat dateFormatter;
-    String newString2,idtempat,newString3,idlapangan,newString4, waktupemesanan, idpemesan, username, jenisolahraga;
+    String newString2,idtempat,newString3,idlapangan,newString4, waktupemesanan, idpemesan, username, jenisolahraga,deskripsilapangan1;
     String[] checkboxjam;
     private DatabaseReference mDatabase;
     String tanggalpemesananpilih;
@@ -64,6 +64,7 @@ public class  addpemesanan extends AppCompatActivity {
         namatempat = (TextView)findViewById(R.id.namatempat);
         jenislapangan = (TextView)findViewById(R.id.jenislapangan);
         jamtersedia=(TextView)findViewById(R.id.jamtersedia);
+        deskripsilapangan=findViewById(R.id.deskripsilapanganadd);
         coba=(TextView)findViewById(R.id.coba);
         pesan=(Button)findViewById(R.id.pesan);
         pesan.setEnabled(false);
@@ -78,6 +79,8 @@ public class  addpemesanan extends AppCompatActivity {
                 newString4= null;
                 idlapangan=null;
                 jenisolahraga=null;
+                notelp=null;
+                deskripsilapangan1=null;
 
             } else {
                 idtempat= extras.getString("IDTEMPAT");
@@ -86,6 +89,8 @@ public class  addpemesanan extends AppCompatActivity {
                 newString4= extras.getString("JAMTERSEDIA");
                 idlapangan= extras.getString("IDLAPANGAN");
                 jenisolahraga= extras.getString("JENISOLAHRAGA");
+                notelp= extras.getString("NOMORTELEPON");
+                deskripsilapangan1= extras.getString("DESKRIPSILAPANGAN");
             }
         } else {
             idtempat= (String) savedInstanceState.getSerializable("IDTEMPAT");
@@ -94,9 +99,13 @@ public class  addpemesanan extends AppCompatActivity {
             newString4= (String) savedInstanceState.getSerializable("JAMTERSEDIA");
             idlapangan= (String) savedInstanceState.getSerializable("IDLAPANGAN");
             jenisolahraga= (String) savedInstanceState.getSerializable("JENISOLAHRAGA");
+            notelp= (String) savedInstanceState.getSerializable("NOMORTELEPON");
+            deskripsilapangan1= (String) savedInstanceState.getSerializable("DESKRIPSILAPANGAN");
         }
         namatempat.setText(newString2);
         jenislapangan.setText(newString3);
+        deskripsilapangan.setText(deskripsilapangan1);
+
 
 
         tanggalpemesanan = findViewById(R.id.tanggalpemesanan);
@@ -221,7 +230,7 @@ public class  addpemesanan extends AppCompatActivity {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     map.put("namapemesan",namapemesan.getText().toString());
-                    map.put("nomortelppemesan",nomortelppemesan.getText().toString());
+                    map.put("nomortelppemesan","+62"+nomortelppemesan.getText().toString());
                     map.put("tanggalpemesanan",tanggalpemesanan.getText().toString());
                     map.put("namalapangan",jenislapangan.getText().toString());
                     map.put("namatempat",namatempat.getText().toString());
@@ -233,6 +242,7 @@ public class  addpemesanan extends AppCompatActivity {
                     map.put("jenisolahraga",jenisolahraga);
                     map.put("timestamp",ts);
                     map.put("statuspemesanan","Menunggu Konfirmasi");
+                    map.put("notelptempat",notelp);
                     map.put("idpemesanan",key);
 
                     FirebaseDatabase.getInstance().getReference().child("pemesanan").child(key)
@@ -284,7 +294,7 @@ public class  addpemesanan extends AppCompatActivity {
             namapemesan.requestFocus();
             namapemesan.setError("Isi Nama");
             return false;
-        } else if (nomortelppemesan1.length() <= 10 || nomortelppemesan1.length() > 13 ) {
+        } else if (nomortelppemesan1.length() < 10 || nomortelppemesan1.length() > 12 ) {
             nomortelppemesan.requestFocus();
             nomortelppemesan.setError("Isi Nomor Telp yang Valid");
             return false;
@@ -322,7 +332,9 @@ public class  addpemesanan extends AppCompatActivity {
                             if (pemesananModel.getIdtempat().contains(idtempat) &&
                                     pemesananModel.getIdlapangan().contains(idlapangan) &&
                                     pemesananModel.getTanggalpemesanan().contains(date) && (pemesananModel.getStatuspemesanan().contains("Booked")
-                            || pemesananModel.getStatuspemesanan().contains("Menunggu Konfirmasi"))
+                            || pemesananModel.getStatuspemesanan().contains("Menunggu Konfirmasi") ||
+                                    pemesananModel.getStatuspemesanan().contains("Pengajuan Pembatalan")
+                            )
                             ){
                                 sudahdipesan = (pemesananModel.getWaktupemesanan());
                                 String sudahdipesanbaru = String.valueOf(sudahdipesan.replaceAll("[\\[\\]\\(\\)]", ""));

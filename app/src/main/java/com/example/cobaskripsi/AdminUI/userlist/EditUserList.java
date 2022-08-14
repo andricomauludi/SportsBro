@@ -97,9 +97,6 @@ public class EditUserList extends AppCompatActivity {
                 layout.removeAllViews();
                 tempat.setVisibility(View.GONE);
                 if (roleterpilih.equals("mitra")){
-
-
-
                     ArrayList<String> arraytempat = new ArrayList<String>();
                     ArrayList<String> arraynamatempat = new ArrayList<String>();
                     FirebaseDatabase.getInstance().getReference("tempat")

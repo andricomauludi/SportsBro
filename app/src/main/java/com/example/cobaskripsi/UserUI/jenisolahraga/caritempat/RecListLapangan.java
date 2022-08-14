@@ -131,7 +131,7 @@ public class RecListLapangan extends Fragment {
 
 
                                     double jarak = getDistance(latitudeTujuan, longitudeTujuan, latitudeSaya, longitudeSaya);
-                                    jarak = Math.ceil(jarak / 1000);
+                                    jarak = (jarak / 1000);
                                     String stringjarak = jarak+"";
                                     if (jarak<=5){
                                         arrayList.add(tempatModel);

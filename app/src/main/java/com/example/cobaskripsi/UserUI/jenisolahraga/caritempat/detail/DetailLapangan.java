@@ -113,7 +113,7 @@ public class DetailLapangan extends Fragment {
         telepon=view.findViewById(R.id.telepontempat);
         nomortelp=view.findViewById(R.id.nomortelpdetaillapangan);
 
-        mStorageReference = FirebaseStorage.getInstance().getReference().child("picture/"+gambar+".jpg");
+        mStorageReference = FirebaseStorage.getInstance().getReference().child("picture/"+gambar);
 
         try {
             final File localFile = File.createTempFile("girl","jpg");
@@ -224,7 +224,7 @@ public class DetailLapangan extends Fragment {
         telepon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                AlertDialog.Builder builder=new AlertDialog.Builder(direction.getContext());
+                AlertDialog.Builder builder=new AlertDialog.Builder(telepon.getContext());
                 builder.setTitle("Telepon");
                 builder.setMessage("Anda akan diahrahkan ke menu panggilan");
 
@@ -260,6 +260,7 @@ public class DetailLapangan extends Fragment {
         final ArrayList<String> namalapangan = new ArrayList<>();
         final ArrayList<String> idlapangan = new ArrayList<>();
         final ArrayList<String> jamtersedia = new ArrayList<>();
+        final ArrayList<String> deskripsilapangan = new ArrayList<>();
        // final ArrayAdapter adapter = new ArrayAdapter<String>(getActivity(), R.layout.list_item, list);
        // listView.setAdapter(adapter);
 
@@ -276,11 +277,13 @@ public class DetailLapangan extends Fragment {
                         namalapangan.clear();
                         idlapangan.clear();
                         jamtersedia.clear();
+                        deskripsilapangan.clear();
                         for (DataSnapshot childSnapshot : snapshot.getChildren()){
                             LapanganModel lapanganModel = childSnapshot.getValue(LapanganModel.class);
                             //list.add(lapanganModel.getNamalapangan());
                             namalapangan.add(lapanganModel.getNamalapangan());
                             jamtersedia.add(lapanganModel.getJamtersedia());
+                            deskripsilapangan.add(lapanganModel.getDeskripsilapangan());
                             String clubkey = childSnapshot.getKey();
                             idlapangan.add(clubkey);
 
@@ -331,6 +334,7 @@ public class DetailLapangan extends Fragment {
                                 String jenislapangan = namalapangan.get(i);
                                 String idlapanganpesan = idlapangan.get(i);
                                 String jamtersediapesan = jamtersedia.get(i);
+                                String deskripsilapanganpesan = deskripsilapangan.get(i);
                                 addlapangan[i].setOnClickListener(new View.OnClickListener() {
                                     @Override
                                     public void onClick(View v) {
@@ -342,6 +346,8 @@ public class DetailLapangan extends Fragment {
                                         extras.putString("IDLAPANGAN", idlapanganpesan);
                                         extras.putString("JAMTERSEDIA", jamtersediapesan);
                                         extras.putString("JENISOLAHRAGA", jenisolahraga);
+                                        extras.putString("NOMORTELEPON", notelp);
+                                        extras.putString("DESKRIPSILAPANGAN",deskripsilapanganpesan);
                                         intent.putExtras(extras);
                                         startActivity(intent);
 

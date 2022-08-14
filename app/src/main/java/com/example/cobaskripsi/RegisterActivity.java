@@ -145,7 +145,7 @@ public class RegisterActivity extends AppCompatActivity {
             email.requestFocus();
             email.setError("Isi email");
             return false;
-        }else if (notelp1.length() < 11) {
+        }else if (notelp1.length() < 10 && notelp1.length() > 12) {
             notelp.requestFocus();
             notelp.setError("Isi nomor telepon yang valid");
             return false;
@@ -167,7 +167,7 @@ public class RegisterActivity extends AppCompatActivity {
         Map<String,Object> map=new HashMap<>();
         if(checkValidation()) {
             map.put("username",username1);
-            map.put("nomortelpuser",notelp1);
+            map.put("nomortelpuser","+62"+notelp1);
             map.put("emailuser",email1);
             map.put("role","pelanggan");
             map.put("iduser",FirebaseAuth.getInstance().getCurrentUser().getUid());

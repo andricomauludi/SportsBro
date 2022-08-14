@@ -52,6 +52,7 @@ public class AdapterDataLapangan extends FirebaseRecyclerAdapter<LapanganModel,A
                             intent.putExtra("IDTEMPAT", preferences.getIdtempatmitra(context));
                             intent.putExtra("NAMALAPANGAN",holder.namalapangan.getText().toString());
                             intent.putExtra("JAMTERSEDIA", model.getJamtersedia());
+                            intent.putExtra("DESKRIPSILAPANGAN", model.getDeskripsilapangan());
                             intent.putExtra("IDLAPANGAN", idlapangan);
                             context.startActivity(intent);
                         }

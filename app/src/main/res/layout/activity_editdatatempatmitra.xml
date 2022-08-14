@@ -24,53 +24,14 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Edit Tempat"
+            android:text="Edit Nomor Telepon"
             android:textColor="@color/black"
             android:textStyle="bold"
             android:gravity="top"
             android:textSize="25sp"
             android:layout_marginBottom="35dp"/>
 
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Nama Tempat    :"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:gravity="top"
-            android:textSize="15sp"
-            />
-        <EditText
-            android:id="@+id/namatempateditdatatempatmitra"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="-"
-            android:textColor="@color/black"
-            android:gravity="top"
-            android:textSize="15sp"
-            />
 
-
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Alamat Tempat     :"
-            android:textStyle="bold"
-            android:textColor="@color/black"
-            android:gravity="top"
-            android:textSize="15sp"
-            />
-
-        <EditText
-            android:id="@+id/alamattempateditdatatempatmitra"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="-"
-            android:textColor="@color/black"
-            android:gravity="top"
-            android:textSize="15sp"
-            />
 
         <TextView
             android:layout_width="match_parent"
@@ -82,15 +43,34 @@
             android:textSize="15sp"
             />
 
-        <EditText
-            android:id="@+id/nomortelpeditdatatempatmitra"
+
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="-"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="+62"
+                android:textColor="@color/black"
+                android:textSize="20sp"/>
+            <EditText
+                android:id="@+id/nomortelpeditdatatempatmitra"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:hint="Nomor Telepon Tempat"
+                android:textSize="20sp"
+                android:textColor="@color/black"
+                />
+
+        </LinearLayout>
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Contoh nomor valid : +62 8121261983"
             android:textColor="@color/black"
-            android:gravity="top"
-            android:textSize="15sp"
-            />
+            android:layout_marginBottom="15dp"
+            android:textSize="15sp"/>
 
         <Button
             android:id="@+id/savedatatempatmitra"
@@ -99,7 +79,6 @@
             android:text="Save"
             android:gravity="center"
             android:layout_gravity="center"
-            android:onClick="updatedatatempatmitra"
             />
         <Button
             android:id="@+id/backdatatempatmitra"

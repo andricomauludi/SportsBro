@@ -86,6 +86,16 @@
 
                 </LinearLayout>
         </LinearLayout>
+        <TextView
+            android:id="@+id/pilihantextbookinglist"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="PILIHAN TEXT"
+            android:textSize="20sp"
+            android:textColor="@color/black"
+            android:padding="10dp"
+            android:background="@drawable/button_darkwhite"
+            android:gravity="center"/>
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
