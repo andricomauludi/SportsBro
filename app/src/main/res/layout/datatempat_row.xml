@@ -51,7 +51,7 @@
                     <Button
                         android:layout_margin="5dp"
                         android:id="@+id/detailtempatdatatempat"
-                        android:layout_width="75dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="35dp"
                         android:text="Detail"
                         android:textSize="10sp"
@@ -59,7 +59,7 @@
                     <Button
                         android:id="@+id/deletedatatempat"
                         android:layout_margin="5dp"
-                        android:layout_width="75dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="35dp"
                         android:text="Delete"
                         android:textSize="10sp"
@@ -67,7 +67,7 @@
                     <Button
                         android:id="@+id/editdatatempat"
                         android:layout_margin="5dp"
-                        android:layout_width="75dp"
+                        android:layout_width="wrap_content"
                         android:layout_height="35dp"
                         android:text="Edit"
                         android:textSize="10sp"

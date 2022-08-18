@@ -90,10 +90,10 @@ public class RecListLapangan extends Fragment {
 
 
         ArrayList<String> spinnerArray = new ArrayList<String>(24);
-        spinnerArray.add("5 Km");
-        spinnerArray.add("10 Km");
-        spinnerArray.add("25 Km");
-        spinnerArray.add("50 Km");
+        spinnerArray.add("Radius 5 Km");
+        spinnerArray.add("Radius 10 Km");
+        spinnerArray.add("Radius 25 Km");
+        spinnerArray.add("Radius 50 Km dan >50 Km");
         spinnerArray.add("Semua tempat");
 
         ArrayAdapter<String> spinnerArrayAdapter = new ArrayAdapter<String>(getActivity(), android.R.layout.simple_spinner_dropdown_item, spinnerArray);
@@ -103,7 +103,7 @@ public class RecListLapangan extends Fragment {
             @Override
             public void onItemSelected(AdapterView<?> parentView, View selectedItemView, int position, long id) {
                 String roleterpilih = spinnerArray.get(position);
-                if (spinnerArray.get(position).equals("5 Km")){
+                if (spinnerArray.get(position).equals("Radius 5 Km")){
                     recview.setItemAnimator(null);
                     Query query=databaseReference.orderByChild("jenisolahraga").equalTo(jenisolahragaa.toLowerCase());
                     query.addValueEventListener(new ValueEventListener() {
@@ -150,7 +150,7 @@ public class RecListLapangan extends Fragment {
 
                         }
                     });
-                }else if (spinnerArray.get(position).equals("10 Km")){
+                }else if (spinnerArray.get(position).equals("Radius 10 Km")){
                     recview.setItemAnimator(null);
                     Query query=databaseReference.orderByChild("jenisolahraga").equalTo(jenisolahragaa.toLowerCase());
                     query.addValueEventListener(new ValueEventListener() {
@@ -180,7 +180,7 @@ public class RecListLapangan extends Fragment {
                                     double jarak = getDistance(latitudeTujuan, longitudeTujuan, latitudeSaya, longitudeSaya);
                                     jarak = Math.ceil(jarak / 1000);
                                     String stringjarak = jarak+"";
-                                    if (jarak<=10){
+                                    if (jarak>=10 && jarak <=25){
                                         arrayList.add(tempatModel);
 
                                     }
@@ -198,7 +198,7 @@ public class RecListLapangan extends Fragment {
                         }
                     });
                 }
-                else if (spinnerArray.get(position).equals("25 Km")){
+                else if (spinnerArray.get(position).equals("Radius 25 Km")){
                     recview.setItemAnimator(null);
                     Query query=databaseReference.orderByChild("jenisolahraga").equalTo(jenisolahragaa.toLowerCase());
                     query.addValueEventListener(new ValueEventListener() {
@@ -228,7 +228,7 @@ public class RecListLapangan extends Fragment {
                                     double jarak = getDistance(latitudeTujuan, longitudeTujuan, latitudeSaya, longitudeSaya);
                                     jarak = Math.ceil(jarak / 1000);
                                     String stringjarak = jarak+"";
-                                    if (jarak<=25){
+                                    if (jarak>=25 && jarak <=50){
                                         arrayList.add(tempatModel);
                                     }
                                 }
@@ -244,7 +244,7 @@ public class RecListLapangan extends Fragment {
 
                         }
                     });
-                }else if (spinnerArray.get(position).equals("50 Km")){
+                }else if (spinnerArray.get(position).equals("Radius 50 Km dan >50 Km")){
                     recview.setItemAnimator(null);
                     Query query=databaseReference.orderByChild("jenisolahraga").equalTo(jenisolahragaa.toLowerCase());
                     query.addValueEventListener(new ValueEventListener() {
@@ -274,7 +274,7 @@ public class RecListLapangan extends Fragment {
                                     double jarak = getDistance(latitudeTujuan, longitudeTujuan, latitudeSaya, longitudeSaya);
                                     jarak = Math.ceil(jarak / 1000);
                                     String stringjarak = jarak+"";
-                                    if (jarak<=50){
+                                    if (jarak>=50){
                                         arrayList.add(tempatModel);
                                     }
                                 }
